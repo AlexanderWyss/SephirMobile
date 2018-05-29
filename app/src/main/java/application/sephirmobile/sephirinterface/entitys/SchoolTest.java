@@ -2,6 +2,9 @@ package application.sephirmobile.sephirinterface.entitys;
 
 import org.joda.time.LocalDate;
 
+import application.sephirmobile.sephirinterface.SephirInterface;
+import application.sephirmobile.sephirinterface.getters.AverageTestMarkGetter;
+
 public class SchoolTest {
     private LocalDate date;
     private String subject;
@@ -25,6 +28,11 @@ public class SchoolTest {
         this.weight = weight;
         this.mark = mark;
         this.id = id;
+    }
+
+    public double getAverageMark(SephirInterface sephirInterface) {
+        AverageTestMarkGetter averageTestMarkGetter = new AverageTestMarkGetter(sephirInterface);
+        return averageTestMarkGetter.get(this);
     }
 
     public LocalDate getDate() {

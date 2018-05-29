@@ -6,13 +6,10 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 
 import java.net.URI;
-import java.util.List;
 
-import application.sephirmobile.sephirinterface.entitys.AnnouncedTest;
 import application.sephirmobile.sephirinterface.entitys.Certification;
 import application.sephirmobile.sephirinterface.entitys.Login;
 import application.sephirmobile.sephirinterface.exceptions.LoginException;
-import application.sephirmobile.sephirinterface.getters.AnnouncedTestGetter;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
@@ -23,7 +20,7 @@ public class SephirInterfaceTest {
     public void sephirInterfaceTest() throws Exception {
         //Login
         SephirInterface sephirInterface = new SephirInterface();
-        sephirInterface.login(new Login("email", "You'd like to know that, wouldn't you?"));
+        sephirInterface.login(new Login("alexander_wyss@sluz.ch", null));
 
         /*
         //Get SchoolClasses
@@ -37,12 +34,19 @@ public class SephirInterfaceTest {
             List<SchoolTest> tests = testGetter.get(schoolClass);
             System.out.println(tests);
         }
-        */
+
 
         //Get Announced Tests
         AnnouncedTestGetter announcedTestGetter = new AnnouncedTestGetter(sephirInterface);
         List<AnnouncedTest> announcedTests = announcedTestGetter.get();
         System.out.println(announcedTests);
+
+
+        //Get average Mark (or use method on SchoolTest
+        AverageTestMarkGetter averageTestMarkGetter = new AverageTestMarkGetter(sephirInterface);
+        double averageMark = averageTestMarkGetter.get(new SchoolTest(null, null, null, null, null, 0, 0, "216054"));
+        System.out.println(averageMark);
+        */
     }
 
     @Test(expected = LoginException.class)

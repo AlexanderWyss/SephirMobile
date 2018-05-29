@@ -1,0 +1,213 @@
+<html><head><script type="text/javascript">/* <![CDATA[ */_cf_loadingtexthtml="<img alt=' ' src='/cfscripts-front/ajax/resources/cf/images/loading.gif'/>";
+_cf_contextpath="";
+_cf_ajaxscriptsrc="/cfscripts-front/ajax";
+_cf_jsonprefix='//';
+_cf_websocket_port=8577;
+_cf_flash_policy_port=1243;
+_cf_clientid='D0B13AFEE3FB6B1775182835C5C4D8AA';/* ]]> */</script><script type="text/javascript" src="/cfscripts-front/ajax/messages/cfmessage.js"></script>
+<script type="text/javascript" src="/cfscripts-front/ajax/package/cfajax.js"></script>
+<script type="text/javascript" src="/cfscripts-front/chart/cfchart-server.js"></script>
+
+<meta http-equiv="expires" content="0">
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="cache-control" content="no-cache">
+<link rel="stylesheet" href="../../../../inc/inhalt.css" type="text/css">
+<title>Prüfungsauswertung</title>
+</head>
+<body><span></span>
+
+<table width="700" cellspacing="0" cellpadding="0">
+	<tbody><tr>
+		<td>
+			<span class="tdschwarz">Prüfungsauswertung</span><br>
+			<span class="tdschwarzgross"><b>Statistik (Datenanalyse)</b></span><br><br>
+		</td>
+		<td align="right">
+			<a href="javascript:window.print();"><img src="../../../../images/printout.gif" alt="" width="38" height="38" border="0"></a><br>
+		</td>
+	</tr>
+</tbody></table>
+<table width="700" cellspacing="0" cellpadding="0">
+	<tbody><tr>
+		<td width="100" valign="top">Fach</td>
+		<td width="270" valign="top"><b>MA - Mathematik</b></td>
+		<td rowspan="6" width="330" valign="top">
+			<b>Bemerkungen:</b><br>Formelsammlung Statistik zusammenstellen 
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2" height="13"></td>
+	</tr>
+	<tr>
+		<td valign="top" height="12">Klasse</td>
+		<td valign="top"><b>S-BMLT16a BBZW-S</b></td>
+	</tr>
+	<tr>
+		<td colspan="2" height="13"></td>
+	</tr>
+	
+		<tr>
+			<td valign="top" height="12">Periode</td>
+			<td valign="top"><b>SJ 2017/2018, 2. Semester</b></td>
+		</tr>
+		<tr>
+			<td colspan="2" height="13"></td>
+		</tr>
+	
+	<tr>
+		<td valign="top" height="12">Datum</td>
+		<td valign="top"><b>17.05.2018</b></td>
+	</tr>
+	<tr>
+		<td colspan="2" height="13"></td>
+	</tr>
+	<tr>
+		<td valign="top" height="12">Notentyp</td>
+		<td valign="top">
+			<b>
+			Definitiv
+			</b>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">&nbsp;</td>
+	</tr>
+</tbody></table>
+<br><br>
+
+	<table width="700" cellspacing="0" cellpadding="0">
+		
+				<tbody><tr>
+					<td width="220" height="22" bgcolor="#dddddd">&nbsp;Wyss Alexander</td>
+					<td width="300" bgcolor="#dddddd">BISON Schweiz AG</td>
+					<td width="80" bgcolor="#dddddd">mit BM</td>
+					<td width="100" bgcolor="#dddddd" align="right">6.0&nbsp;</td>
+				</tr>
+				
+			<tr>
+				<td colspan="4" height="5"></td>
+			</tr>
+			<tr>
+				<td colspan="3" bgcolor="#dddddd">&nbsp;<b>Klassenschnitt</b></td>
+				<td width="100" height="30" bgcolor="#dddddd" align="right"><b>5.51&nbsp;</b></td>
+			</tr>
+		
+	</tbody></table>
+	
+	
+		<br><br>
+		<span class="tdschwarz"><b>Verteilkurve</b></span><br>
+		
+<img class="chart" id="9302277340193644-img" src="/CFFileServlet/_cf_chart/9302277340193644.png" usemap="#9302277340193644-map" border="0">
+<div id="9302277340193644-tooltip" style="position:absolute;display:none;"></div>
+<map id="9302277340193644-map" name="9302277340193644-map">
+<area shape="rect" id="9302277340193644-graph-id0-plotset-plot-0-node-0" coords="39,76,50,80">
+<area shape="rect" id="9302277340193644-graph-id0-plotset-plot-0-node-1" coords="52,76,62,80">
+<area shape="rect" id="9302277340193644-graph-id0-plotset-plot-0-node-2" coords="64,76,75,80">
+<area shape="rect" id="9302277340193644-graph-id0-plotset-plot-0-node-3" coords="77,76,88,80">
+<area shape="rect" id="9302277340193644-graph-id0-plotset-plot-0-node-4" coords="90,76,100,80">
+<area shape="rect" id="9302277340193644-graph-id0-plotset-plot-0-node-5" coords="102,76,113,80">
+<area shape="rect" id="9302277340193644-graph-id0-plotset-plot-0-node-6" coords="115,76,126,80">
+<area shape="rect" id="9302277340193644-graph-id0-plotset-plot-0-node-7" coords="128,76,138,80">
+<area shape="rect" id="9302277340193644-graph-id0-plotset-plot-0-node-8" coords="140,76,151,80">
+<area shape="rect" id="9302277340193644-graph-id0-plotset-plot-0-node-9" coords="153,76,164,80">
+<area shape="rect" id="9302277340193644-graph-id0-plotset-plot-0-node-10" coords="166,76,177,80">
+<area shape="rect" id="9302277340193644-graph-id0-plotset-plot-0-node-11" coords="179,76,189,80">
+<area shape="rect" id="9302277340193644-graph-id0-plotset-plot-0-node-12" coords="191,76,202,80">
+<area shape="rect" id="9302277340193644-graph-id0-plotset-plot-0-node-13" coords="204,76,215,80">
+<area shape="rect" id="9302277340193644-graph-id0-plotset-plot-0-node-14" coords="217,76,227,80">
+<area shape="rect" id="9302277340193644-graph-id0-plotset-plot-0-node-15" coords="229,76,240,80">
+<area shape="rect" id="9302277340193644-graph-id0-plotset-plot-0-node-16" coords="242,76,253,80">
+<area shape="rect" id="9302277340193644-graph-id0-plotset-plot-0-node-17" coords="255,76,265,80">
+<area shape="rect" id="9302277340193644-graph-id0-plotset-plot-0-node-18" coords="267,76,278,80">
+<area shape="rect" id="9302277340193644-graph-id0-plotset-plot-0-node-19" coords="280,76,291,80">
+<area shape="rect" id="9302277340193644-graph-id0-plotset-plot-0-node-20" coords="293,76,303,80">
+<area shape="rect" id="9302277340193644-graph-id0-plotset-plot-0-node-21" coords="305,76,316,80">
+<area shape="rect" id="9302277340193644-graph-id0-plotset-plot-0-node-22" coords="318,76,329,80">
+<area shape="rect" id="9302277340193644-graph-id0-plotset-plot-0-node-23" coords="331,76,341,80">
+<area shape="rect" id="9302277340193644-graph-id0-plotset-plot-0-node-24" coords="343,76,354,80">
+<area shape="rect" id="9302277340193644-graph-id0-plotset-plot-0-node-25" coords="356,76,367,80">
+<area shape="rect" id="9302277340193644-graph-id0-plotset-plot-0-node-26" coords="369,76,380,80">
+<area shape="rect" id="9302277340193644-graph-id0-plotset-plot-0-node-27" coords="382,76,392,80">
+<area shape="rect" id="9302277340193644-graph-id0-plotset-plot-0-node-28" coords="394,76,405,80">
+<area shape="rect" id="9302277340193644-graph-id0-plotset-plot-0-node-29" coords="407,76,418,80">
+<area shape="rect" id="9302277340193644-graph-id0-plotset-plot-0-node-30" coords="420,59,430,80">
+<area shape="rect" id="9302277340193644-graph-id0-plotset-plot-0-node-31" coords="432,76,443,80">
+<area shape="rect" id="9302277340193644-graph-id0-plotset-plot-0-node-32" coords="445,76,456,80">
+<area shape="rect" id="9302277340193644-graph-id0-plotset-plot-0-node-33" coords="458,76,468,80">
+<area shape="rect" id="9302277340193644-graph-id0-plotset-plot-0-node-34" coords="470,59,481,80">
+<area shape="rect" id="9302277340193644-graph-id0-plotset-plot-0-node-35" coords="483,76,494,80">
+<area shape="rect" id="9302277340193644-graph-id0-plotset-plot-0-node-36" coords="496,76,506,80">
+<area shape="rect" id="9302277340193644-graph-id0-plotset-plot-0-node-37" coords="508,76,519,80">
+<area shape="rect" id="9302277340193644-graph-id0-plotset-plot-0-node-38" coords="521,59,532,80">
+<area shape="rect" id="9302277340193644-graph-id0-plotset-plot-0-node-39" coords="534,76,544,80">
+<area shape="rect" id="9302277340193644-graph-id0-plotset-plot-0-node-40" coords="546,59,557,80">
+<area shape="rect" id="9302277340193644-graph-id0-plotset-plot-0-node-41" coords="559,76,570,80">
+<area shape="rect" id="9302277340193644-graph-id0-plotset-plot-0-node-42" coords="572,76,583,80">
+<area shape="rect" id="9302277340193644-graph-id0-plotset-plot-0-node-43" coords="585,59,595,80">
+<area shape="rect" id="9302277340193644-graph-id0-plotset-plot-0-node-44" coords="597,76,608,80">
+<area shape="rect" id="9302277340193644-graph-id0-plotset-plot-0-node-45" coords="610,76,621,80">
+<area shape="rect" id="9302277340193644-graph-id0-plotset-plot-0-node-46" coords="623,25,633,80">
+<area shape="rect" id="9302277340193644-graph-id0-plotset-plot-0-node-47" coords="635,42,646,80">
+<area shape="rect" id="9302277340193644-graph-id0-plotset-plot-0-node-48" coords="648,8,659,80">
+<area shape="rect" id="9302277340193644-graph-id0-plotset-plot-0-node-49" coords="661,42,671,80">
+<area shape="rect" id="9302277340193644-graph-id0-plotset-plot-0-node-50" coords="673,25,684,80">
+</map>
+<script>
+if (!CFCHART) {var CFCHART={};};if (!CFCHART.nodes) {CFCHART.nodes={};}
+CFCHART.nodes["9302277340193644"]={};
+CFCHART.nodes["9302277340193644"]["9302277340193644-graph-id0-plotset-plot-0-node-0"]={text:"0",tooltipCss:"border:0px solid #000;borderRadius:0px 0px 0px 0px;boxShadow:0px 0px 0px none;backgroundImage:url('');backgroundRepeat:repeat;backgroundPosition:50% 50%;textAlign:center;verticalAlign:middle;color:#fff;fontFamily:Lucida Sans Unicode;fontSize:12px;fontWeight:normal;fontStyle:normal;textDecoration:none;backgroundColor:#0e651d;paddingTop:2px;paddingRight:2px;paddingBottom:2px;paddingLeft:2px;opacity:1;"};
+CFCHART.nodes["9302277340193644"]["9302277340193644-graph-id0-plotset-plot-0-node-1"]={text:"0",tooltipCss:"border:0px solid #000;borderRadius:0px 0px 0px 0px;boxShadow:0px 0px 0px none;backgroundImage:url('');backgroundRepeat:repeat;backgroundPosition:50% 50%;textAlign:center;verticalAlign:middle;color:#fff;fontFamily:Lucida Sans Unicode;fontSize:12px;fontWeight:normal;fontStyle:normal;textDecoration:none;backgroundColor:#0e651d;paddingTop:2px;paddingRight:2px;paddingBottom:2px;paddingLeft:2px;opacity:1;"};
+CFCHART.nodes["9302277340193644"]["9302277340193644-graph-id0-plotset-plot-0-node-2"]={text:"0",tooltipCss:"border:0px solid #000;borderRadius:0px 0px 0px 0px;boxShadow:0px 0px 0px none;backgroundImage:url('');backgroundRepeat:repeat;backgroundPosition:50% 50%;textAlign:center;verticalAlign:middle;color:#fff;fontFamily:Lucida Sans Unicode;fontSize:12px;fontWeight:normal;fontStyle:normal;textDecoration:none;backgroundColor:#0e651d;paddingTop:2px;paddingRight:2px;paddingBottom:2px;paddingLeft:2px;opacity:1;"};
+CFCHART.nodes["9302277340193644"]["9302277340193644-graph-id0-plotset-plot-0-node-3"]={text:"0",tooltipCss:"border:0px solid #000;borderRadius:0px 0px 0px 0px;boxShadow:0px 0px 0px none;backgroundImage:url('');backgroundRepeat:repeat;backgroundPosition:50% 50%;textAlign:center;verticalAlign:middle;color:#fff;fontFamily:Lucida Sans Unicode;fontSize:12px;fontWeight:normal;fontStyle:normal;textDecoration:none;backgroundColor:#0e651d;paddingTop:2px;paddingRight:2px;paddingBottom:2px;paddingLeft:2px;opacity:1;"};
+CFCHART.nodes["9302277340193644"]["9302277340193644-graph-id0-plotset-plot-0-node-4"]={text:"0",tooltipCss:"border:0px solid #000;borderRadius:0px 0px 0px 0px;boxShadow:0px 0px 0px none;backgroundImage:url('');backgroundRepeat:repeat;backgroundPosition:50% 50%;textAlign:center;verticalAlign:middle;color:#fff;fontFamily:Lucida Sans Unicode;fontSize:12px;fontWeight:normal;fontStyle:normal;textDecoration:none;backgroundColor:#0e651d;paddingTop:2px;paddingRight:2px;paddingBottom:2px;paddingLeft:2px;opacity:1;"};
+CFCHART.nodes["9302277340193644"]["9302277340193644-graph-id0-plotset-plot-0-node-5"]={text:"0",tooltipCss:"border:0px solid #000;borderRadius:0px 0px 0px 0px;boxShadow:0px 0px 0px none;backgroundImage:url('');backgroundRepeat:repeat;backgroundPosition:50% 50%;textAlign:center;verticalAlign:middle;color:#fff;fontFamily:Lucida Sans Unicode;fontSize:12px;fontWeight:normal;fontStyle:normal;textDecoration:none;backgroundColor:#0e651d;paddingTop:2px;paddingRight:2px;paddingBottom:2px;paddingLeft:2px;opacity:1;"};
+CFCHART.nodes["9302277340193644"]["9302277340193644-graph-id0-plotset-plot-0-node-6"]={text:"0",tooltipCss:"border:0px solid #000;borderRadius:0px 0px 0px 0px;boxShadow:0px 0px 0px none;backgroundImage:url('');backgroundRepeat:repeat;backgroundPosition:50% 50%;textAlign:center;verticalAlign:middle;color:#fff;fontFamily:Lucida Sans Unicode;fontSize:12px;fontWeight:normal;fontStyle:normal;textDecoration:none;backgroundColor:#0e651d;paddingTop:2px;paddingRight:2px;paddingBottom:2px;paddingLeft:2px;opacity:1;"};
+CFCHART.nodes["9302277340193644"]["9302277340193644-graph-id0-plotset-plot-0-node-7"]={text:"0",tooltipCss:"border:0px solid #000;borderRadius:0px 0px 0px 0px;boxShadow:0px 0px 0px none;backgroundImage:url('');backgroundRepeat:repeat;backgroundPosition:50% 50%;textAlign:center;verticalAlign:middle;color:#fff;fontFamily:Lucida Sans Unicode;fontSize:12px;fontWeight:normal;fontStyle:normal;textDecoration:none;backgroundColor:#0e651d;paddingTop:2px;paddingRight:2px;paddingBottom:2px;paddingLeft:2px;opacity:1;"};
+CFCHART.nodes["9302277340193644"]["9302277340193644-graph-id0-plotset-plot-0-node-8"]={text:"0",tooltipCss:"border:0px solid #000;borderRadius:0px 0px 0px 0px;boxShadow:0px 0px 0px none;backgroundImage:url('');backgroundRepeat:repeat;backgroundPosition:50% 50%;textAlign:center;verticalAlign:middle;color:#fff;fontFamily:Lucida Sans Unicode;fontSize:12px;fontWeight:normal;fontStyle:normal;textDecoration:none;backgroundColor:#0e651d;paddingTop:2px;paddingRight:2px;paddingBottom:2px;paddingLeft:2px;opacity:1;"};
+CFCHART.nodes["9302277340193644"]["9302277340193644-graph-id0-plotset-plot-0-node-9"]={text:"0",tooltipCss:"border:0px solid #000;borderRadius:0px 0px 0px 0px;boxShadow:0px 0px 0px none;backgroundImage:url('');backgroundRepeat:repeat;backgroundPosition:50% 50%;textAlign:center;verticalAlign:middle;color:#fff;fontFamily:Lucida Sans Unicode;fontSize:12px;fontWeight:normal;fontStyle:normal;textDecoration:none;backgroundColor:#0e651d;paddingTop:2px;paddingRight:2px;paddingBottom:2px;paddingLeft:2px;opacity:1;"};
+CFCHART.nodes["9302277340193644"]["9302277340193644-graph-id0-plotset-plot-0-node-10"]={text:"0",tooltipCss:"border:0px solid #000;borderRadius:0px 0px 0px 0px;boxShadow:0px 0px 0px none;backgroundImage:url('');backgroundRepeat:repeat;backgroundPosition:50% 50%;textAlign:center;verticalAlign:middle;color:#fff;fontFamily:Lucida Sans Unicode;fontSize:12px;fontWeight:normal;fontStyle:normal;textDecoration:none;backgroundColor:#0e651d;paddingTop:2px;paddingRight:2px;paddingBottom:2px;paddingLeft:2px;opacity:1;"};
+CFCHART.nodes["9302277340193644"]["9302277340193644-graph-id0-plotset-plot-0-node-11"]={text:"0",tooltipCss:"border:0px solid #000;borderRadius:0px 0px 0px 0px;boxShadow:0px 0px 0px none;backgroundImage:url('');backgroundRepeat:repeat;backgroundPosition:50% 50%;textAlign:center;verticalAlign:middle;color:#fff;fontFamily:Lucida Sans Unicode;fontSize:12px;fontWeight:normal;fontStyle:normal;textDecoration:none;backgroundColor:#0e651d;paddingTop:2px;paddingRight:2px;paddingBottom:2px;paddingLeft:2px;opacity:1;"};
+CFCHART.nodes["9302277340193644"]["9302277340193644-graph-id0-plotset-plot-0-node-12"]={text:"0",tooltipCss:"border:0px solid #000;borderRadius:0px 0px 0px 0px;boxShadow:0px 0px 0px none;backgroundImage:url('');backgroundRepeat:repeat;backgroundPosition:50% 50%;textAlign:center;verticalAlign:middle;color:#fff;fontFamily:Lucida Sans Unicode;fontSize:12px;fontWeight:normal;fontStyle:normal;textDecoration:none;backgroundColor:#0e651d;paddingTop:2px;paddingRight:2px;paddingBottom:2px;paddingLeft:2px;opacity:1;"};
+CFCHART.nodes["9302277340193644"]["9302277340193644-graph-id0-plotset-plot-0-node-13"]={text:"0",tooltipCss:"border:0px solid #000;borderRadius:0px 0px 0px 0px;boxShadow:0px 0px 0px none;backgroundImage:url('');backgroundRepeat:repeat;backgroundPosition:50% 50%;textAlign:center;verticalAlign:middle;color:#fff;fontFamily:Lucida Sans Unicode;fontSize:12px;fontWeight:normal;fontStyle:normal;textDecoration:none;backgroundColor:#0e651d;paddingTop:2px;paddingRight:2px;paddingBottom:2px;paddingLeft:2px;opacity:1;"};
+CFCHART.nodes["9302277340193644"]["9302277340193644-graph-id0-plotset-plot-0-node-14"]={text:"0",tooltipCss:"border:0px solid #000;borderRadius:0px 0px 0px 0px;boxShadow:0px 0px 0px none;backgroundImage:url('');backgroundRepeat:repeat;backgroundPosition:50% 50%;textAlign:center;verticalAlign:middle;color:#fff;fontFamily:Lucida Sans Unicode;fontSize:12px;fontWeight:normal;fontStyle:normal;textDecoration:none;backgroundColor:#0e651d;paddingTop:2px;paddingRight:2px;paddingBottom:2px;paddingLeft:2px;opacity:1;"};
+CFCHART.nodes["9302277340193644"]["9302277340193644-graph-id0-plotset-plot-0-node-15"]={text:"0",tooltipCss:"border:0px solid #000;borderRadius:0px 0px 0px 0px;boxShadow:0px 0px 0px none;backgroundImage:url('');backgroundRepeat:repeat;backgroundPosition:50% 50%;textAlign:center;verticalAlign:middle;color:#fff;fontFamily:Lucida Sans Unicode;fontSize:12px;fontWeight:normal;fontStyle:normal;textDecoration:none;backgroundColor:#0e651d;paddingTop:2px;paddingRight:2px;paddingBottom:2px;paddingLeft:2px;opacity:1;"};
+CFCHART.nodes["9302277340193644"]["9302277340193644-graph-id0-plotset-plot-0-node-16"]={text:"0",tooltipCss:"border:0px solid #000;borderRadius:0px 0px 0px 0px;boxShadow:0px 0px 0px none;backgroundImage:url('');backgroundRepeat:repeat;backgroundPosition:50% 50%;textAlign:center;verticalAlign:middle;color:#fff;fontFamily:Lucida Sans Unicode;fontSize:12px;fontWeight:normal;fontStyle:normal;textDecoration:none;backgroundColor:#0e651d;paddingTop:2px;paddingRight:2px;paddingBottom:2px;paddingLeft:2px;opacity:1;"};
+CFCHART.nodes["9302277340193644"]["9302277340193644-graph-id0-plotset-plot-0-node-17"]={text:"0",tooltipCss:"border:0px solid #000;borderRadius:0px 0px 0px 0px;boxShadow:0px 0px 0px none;backgroundImage:url('');backgroundRepeat:repeat;backgroundPosition:50% 50%;textAlign:center;verticalAlign:middle;color:#fff;fontFamily:Lucida Sans Unicode;fontSize:12px;fontWeight:normal;fontStyle:normal;textDecoration:none;backgroundColor:#0e651d;paddingTop:2px;paddingRight:2px;paddingBottom:2px;paddingLeft:2px;opacity:1;"};
+CFCHART.nodes["9302277340193644"]["9302277340193644-graph-id0-plotset-plot-0-node-18"]={text:"0",tooltipCss:"border:0px solid #000;borderRadius:0px 0px 0px 0px;boxShadow:0px 0px 0px none;backgroundImage:url('');backgroundRepeat:repeat;backgroundPosition:50% 50%;textAlign:center;verticalAlign:middle;color:#fff;fontFamily:Lucida Sans Unicode;fontSize:12px;fontWeight:normal;fontStyle:normal;textDecoration:none;backgroundColor:#0e651d;paddingTop:2px;paddingRight:2px;paddingBottom:2px;paddingLeft:2px;opacity:1;"};
+CFCHART.nodes["9302277340193644"]["9302277340193644-graph-id0-plotset-plot-0-node-19"]={text:"0",tooltipCss:"border:0px solid #000;borderRadius:0px 0px 0px 0px;boxShadow:0px 0px 0px none;backgroundImage:url('');backgroundRepeat:repeat;backgroundPosition:50% 50%;textAlign:center;verticalAlign:middle;color:#fff;fontFamily:Lucida Sans Unicode;fontSize:12px;fontWeight:normal;fontStyle:normal;textDecoration:none;backgroundColor:#0e651d;paddingTop:2px;paddingRight:2px;paddingBottom:2px;paddingLeft:2px;opacity:1;"};
+CFCHART.nodes["9302277340193644"]["9302277340193644-graph-id0-plotset-plot-0-node-20"]={text:"0",tooltipCss:"border:0px solid #000;borderRadius:0px 0px 0px 0px;boxShadow:0px 0px 0px none;backgroundImage:url('');backgroundRepeat:repeat;backgroundPosition:50% 50%;textAlign:center;verticalAlign:middle;color:#fff;fontFamily:Lucida Sans Unicode;fontSize:12px;fontWeight:normal;fontStyle:normal;textDecoration:none;backgroundColor:#0e651d;paddingTop:2px;paddingRight:2px;paddingBottom:2px;paddingLeft:2px;opacity:1;"};
+CFCHART.nodes["9302277340193644"]["9302277340193644-graph-id0-plotset-plot-0-node-21"]={text:"0",tooltipCss:"border:0px solid #000;borderRadius:0px 0px 0px 0px;boxShadow:0px 0px 0px none;backgroundImage:url('');backgroundRepeat:repeat;backgroundPosition:50% 50%;textAlign:center;verticalAlign:middle;color:#fff;fontFamily:Lucida Sans Unicode;fontSize:12px;fontWeight:normal;fontStyle:normal;textDecoration:none;backgroundColor:#0e651d;paddingTop:2px;paddingRight:2px;paddingBottom:2px;paddingLeft:2px;opacity:1;"};
+CFCHART.nodes["9302277340193644"]["9302277340193644-graph-id0-plotset-plot-0-node-22"]={text:"0",tooltipCss:"border:0px solid #000;borderRadius:0px 0px 0px 0px;boxShadow:0px 0px 0px none;backgroundImage:url('');backgroundRepeat:repeat;backgroundPosition:50% 50%;textAlign:center;verticalAlign:middle;color:#fff;fontFamily:Lucida Sans Unicode;fontSize:12px;fontWeight:normal;fontStyle:normal;textDecoration:none;backgroundColor:#0e651d;paddingTop:2px;paddingRight:2px;paddingBottom:2px;paddingLeft:2px;opacity:1;"};
+CFCHART.nodes["9302277340193644"]["9302277340193644-graph-id0-plotset-plot-0-node-23"]={text:"0",tooltipCss:"border:0px solid #000;borderRadius:0px 0px 0px 0px;boxShadow:0px 0px 0px none;backgroundImage:url('');backgroundRepeat:repeat;backgroundPosition:50% 50%;textAlign:center;verticalAlign:middle;color:#fff;fontFamily:Lucida Sans Unicode;fontSize:12px;fontWeight:normal;fontStyle:normal;textDecoration:none;backgroundColor:#0e651d;paddingTop:2px;paddingRight:2px;paddingBottom:2px;paddingLeft:2px;opacity:1;"};
+CFCHART.nodes["9302277340193644"]["9302277340193644-graph-id0-plotset-plot-0-node-24"]={text:"0",tooltipCss:"border:0px solid #000;borderRadius:0px 0px 0px 0px;boxShadow:0px 0px 0px none;backgroundImage:url('');backgroundRepeat:repeat;backgroundPosition:50% 50%;textAlign:center;verticalAlign:middle;color:#fff;fontFamily:Lucida Sans Unicode;fontSize:12px;fontWeight:normal;fontStyle:normal;textDecoration:none;backgroundColor:#0e651d;paddingTop:2px;paddingRight:2px;paddingBottom:2px;paddingLeft:2px;opacity:1;"};
+CFCHART.nodes["9302277340193644"]["9302277340193644-graph-id0-plotset-plot-0-node-25"]={text:"0",tooltipCss:"border:0px solid #000;borderRadius:0px 0px 0px 0px;boxShadow:0px 0px 0px none;backgroundImage:url('');backgroundRepeat:repeat;backgroundPosition:50% 50%;textAlign:center;verticalAlign:middle;color:#fff;fontFamily:Lucida Sans Unicode;fontSize:12px;fontWeight:normal;fontStyle:normal;textDecoration:none;backgroundColor:#0e651d;paddingTop:2px;paddingRight:2px;paddingBottom:2px;paddingLeft:2px;opacity:1;"};
+CFCHART.nodes["9302277340193644"]["9302277340193644-graph-id0-plotset-plot-0-node-26"]={text:"0",tooltipCss:"border:0px solid #000;borderRadius:0px 0px 0px 0px;boxShadow:0px 0px 0px none;backgroundImage:url('');backgroundRepeat:repeat;backgroundPosition:50% 50%;textAlign:center;verticalAlign:middle;color:#fff;fontFamily:Lucida Sans Unicode;fontSize:12px;fontWeight:normal;fontStyle:normal;textDecoration:none;backgroundColor:#0e651d;paddingTop:2px;paddingRight:2px;paddingBottom:2px;paddingLeft:2px;opacity:1;"};
+CFCHART.nodes["9302277340193644"]["9302277340193644-graph-id0-plotset-plot-0-node-27"]={text:"0",tooltipCss:"border:0px solid #000;borderRadius:0px 0px 0px 0px;boxShadow:0px 0px 0px none;backgroundImage:url('');backgroundRepeat:repeat;backgroundPosition:50% 50%;textAlign:center;verticalAlign:middle;color:#fff;fontFamily:Lucida Sans Unicode;fontSize:12px;fontWeight:normal;fontStyle:normal;textDecoration:none;backgroundColor:#0e651d;paddingTop:2px;paddingRight:2px;paddingBottom:2px;paddingLeft:2px;opacity:1;"};
+CFCHART.nodes["9302277340193644"]["9302277340193644-graph-id0-plotset-plot-0-node-28"]={text:"0",tooltipCss:"border:0px solid #000;borderRadius:0px 0px 0px 0px;boxShadow:0px 0px 0px none;backgroundImage:url('');backgroundRepeat:repeat;backgroundPosition:50% 50%;textAlign:center;verticalAlign:middle;color:#fff;fontFamily:Lucida Sans Unicode;fontSize:12px;fontWeight:normal;fontStyle:normal;textDecoration:none;backgroundColor:#0e651d;paddingTop:2px;paddingRight:2px;paddingBottom:2px;paddingLeft:2px;opacity:1;"};
+CFCHART.nodes["9302277340193644"]["9302277340193644-graph-id0-plotset-plot-0-node-29"]={text:"0",tooltipCss:"border:0px solid #000;borderRadius:0px 0px 0px 0px;boxShadow:0px 0px 0px none;backgroundImage:url('');backgroundRepeat:repeat;backgroundPosition:50% 50%;textAlign:center;verticalAlign:middle;color:#fff;fontFamily:Lucida Sans Unicode;fontSize:12px;fontWeight:normal;fontStyle:normal;textDecoration:none;backgroundColor:#0e651d;paddingTop:2px;paddingRight:2px;paddingBottom:2px;paddingLeft:2px;opacity:1;"};
+CFCHART.nodes["9302277340193644"]["9302277340193644-graph-id0-plotset-plot-0-node-30"]={text:"1",tooltipCss:"border:0px solid #000;borderRadius:0px 0px 0px 0px;boxShadow:0px 0px 0px none;backgroundImage:url('');backgroundRepeat:repeat;backgroundPosition:50% 50%;textAlign:center;verticalAlign:middle;color:#fff;fontFamily:Lucida Sans Unicode;fontSize:12px;fontWeight:normal;fontStyle:normal;textDecoration:none;backgroundColor:#0e651d;paddingTop:2px;paddingRight:2px;paddingBottom:2px;paddingLeft:2px;opacity:1;"};
+CFCHART.nodes["9302277340193644"]["9302277340193644-graph-id0-plotset-plot-0-node-31"]={text:"0",tooltipCss:"border:0px solid #000;borderRadius:0px 0px 0px 0px;boxShadow:0px 0px 0px none;backgroundImage:url('');backgroundRepeat:repeat;backgroundPosition:50% 50%;textAlign:center;verticalAlign:middle;color:#fff;fontFamily:Lucida Sans Unicode;fontSize:12px;fontWeight:normal;fontStyle:normal;textDecoration:none;backgroundColor:#0e651d;paddingTop:2px;paddingRight:2px;paddingBottom:2px;paddingLeft:2px;opacity:1;"};
+CFCHART.nodes["9302277340193644"]["9302277340193644-graph-id0-plotset-plot-0-node-32"]={text:"0",tooltipCss:"border:0px solid #000;borderRadius:0px 0px 0px 0px;boxShadow:0px 0px 0px none;backgroundImage:url('');backgroundRepeat:repeat;backgroundPosition:50% 50%;textAlign:center;verticalAlign:middle;color:#fff;fontFamily:Lucida Sans Unicode;fontSize:12px;fontWeight:normal;fontStyle:normal;textDecoration:none;backgroundColor:#0e651d;paddingTop:2px;paddingRight:2px;paddingBottom:2px;paddingLeft:2px;opacity:1;"};
+CFCHART.nodes["9302277340193644"]["9302277340193644-graph-id0-plotset-plot-0-node-33"]={text:"0",tooltipCss:"border:0px solid #000;borderRadius:0px 0px 0px 0px;boxShadow:0px 0px 0px none;backgroundImage:url('');backgroundRepeat:repeat;backgroundPosition:50% 50%;textAlign:center;verticalAlign:middle;color:#fff;fontFamily:Lucida Sans Unicode;fontSize:12px;fontWeight:normal;fontStyle:normal;textDecoration:none;backgroundColor:#0e651d;paddingTop:2px;paddingRight:2px;paddingBottom:2px;paddingLeft:2px;opacity:1;"};
+CFCHART.nodes["9302277340193644"]["9302277340193644-graph-id0-plotset-plot-0-node-34"]={text:"1",tooltipCss:"border:0px solid #000;borderRadius:0px 0px 0px 0px;boxShadow:0px 0px 0px none;backgroundImage:url('');backgroundRepeat:repeat;backgroundPosition:50% 50%;textAlign:center;verticalAlign:middle;color:#fff;fontFamily:Lucida Sans Unicode;fontSize:12px;fontWeight:normal;fontStyle:normal;textDecoration:none;backgroundColor:#0e651d;paddingTop:2px;paddingRight:2px;paddingBottom:2px;paddingLeft:2px;opacity:1;"};
+CFCHART.nodes["9302277340193644"]["9302277340193644-graph-id0-plotset-plot-0-node-35"]={text:"0",tooltipCss:"border:0px solid #000;borderRadius:0px 0px 0px 0px;boxShadow:0px 0px 0px none;backgroundImage:url('');backgroundRepeat:repeat;backgroundPosition:50% 50%;textAlign:center;verticalAlign:middle;color:#fff;fontFamily:Lucida Sans Unicode;fontSize:12px;fontWeight:normal;fontStyle:normal;textDecoration:none;backgroundColor:#0e651d;paddingTop:2px;paddingRight:2px;paddingBottom:2px;paddingLeft:2px;opacity:1;"};
+CFCHART.nodes["9302277340193644"]["9302277340193644-graph-id0-plotset-plot-0-node-36"]={text:"0",tooltipCss:"border:0px solid #000;borderRadius:0px 0px 0px 0px;boxShadow:0px 0px 0px none;backgroundImage:url('');backgroundRepeat:repeat;backgroundPosition:50% 50%;textAlign:center;verticalAlign:middle;color:#fff;fontFamily:Lucida Sans Unicode;fontSize:12px;fontWeight:normal;fontStyle:normal;textDecoration:none;backgroundColor:#0e651d;paddingTop:2px;paddingRight:2px;paddingBottom:2px;paddingLeft:2px;opacity:1;"};
+CFCHART.nodes["9302277340193644"]["9302277340193644-graph-id0-plotset-plot-0-node-37"]={text:"0",tooltipCss:"border:0px solid #000;borderRadius:0px 0px 0px 0px;boxShadow:0px 0px 0px none;backgroundImage:url('');backgroundRepeat:repeat;backgroundPosition:50% 50%;textAlign:center;verticalAlign:middle;color:#fff;fontFamily:Lucida Sans Unicode;fontSize:12px;fontWeight:normal;fontStyle:normal;textDecoration:none;backgroundColor:#0e651d;paddingTop:2px;paddingRight:2px;paddingBottom:2px;paddingLeft:2px;opacity:1;"};
+CFCHART.nodes["9302277340193644"]["9302277340193644-graph-id0-plotset-plot-0-node-38"]={text:"1",tooltipCss:"border:0px solid #000;borderRadius:0px 0px 0px 0px;boxShadow:0px 0px 0px none;backgroundImage:url('');backgroundRepeat:repeat;backgroundPosition:50% 50%;textAlign:center;verticalAlign:middle;color:#fff;fontFamily:Lucida Sans Unicode;fontSize:12px;fontWeight:normal;fontStyle:normal;textDecoration:none;backgroundColor:#0e651d;paddingTop:2px;paddingRight:2px;paddingBottom:2px;paddingLeft:2px;opacity:1;"};
+CFCHART.nodes["9302277340193644"]["9302277340193644-graph-id0-plotset-plot-0-node-39"]={text:"0",tooltipCss:"border:0px solid #000;borderRadius:0px 0px 0px 0px;boxShadow:0px 0px 0px none;backgroundImage:url('');backgroundRepeat:repeat;backgroundPosition:50% 50%;textAlign:center;verticalAlign:middle;color:#fff;fontFamily:Lucida Sans Unicode;fontSize:12px;fontWeight:normal;fontStyle:normal;textDecoration:none;backgroundColor:#0e651d;paddingTop:2px;paddingRight:2px;paddingBottom:2px;paddingLeft:2px;opacity:1;"};
+CFCHART.nodes["9302277340193644"]["9302277340193644-graph-id0-plotset-plot-0-node-40"]={text:"1",tooltipCss:"border:0px solid #000;borderRadius:0px 0px 0px 0px;boxShadow:0px 0px 0px none;backgroundImage:url('');backgroundRepeat:repeat;backgroundPosition:50% 50%;textAlign:center;verticalAlign:middle;color:#fff;fontFamily:Lucida Sans Unicode;fontSize:12px;fontWeight:normal;fontStyle:normal;textDecoration:none;backgroundColor:#0e651d;paddingTop:2px;paddingRight:2px;paddingBottom:2px;paddingLeft:2px;opacity:1;"};
+CFCHART.nodes["9302277340193644"]["9302277340193644-graph-id0-plotset-plot-0-node-41"]={text:"0",tooltipCss:"border:0px solid #000;borderRadius:0px 0px 0px 0px;boxShadow:0px 0px 0px none;backgroundImage:url('');backgroundRepeat:repeat;backgroundPosition:50% 50%;textAlign:center;verticalAlign:middle;color:#fff;fontFamily:Lucida Sans Unicode;fontSize:12px;fontWeight:normal;fontStyle:normal;textDecoration:none;backgroundColor:#0e651d;paddingTop:2px;paddingRight:2px;paddingBottom:2px;paddingLeft:2px;opacity:1;"};
+CFCHART.nodes["9302277340193644"]["9302277340193644-graph-id0-plotset-plot-0-node-42"]={text:"0",tooltipCss:"border:0px solid #000;borderRadius:0px 0px 0px 0px;boxShadow:0px 0px 0px none;backgroundImage:url('');backgroundRepeat:repeat;backgroundPosition:50% 50%;textAlign:center;verticalAlign:middle;color:#fff;fontFamily:Lucida Sans Unicode;fontSize:12px;fontWeight:normal;fontStyle:normal;textDecoration:none;backgroundColor:#0e651d;paddingTop:2px;paddingRight:2px;paddingBottom:2px;paddingLeft:2px;opacity:1;"};
+CFCHART.nodes["9302277340193644"]["9302277340193644-graph-id0-plotset-plot-0-node-43"]={text:"1",tooltipCss:"border:0px solid #000;borderRadius:0px 0px 0px 0px;boxShadow:0px 0px 0px none;backgroundImage:url('');backgroundRepeat:repeat;backgroundPosition:50% 50%;textAlign:center;verticalAlign:middle;color:#fff;fontFamily:Lucida Sans Unicode;fontSize:12px;fontWeight:normal;fontStyle:normal;textDecoration:none;backgroundColor:#0e651d;paddingTop:2px;paddingRight:2px;paddingBottom:2px;paddingLeft:2px;opacity:1;"};
+CFCHART.nodes["9302277340193644"]["9302277340193644-graph-id0-plotset-plot-0-node-44"]={text:"0",tooltipCss:"border:0px solid #000;borderRadius:0px 0px 0px 0px;boxShadow:0px 0px 0px none;backgroundImage:url('');backgroundRepeat:repeat;backgroundPosition:50% 50%;textAlign:center;verticalAlign:middle;color:#fff;fontFamily:Lucida Sans Unicode;fontSize:12px;fontWeight:normal;fontStyle:normal;textDecoration:none;backgroundColor:#0e651d;paddingTop:2px;paddingRight:2px;paddingBottom:2px;paddingLeft:2px;opacity:1;"};
+CFCHART.nodes["9302277340193644"]["9302277340193644-graph-id0-plotset-plot-0-node-45"]={text:"0",tooltipCss:"border:0px solid #000;borderRadius:0px 0px 0px 0px;boxShadow:0px 0px 0px none;backgroundImage:url('');backgroundRepeat:repeat;backgroundPosition:50% 50%;textAlign:center;verticalAlign:middle;color:#fff;fontFamily:Lucida Sans Unicode;fontSize:12px;fontWeight:normal;fontStyle:normal;textDecoration:none;backgroundColor:#0e651d;paddingTop:2px;paddingRight:2px;paddingBottom:2px;paddingLeft:2px;opacity:1;"};
+CFCHART.nodes["9302277340193644"]["9302277340193644-graph-id0-plotset-plot-0-node-46"]={text:"3",tooltipCss:"border:0px solid #000;borderRadius:0px 0px 0px 0px;boxShadow:0px 0px 0px none;backgroundImage:url('');backgroundRepeat:repeat;backgroundPosition:50% 50%;textAlign:center;verticalAlign:middle;color:#fff;fontFamily:Lucida Sans Unicode;fontSize:12px;fontWeight:normal;fontStyle:normal;textDecoration:none;backgroundColor:#0e651d;paddingTop:2px;paddingRight:2px;paddingBottom:2px;paddingLeft:2px;opacity:1;"};
+CFCHART.nodes["9302277340193644"]["9302277340193644-graph-id0-plotset-plot-0-node-47"]={text:"2",tooltipCss:"border:0px solid #000;borderRadius:0px 0px 0px 0px;boxShadow:0px 0px 0px none;backgroundImage:url('');backgroundRepeat:repeat;backgroundPosition:50% 50%;textAlign:center;verticalAlign:middle;color:#fff;fontFamily:Lucida Sans Unicode;fontSize:12px;fontWeight:normal;fontStyle:normal;textDecoration:none;backgroundColor:#0e651d;paddingTop:2px;paddingRight:2px;paddingBottom:2px;paddingLeft:2px;opacity:1;"};
+CFCHART.nodes["9302277340193644"]["9302277340193644-graph-id0-plotset-plot-0-node-48"]={text:"4",tooltipCss:"border:0px solid #000;borderRadius:0px 0px 0px 0px;boxShadow:0px 0px 0px none;backgroundImage:url('');backgroundRepeat:repeat;backgroundPosition:50% 50%;textAlign:center;verticalAlign:middle;color:#fff;fontFamily:Lucida Sans Unicode;fontSize:12px;fontWeight:normal;fontStyle:normal;textDecoration:none;backgroundColor:#0e651d;paddingTop:2px;paddingRight:2px;paddingBottom:2px;paddingLeft:2px;opacity:1;"};
+CFCHART.nodes["9302277340193644"]["9302277340193644-graph-id0-plotset-plot-0-node-49"]={text:"2",tooltipCss:"border:0px solid #000;borderRadius:0px 0px 0px 0px;boxShadow:0px 0px 0px none;backgroundImage:url('');backgroundRepeat:repeat;backgroundPosition:50% 50%;textAlign:center;verticalAlign:middle;color:#fff;fontFamily:Lucida Sans Unicode;fontSize:12px;fontWeight:normal;fontStyle:normal;textDecoration:none;backgroundColor:#0e651d;paddingTop:2px;paddingRight:2px;paddingBottom:2px;paddingLeft:2px;opacity:1;"};
+CFCHART.nodes["9302277340193644"]["9302277340193644-graph-id0-plotset-plot-0-node-50"]={text:"3",tooltipCss:"border:0px solid #000;borderRadius:0px 0px 0px 0px;boxShadow:0px 0px 0px none;backgroundImage:url('');backgroundRepeat:repeat;backgroundPosition:50% 50%;textAlign:center;verticalAlign:middle;color:#fff;fontFamily:Lucida Sans Unicode;fontSize:12px;fontWeight:normal;fontStyle:normal;textDecoration:none;backgroundColor:#0e651d;paddingTop:2px;paddingRight:2px;paddingBottom:2px;paddingLeft:2px;opacity:1;"};
+</script>
+
+
+ </body></html>
