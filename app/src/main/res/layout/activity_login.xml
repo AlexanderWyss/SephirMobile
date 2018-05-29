@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -13,7 +12,6 @@
     tools:context=".LoginActivity">
 
     <!-- Login progress -->
-
     <ProgressBar
         android:id="@+id/login_progress"
         style="?android:attr/progressBarStyleLarge"
@@ -21,13 +19,6 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:visibility="gone" />
-
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="310dp"
-        android:layout_height="161dp"
-        android:contentDescription="@string/SephirLoginImage"
-        app:srcCompat="@drawable/logo_sephir" />
 
     <ScrollView
         android:id="@+id/login_form"
@@ -84,5 +75,4 @@
 
         </LinearLayout>
     </ScrollView>
-
 </LinearLayout>
