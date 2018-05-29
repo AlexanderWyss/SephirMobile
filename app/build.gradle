@@ -24,6 +24,8 @@ android {
 }
 
 dependencies {
+    api group: 'org.springframework', name: 'spring-web', version: '5.0.6.RELEASE'
+    api 'org.jsoup:jsoup:1.11.3'
     api group: 'org.slf4j', name: 'slf4j-android', version: '1.7.25'
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support:appcompat-v7:27.1.1'
