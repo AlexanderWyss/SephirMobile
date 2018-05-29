@@ -1,0 +1,5 @@
+<select id="select">
+	<option value="de">Hallo</option>
+	<option value="en" selected>Hello</option>
+	<option value="fr">Bonjour</option>
+</select>
