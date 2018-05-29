@@ -1,0 +1,7 @@
+<table id="table">
+<tbody>
+<tr><td>Spalte 1</td><td>Spalte 2</td><td>Spalte 3</td></tr>
+<tr><td>Data 11</td><td>Data 21</td><td>Data 31</td></tr>
+<tr><td>Data 12</td><td>Data 22</td><td>Data 32</td></tr>
+</tbody>
+</table>

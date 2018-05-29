@@ -8,13 +8,13 @@ import org.jsoup.nodes.Element;
 
 public class SelectParser<T> {
 
-	private SimpleMapper<T> valueMapper;
-	private SimpleMapper<T> textMapper;
+	private Mapper<T> valueMapper;
+	private Mapper<T> textMapper;
 	private EntityFactory<T> factory;
 	private T defaultValue;
 	private List<T> entitys;
 
-	public SelectParser(SimpleMapper<T> valueMapper, SimpleMapper<T> textMapper, EntityFactory<T> factory) {
+	public SelectParser(Mapper<T> valueMapper, Mapper<T> textMapper, EntityFactory<T> factory) {
 		this.valueMapper = valueMapper;
 		this.textMapper = textMapper;
 		this.factory = factory;
