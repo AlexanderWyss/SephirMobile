@@ -7,6 +7,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URI;
+import java.util.List;
 
 import org.junit.Ignore;
 import org.junit.Test;
@@ -15,7 +16,9 @@ import org.springframework.util.MultiValueMap;
 
 import application.sephirmobile.sephirinterface.entitys.Certification;
 import application.sephirmobile.sephirinterface.entitys.Login;
+import application.sephirmobile.sephirinterface.entitys.SchoolClass;
 import application.sephirmobile.sephirinterface.exceptions.LoginException;
+import application.sephirmobile.sephirinterface.getters.SchoolClassGetter;
 
 public class SephirInterfaceTest {
   @Test
@@ -23,6 +26,10 @@ public class SephirInterfaceTest {
   public void sephirInterfaceTest() throws Exception {
     SephirInterface sephirInterface = new SephirInterface();
     sephirInterface.login(getLogin());
+
+    //SchoolClassGetter schoolClassGetter = new SchoolClassGetter(sephirInterface);
+    //List<SchoolClass> schoolClasses = schoolClassGetter.get();
+    //System.out.println(schoolClasses);
   }
 
   private Login getLogin() throws IOException {
