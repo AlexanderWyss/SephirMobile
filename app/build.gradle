@@ -4,7 +4,7 @@ android {
     compileSdkVersion 27
     defaultConfig {
         applicationId "application.sephirmobile"
-        minSdkVersion 23
+        minSdkVersion 21
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
@@ -21,12 +21,15 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    productFlavors {
+    }
 }
 
 dependencies {
-    api group: 'org.springframework', name: 'spring-web', version: '5.0.6.RELEASE'
+    api 'joda-time:joda-time:2.9.9'
+    api 'org.springframework:spring-web:5.0.6.RELEASE'
     api 'org.jsoup:jsoup:1.11.3'
-    api group: 'org.slf4j', name: 'slf4j-android', version: '1.7.25'
+    api 'org.slf4j:slf4j-android:1.7.25'
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support:appcompat-v7:27.1.1'
     implementation 'com.android.support:design:27.1.1'
