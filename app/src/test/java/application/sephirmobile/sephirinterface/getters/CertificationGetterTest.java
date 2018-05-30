@@ -6,13 +6,13 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertThat;
 
-import application.sephirmobile.sephirinterface.HtmlFromResourceReader;
+import application.sephirmobile.sephirinterface.StringFromResourceReader;
 import application.sephirmobile.sephirinterface.entitys.Certification;
 
 public class CertificationGetterTest {
 	@Test
 	public void html_parse_correctCertification() throws Exception {
-		String html = HtmlFromResourceReader.read("html/index.txt");
+		String html = StringFromResourceReader.read("html/index.txt");
 		CertificationGetter certificationGetter = new CertificationGetter(null);
 
 		Certification certification = certificationGetter.parse(html);

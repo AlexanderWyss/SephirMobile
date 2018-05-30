@@ -6,7 +6,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import application.sephirmobile.sephirinterface.HtmlFromResourceReader;
+import application.sephirmobile.sephirinterface.StringFromResourceReader;
 import application.sephirmobile.sephirinterface.entitys.SchoolTest;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -15,7 +15,7 @@ import static org.junit.Assert.assertThat;
 public class SchoolTestGetterTest {
     @Test
     public void html_parse_correctSchoolTests() throws Exception {
-        String html = HtmlFromResourceReader.read("html/noten.txt");
+        String html = StringFromResourceReader.read("html/noten.txt");
         SchoolTestGetter schoolTestGetter = new SchoolTestGetter(null);
 
         List<SchoolTest> schoolTests = schoolTestGetter.parse(html);

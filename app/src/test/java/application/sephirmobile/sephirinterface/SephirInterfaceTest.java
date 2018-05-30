@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.List;
 
 import application.sephirmobile.sephirinterface.entitys.AnnouncedTest;
+import application.sephirmobile.sephirinterface.entitys.AverageSubjectMarks;
 import application.sephirmobile.sephirinterface.entitys.Certification;
 import application.sephirmobile.sephirinterface.entitys.Login;
 import application.sephirmobile.sephirinterface.entitys.SchoolClass;
@@ -15,6 +16,7 @@ import application.sephirmobile.sephirinterface.entitys.Semesters;
 import application.sephirmobile.sephirinterface.exceptions.LoginException;
 import application.sephirmobile.sephirinterface.forms.SemesterChangeForm;
 import application.sephirmobile.sephirinterface.getters.AnnouncedTestGetter;
+import application.sephirmobile.sephirinterface.getters.AverageSubjectMarkGetter;
 import application.sephirmobile.sephirinterface.getters.AverageTestMarkGetter;
 import application.sephirmobile.sephirinterface.getters.SchoolClassGetter;
 import application.sephirmobile.sephirinterface.getters.SchoolTestGetter;
@@ -36,17 +38,17 @@ public class SephirInterfaceTest {
     public void sephirInterfaceTest() throws Exception {
         //Login
         SephirInterface sephirInterface = new SephirInterface();
-        sephirInterface.login(new Login("alexander_wyss@sluz.ch", ""));
+        sephirInterface.login(new Login(StringFromResourceReader.read("ignore/email.txt"), StringFromResourceReader.read("ignore/password.txt")));
 
-        /*
+/*
         //Get SchoolClasses
         SchoolClassGetter schoolClassGetter = new SchoolClassGetter(sephirInterface);
         List<SchoolClass> schoolClasses = schoolClassGetter.get();
         System.out.println(schoolClasses);
 
         //Get Tests
-        for (SchoolClass schoolClass : schoolClasses) {
             SchoolTestGetter testGetter = new SchoolTestGetter(sephirInterface);
+        for (SchoolClass schoolClass : schoolClasses) {
             List<SchoolTest> tests = testGetter.get(schoolClass);
             System.out.println(tests);
 
@@ -80,6 +82,13 @@ public class SephirInterfaceTest {
         sephirInterface.changeSemester(semesters.getSemesters().get(10));
         //OR
         new SemesterChangeForm(sephirInterface).changeSemester(semesters.getSemesters().get(10));
+
+
+        AverageSubjectMarkGetter averageSubjectMarkGetter = new AverageSubjectMarkGetter(sephirInterface);
+        for (SchoolClass schoolClass : schoolClasses) {
+        AverageSubjectMarks averageSubjectMarks = averageSubjectMarkGetter.get(schoolClass);
+        System.out.println(averageSubjectMarks);
+        }
         */
     }
 

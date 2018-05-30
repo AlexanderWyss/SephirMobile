@@ -9,14 +9,14 @@ import java.util.List;
 import org.jsoup.Jsoup;
 import org.junit.Test;
 
-import application.sephirmobile.sephirinterface.HtmlFromResourceReader;
+import application.sephirmobile.sephirinterface.StringFromResourceReader;
 import application.sephirmobile.sephirinterface.htmlparser.TableColumnParser.TableColumnParserBuilder;
 
 public class TableParserTest {
 
   @Test
   public void htmlTable_parse_correctData() throws Exception {
-    String html = HtmlFromResourceReader.read("html/table.txt");
+    String html = StringFromResourceReader.read("html/table.txt");
 
     TableParser<Table> tableParser = new TableParser<>(getColumns(), Table::new);
     tableParser.parse(Jsoup.parse(html).selectFirst("#table"));

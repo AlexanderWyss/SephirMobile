@@ -10,12 +10,12 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertThat;
 
-import application.sephirmobile.sephirinterface.HtmlFromResourceReader;
+import application.sephirmobile.sephirinterface.StringFromResourceReader;
 
 public class SelectParserTest {
 	@Test
 	public void htmlSelect_parse_correctlyMapped() throws Exception {
-		String select = HtmlFromResourceReader.read("html/select.txt");
+		String select = StringFromResourceReader.read("html/select.txt");
 
 		SelectParser<Hello> selectParser = new SelectParser<>(Hello::setLanguage, Hello::setText, Hello::new);
 		selectParser.parse(Jsoup.parse(select).selectFirst("#select"));

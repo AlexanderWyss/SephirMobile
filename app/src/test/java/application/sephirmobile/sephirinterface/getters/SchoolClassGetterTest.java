@@ -9,13 +9,13 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertThat;
 
-import application.sephirmobile.sephirinterface.HtmlFromResourceReader;
+import application.sephirmobile.sephirinterface.StringFromResourceReader;
 import application.sephirmobile.sephirinterface.entitys.SchoolClass;
 
 public class SchoolClassGetterTest {
 	@Test
 	public void html_parse_correctSchoolClasses() throws Exception {
-		String html = HtmlFromResourceReader.read("html/noten.txt");
+		String html = StringFromResourceReader.read("html/noten.txt");
 		SchoolClassGetter schoolClassGetter = new SchoolClassGetter(null);
 
 		List<SchoolClass> schoolClasses = schoolClassGetter.parse(html);
