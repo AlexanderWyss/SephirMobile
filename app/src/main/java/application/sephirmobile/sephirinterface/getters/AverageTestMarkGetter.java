@@ -5,11 +5,12 @@ import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import application.sephirmobile.sephirinterface.SephirInterface;
 import application.sephirmobile.sephirinterface.entitys.SchoolTest;
@@ -26,11 +27,11 @@ public class AverageTestMarkGetter extends Getter {
         super(sephirInterface);
     }
 
-    public double get(SchoolTest test) {
+    public double get(SchoolTest test) throws IOException {
         LOGGER.debug("Loading Average Test Mark");
-        MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
-        map.add("act", "pdet");
-        map.add("pruefungID", test.getId());
+        Map<String, String> map = new HashMap<>();
+        map.put("act", "pdet");
+        map.put("pruefungID", test.getId());
         html = getSephirInterface().get(URL, map);
         return parseAverageMark(html);
     }

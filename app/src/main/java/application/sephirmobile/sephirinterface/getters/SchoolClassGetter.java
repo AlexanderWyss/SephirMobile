@@ -6,6 +6,7 @@ import org.jsoup.nodes.Element;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.IOException;
 import java.util.List;
 
 import application.sephirmobile.sephirinterface.SephirInterface;
@@ -20,7 +21,7 @@ public class SchoolClassGetter extends Getter {
 		super(sephirInterface);
 	}
 
-	public List<SchoolClass> get() {
+	public List<SchoolClass> get() throws IOException {
 		LOGGER.debug("Loading Classes");
 		return parse(getSephirInterface().get(URL));
 	}

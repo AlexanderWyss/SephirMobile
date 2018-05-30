@@ -28,7 +28,7 @@ public final class Log {
 	}
 
 	private static String filter(String msg) {
-		return msg.replaceAll("passwort=\\[(.*?)\\]", "passwort=[*]");
+		return msg;
 	}
 
 	private static String getLogLevel(int priority) {

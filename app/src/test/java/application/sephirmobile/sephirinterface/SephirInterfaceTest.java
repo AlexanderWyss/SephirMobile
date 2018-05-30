@@ -2,14 +2,27 @@ package application.sephirmobile.sephirinterface;
 
 import org.junit.Ignore;
 import org.junit.Test;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
 
-import java.net.URI;
+import java.io.IOException;
+import java.util.List;
 
+import application.sephirmobile.sephirinterface.entitys.AnnouncedTest;
 import application.sephirmobile.sephirinterface.entitys.Certification;
 import application.sephirmobile.sephirinterface.entitys.Login;
+import application.sephirmobile.sephirinterface.entitys.SchoolClass;
+import application.sephirmobile.sephirinterface.entitys.SchoolTest;
 import application.sephirmobile.sephirinterface.exceptions.LoginException;
+import application.sephirmobile.sephirinterface.getters.AnnouncedTestGetter;
+import application.sephirmobile.sephirinterface.getters.AverageTestMarkGetter;
+import application.sephirmobile.sephirinterface.getters.SchoolClassGetter;
+import application.sephirmobile.sephirinterface.getters.SchoolTestGetter;
+import okhttp3.HttpUrl;
+import okhttp3.Interceptor;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
@@ -20,7 +33,7 @@ public class SephirInterfaceTest {
     public void sephirInterfaceTest() throws Exception {
         //Login
         SephirInterface sephirInterface = new SephirInterface();
-        sephirInterface.login(new Login("alexander_wyss@sluz.ch", null));
+        sephirInterface.login(new Login("alexander_wyss@sluz.ch", "***REMOVED***"));
 
         /*
         //Get SchoolClasses
@@ -33,6 +46,15 @@ public class SephirInterfaceTest {
             SchoolTestGetter testGetter = new SchoolTestGetter(sephirInterface);
             List<SchoolTest> tests = testGetter.get(schoolClass);
             System.out.println(tests);
+
+            tests.stream().filter(test -> test.getMark() != 0).findFirst().ifPresent(test-> {
+                try {
+                    double averageMark = test.getAverageMark(sephirInterface);
+                    System.out.println(averageMark);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
         }
 
 
@@ -47,6 +69,7 @@ public class SephirInterfaceTest {
         double averageMark = averageTestMarkGetter.get(new SchoolTest(null, null, null, null, null, 0, 0, "216054"));
         System.out.println(averageMark);
         */
+
     }
 
     @Test(expected = LoginException.class)
@@ -54,19 +77,5 @@ public class SephirInterfaceTest {
     public void wrongLoginData_login_loginException() throws Exception {
         SephirInterface sephirInterface = new SephirInterface();
         sephirInterface.login(new Login("a", "a"));
-    }
-
-    @Test
-    public void sephirInterface_buildUri_correctUri() {
-        SephirInterface sephirInterface = new SephirInterface();
-        sephirInterface.setCertification(new Certification("id", "token"));
-        MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
-        map.add("de", "Baum");
-        map.add("en", "tree");
-
-        URI uri = sephirInterface.buildUri("test.php", map);
-
-        assertThat(uri.toString(),
-                is("https://sephir.ch/ICT/user/lernendenportal/test.php?cfid=id&cftoken=token&de=Baum&en=tree"));
     }
 }

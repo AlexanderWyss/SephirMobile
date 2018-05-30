@@ -37,7 +37,8 @@ android {
 
 dependencies {
     api 'joda-time:joda-time:2.9.9'
-    api 'org.springframework.android:spring-android-rest-template:2.0.0.M3'
+    api 'com.squareup.retrofit2:retrofit:2.4.0'
+    api 'com.squareup.retrofit2:converter-scalars:2.1.0'
     api 'org.jsoup:jsoup:1.11.3'
     api 'org.slf4j:slf4j-android:1.7.25'
     implementation fileTree(include: ['*.jar'], dir: 'libs')

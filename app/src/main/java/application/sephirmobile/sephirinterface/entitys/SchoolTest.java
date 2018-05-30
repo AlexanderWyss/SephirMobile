@@ -2,6 +2,8 @@ package application.sephirmobile.sephirinterface.entitys;
 
 import org.joda.time.LocalDate;
 
+import java.io.IOException;
+
 import application.sephirmobile.sephirinterface.SephirInterface;
 import application.sephirmobile.sephirinterface.getters.AverageTestMarkGetter;
 
@@ -30,7 +32,7 @@ public class SchoolTest {
         this.id = id;
     }
 
-    public double getAverageMark(SephirInterface sephirInterface) {
+    public double getAverageMark(SephirInterface sephirInterface) throws IOException {
         AverageTestMarkGetter averageTestMarkGetter = new AverageTestMarkGetter(sephirInterface);
         return averageTestMarkGetter.get(this);
     }

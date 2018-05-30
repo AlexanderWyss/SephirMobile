@@ -1,5 +1,6 @@
 package application.sephirmobile.sephirinterface.getters;
 
+import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -21,7 +22,7 @@ public class CertificationGetter extends Getter {
 		super(sephirInterface);
 	}
 
-	public Certification get() {
+	public Certification get() throws IOException {
 		LOGGER.debug("Loading Certification");
 		SephirInterface sephirInterface = getSephirInterface();
 		String html = sephirInterface.get(URL);

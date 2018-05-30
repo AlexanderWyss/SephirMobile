@@ -2,8 +2,10 @@ package application.sephirmobile.sephirinterface.forms;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import application.sephirmobile.sephirinterface.SephirInterface;
 import application.sephirmobile.sephirinterface.entitys.Login;
@@ -18,11 +20,11 @@ public class LoginForm extends Getter {
 		super(sephirInterface);
 	}
 
-	public String submit(Login login) {
+	public boolean submit(Login login) throws IOException {
 		LOGGER.debug("Trying login with email: {}", login.getEmail());
-		MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
-		map.add("email", login.getEmail());
-		map.add("passwort", login.getPassword());
-		return getSephirInterface().post(URL, map);
+		Map<String, String> map = new HashMap<>();
+		map.put("email", login.getEmail());
+		map.put("passwort", login.getPassword());
+		return getSephirInterface().postForResponse(URL, map, new HashMap<>()).isSuccessful();
 	}
 }

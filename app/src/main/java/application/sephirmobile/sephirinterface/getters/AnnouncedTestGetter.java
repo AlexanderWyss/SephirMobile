@@ -8,11 +8,12 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import application.sephirmobile.sephirinterface.SephirInterface;
 import application.sephirmobile.sephirinterface.entitys.AnnouncedTest;
@@ -31,10 +32,10 @@ public class AnnouncedTestGetter extends Getter {
         super(sephirInterface);
     }
 
-    public List<AnnouncedTest> get() {
+    public List<AnnouncedTest> get() throws IOException {
         LOGGER.debug("Loading Announced Tests");
-        MultiValueMap<String, String> getMap = new LinkedMultiValueMap<>();
-        getMap.add("group", "dat");
+        Map<String, String> getMap = new HashMap<>();
+        getMap.put("group", "dat");
         String html = getSephirInterface().get(URL, getMap);
         return parse(html);
     }
