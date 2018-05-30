@@ -9,8 +9,10 @@ import org.slf4j.LoggerFactory;
 
 import application.sephirmobile.sephirinterface.entitys.Certification;
 import application.sephirmobile.sephirinterface.entitys.Login;
+import application.sephirmobile.sephirinterface.entitys.Semester;
 import application.sephirmobile.sephirinterface.exceptions.LoginException;
 import application.sephirmobile.sephirinterface.forms.LoginForm;
+import application.sephirmobile.sephirinterface.forms.SemesterChangeForm;
 import application.sephirmobile.sephirinterface.getters.CertificationGetter;
 import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
@@ -50,6 +52,10 @@ public class SephirInterface {
     }
     LOGGER.debug("Login successful");
   }
+
+    public void changeSemester(Semester semester) throws IOException {
+        new SemesterChangeForm(this).changeSemester(semester);
+    }
 
     public Response<String> getForResponse(String url, Map<String, String> getMap) throws IOException {
         Response<String> response = sephirInterfaceService.get(url, getMap).execute();

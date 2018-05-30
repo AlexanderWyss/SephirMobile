@@ -11,11 +11,14 @@ import application.sephirmobile.sephirinterface.entitys.Certification;
 import application.sephirmobile.sephirinterface.entitys.Login;
 import application.sephirmobile.sephirinterface.entitys.SchoolClass;
 import application.sephirmobile.sephirinterface.entitys.SchoolTest;
+import application.sephirmobile.sephirinterface.entitys.Semesters;
 import application.sephirmobile.sephirinterface.exceptions.LoginException;
+import application.sephirmobile.sephirinterface.forms.SemesterChangeForm;
 import application.sephirmobile.sephirinterface.getters.AnnouncedTestGetter;
 import application.sephirmobile.sephirinterface.getters.AverageTestMarkGetter;
 import application.sephirmobile.sephirinterface.getters.SchoolClassGetter;
 import application.sephirmobile.sephirinterface.getters.SchoolTestGetter;
+import application.sephirmobile.sephirinterface.getters.SemesterGetter;
 import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -33,7 +36,7 @@ public class SephirInterfaceTest {
     public void sephirInterfaceTest() throws Exception {
         //Login
         SephirInterface sephirInterface = new SephirInterface();
-        sephirInterface.login(new Login("alexander_wyss@sluz.ch", "***REMOVED***"));
+        sephirInterface.login(new Login("alexander_wyss@sluz.ch", ""));
 
         /*
         //Get SchoolClasses
@@ -68,8 +71,16 @@ public class SephirInterfaceTest {
         AverageTestMarkGetter averageTestMarkGetter = new AverageTestMarkGetter(sephirInterface);
         double averageMark = averageTestMarkGetter.get(new SchoolTest(null, null, null, null, null, 0, 0, "216054"));
         System.out.println(averageMark);
-        */
 
+
+        //Get and Set Semester
+        SemesterGetter semesterGetter = new SemesterGetter(sephirInterface);
+        Semesters semesters = semesterGetter.get();
+        System.out.println(semesters);
+        sephirInterface.changeSemester(semesters.getSemesters().get(10));
+        //OR
+        new SemesterChangeForm(sephirInterface).changeSemester(semesters.getSemesters().get(10));
+        */
     }
 
     @Test(expected = LoginException.class)
