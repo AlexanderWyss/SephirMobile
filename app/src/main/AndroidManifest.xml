@@ -28,7 +28,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".FutureTestsActivity"
-            android:label="@string/title_activity_futureTestse"
+            android:label="@string/title_activity_futureTests"
             android:theme="@style/AppTheme.NoActionBar"
 
             />
