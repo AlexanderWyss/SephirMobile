@@ -25,7 +25,13 @@
         <activity
             android:name=".MarksActivity"
             android:label="@string/title_activity_marks"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".FutureTestsActivity"
+            android:label="@string/title_activity_futureTestse"
+            android:theme="@style/AppTheme.NoActionBar"
+
+            />
     </application>
 
 </manifest>

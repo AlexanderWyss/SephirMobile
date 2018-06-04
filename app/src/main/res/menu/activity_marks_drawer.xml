@@ -5,12 +5,10 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
-
-            android:title="@string/Noten" />
+            android:id="@+id/nav_marks"
+            android:title="Noten" />
         <item
-            android:id="@+id/nav_gallery"
-
+            android:id="@+id/nav_futureTests"
             android:title="@string/AngekuendigtePruefungen" />
         <item
             android:id="@+id/nav_manage"
