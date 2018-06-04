@@ -47,7 +47,7 @@ public class FutureTestsActivity  extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_manage) {
-            // Handle the camera action
+            startActivity(new Intent(this, SettingsActivity.class));
         } else if (id == R.id.nav_marks) {
             startActivity(new Intent(this, MarksActivity.class));
         }  else if (id == R.id.nav_futureTests) {
