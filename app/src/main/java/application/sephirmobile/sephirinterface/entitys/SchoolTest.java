@@ -33,8 +33,11 @@ public class SchoolTest {
     }
 
     public double getAverageMark(SephirInterface sephirInterface) throws IOException {
-        AverageTestMarkGetter averageTestMarkGetter = new AverageTestMarkGetter(sephirInterface);
-        return averageTestMarkGetter.get(this);
+        if (mark != 0.0) {
+            AverageTestMarkGetter averageTestMarkGetter = new AverageTestMarkGetter(sephirInterface);
+            return averageTestMarkGetter.get(this);
+        }
+        return 0;
     }
 
     public LocalDate getDate() {

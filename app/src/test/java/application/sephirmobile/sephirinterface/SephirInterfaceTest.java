@@ -6,31 +6,12 @@ import org.junit.Test;
 import java.io.IOException;
 import java.util.List;
 
-import application.sephirmobile.sephirinterface.entitys.AnnouncedTest;
-import application.sephirmobile.sephirinterface.entitys.AverageSubjectMarks;
-import application.sephirmobile.sephirinterface.entitys.Certification;
 import application.sephirmobile.sephirinterface.entitys.Login;
 import application.sephirmobile.sephirinterface.entitys.SchoolClass;
 import application.sephirmobile.sephirinterface.entitys.SchoolTest;
-import application.sephirmobile.sephirinterface.entitys.Semesters;
 import application.sephirmobile.sephirinterface.exceptions.LoginException;
-import application.sephirmobile.sephirinterface.forms.SemesterChangeForm;
-import application.sephirmobile.sephirinterface.getters.AnnouncedTestGetter;
-import application.sephirmobile.sephirinterface.getters.AverageSubjectMarkGetter;
-import application.sephirmobile.sephirinterface.getters.AverageTestMarkGetter;
 import application.sephirmobile.sephirinterface.getters.SchoolClassGetter;
 import application.sephirmobile.sephirinterface.getters.SchoolTestGetter;
-import application.sephirmobile.sephirinterface.getters.SemesterGetter;
-import okhttp3.HttpUrl;
-import okhttp3.Interceptor;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.scalars.ScalarsConverterFactory;
-
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
 
 public class SephirInterfaceTest {
     @Test
@@ -40,7 +21,7 @@ public class SephirInterfaceTest {
         SephirInterface sephirInterface = new SephirInterface();
         sephirInterface.login(new Login(StringFromResourceReader.read("ignore/email.txt"), StringFromResourceReader.read("ignore/password.txt")));
 
-/*
+
         //Get SchoolClasses
         SchoolClassGetter schoolClassGetter = new SchoolClassGetter(sephirInterface);
         List<SchoolClass> schoolClasses = schoolClassGetter.get();
@@ -50,6 +31,7 @@ public class SephirInterfaceTest {
             SchoolTestGetter testGetter = new SchoolTestGetter(sephirInterface);
         for (SchoolClass schoolClass : schoolClasses) {
             List<SchoolTest> tests = testGetter.get(schoolClass);
+            tests.get(0).getAverageMark(sephirInterface);
             System.out.println(tests);
 
             tests.stream().filter(test -> test.getMark() != 0).findFirst().ifPresent(test-> {
@@ -62,7 +44,7 @@ public class SephirInterfaceTest {
             });
         }
 
-
+/*
         //Get Announced Tests
         AnnouncedTestGetter announcedTestGetter = new AnnouncedTestGetter(sephirInterface);
         List<AnnouncedTest> announcedTests = announcedTestGetter.get();
@@ -89,7 +71,7 @@ public class SephirInterfaceTest {
         AverageSubjectMarks averageSubjectMarks = averageSubjectMarkGetter.get(schoolClass);
         System.out.println(averageSubjectMarks);
         }
-        */
+*/
     }
 
     @Test(expected = LoginException.class)
