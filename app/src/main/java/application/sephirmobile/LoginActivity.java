@@ -27,6 +27,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText mPasswordField;
     private View mProgressView;
     private View mLoginFormView;
+    private TextView mMessageView;
 
     private SephirInterface sephirInterface = new SephirInterface();
 
@@ -39,6 +40,7 @@ public class LoginActivity extends AppCompatActivity {
         mPasswordField = findViewById(R.id.password);
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
+        mMessageView = findViewById(R.id.message);
 
         mPasswordField.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -76,19 +78,25 @@ public class LoginActivity extends AppCompatActivity {
 
 
     private void attemptLogin() {
+        showProgress(true);
         try {
             Login login = new Login(mEmailField.getText().toString(), mPasswordField.getText().toString());
-            if (isInputValid(login) && sephirInterface.login(login)) {
-                nextActivity();
+            if (isInputValid(login)) {
+                if (sephirInterface.login(login)) {
+                    nextActivity();
+                } else {
+                    mMessageView.setText(R.string.login_failed);
+                }
             }
         } catch (IOException e) {
             //TODO Handle Exception
             e.printStackTrace();
+        }finally {
+            showProgress(false);
         }
     }
 
     private void nextActivity() {
-        showProgress(true);
         startActivity(new Intent(this, MarksActivity.class));
     }
 

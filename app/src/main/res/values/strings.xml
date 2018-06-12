@@ -13,6 +13,8 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+    <string name="login_failed">Login faild.\nEmail or Password incorrect.\nWarning: Do not retry login too often or Sephir may block you. We recommend to Login to Sephir on a browser after 3 failed attempts and then try again.
+    </string>
     <string name="Noten">Noten</string>
     <string name="Einstellungen">Einstellungen</string>
     <string name="AngekuendigtePruefungen">Angekündigte Prüfungen</string>

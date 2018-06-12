@@ -30,10 +30,12 @@ public class SephirInterface {
     private SephirInterfaceService sephirInterfaceService;
     private Certification certification = new Certification("", "");
 
-    public SephirInterface() {
+    static {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-
         StrictMode.setThreadPolicy(policy);
+    }
+
+    public SephirInterface() {
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(new Interceptor() {
             @Override
             public okhttp3.Response intercept(Chain chain) throws IOException {
