@@ -83,6 +83,7 @@ public class LoginActivity extends AppCompatActivity {
             Login login = new Login(mEmailField.getText().toString(), mPasswordField.getText().toString());
             if (isInputValid(login)) {
                 if (sephirInterface.login(login)) {
+                    LoginUtils.save(login);
                     nextActivity();
                 } else {
                     mMessageView.setText(R.string.login_failed);
