@@ -9,9 +9,12 @@ import java.util.List;
 import application.sephirmobile.login.Login;
 import application.sephirmobile.sephirinterface.entitys.SchoolClass;
 import application.sephirmobile.sephirinterface.entitys.SchoolTest;
-import application.sephirmobile.sephirinterface.exceptions.LoginException;
 import application.sephirmobile.sephirinterface.getters.SchoolClassGetter;
 import application.sephirmobile.sephirinterface.getters.SchoolTestGetter;
+
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
+
 
 public class SephirInterfaceTest {
     @Test
@@ -28,13 +31,13 @@ public class SephirInterfaceTest {
         System.out.println(schoolClasses);
 
         //Get Tests
-            SchoolTestGetter testGetter = new SchoolTestGetter(sephirInterface);
+        SchoolTestGetter testGetter = new SchoolTestGetter(sephirInterface);
         for (SchoolClass schoolClass : schoolClasses) {
             List<SchoolTest> tests = testGetter.get(schoolClass);
             tests.get(0).getAverageMark(sephirInterface);
             System.out.println(tests);
 
-            tests.stream().filter(test -> test.getMark() != 0).findFirst().ifPresent(test-> {
+            tests.stream().filter(test -> test.getMark() != 0).findFirst().ifPresent(test -> {
                 try {
                     double averageMark = test.getAverageMark(sephirInterface);
                     System.out.println(averageMark);
@@ -74,10 +77,11 @@ public class SephirInterfaceTest {
 */
     }
 
-    @Test(expected = LoginException.class)
+    @Test
     @Ignore("Does real Requests to Sephir")
     public void wrongLoginData_login_loginException() throws Exception {
         SephirInterface sephirInterface = new SephirInterface();
-        sephirInterface.login(new Login("a", "a"));
+        boolean successful = sephirInterface.login(new Login("a", "a"));
+        assertThat(successful, is(false));
     }
 }
