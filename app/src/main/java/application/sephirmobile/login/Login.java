@@ -1,4 +1,4 @@
-package application.sephirmobile.sephirinterface.entitys;
+package application.sephirmobile.login;
 
 public class Login {
 	private String email;

@@ -6,7 +6,7 @@ import org.junit.Test;
 import java.io.IOException;
 import java.util.List;
 
-import application.sephirmobile.sephirinterface.entitys.Login;
+import application.sephirmobile.login.Login;
 import application.sephirmobile.sephirinterface.entitys.SchoolClass;
 import application.sephirmobile.sephirinterface.entitys.SchoolTest;
 import application.sephirmobile.sephirinterface.exceptions.LoginException;

@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import application.sephirmobile.sephirinterface.SephirInterface;
-import application.sephirmobile.sephirinterface.entitys.Login;
+import application.sephirmobile.login.Login;
 import application.sephirmobile.sephirinterface.getters.Getter;
 
 public class LoginForm extends Getter {

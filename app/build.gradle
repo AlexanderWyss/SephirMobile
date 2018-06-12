@@ -36,6 +36,7 @@ android {
 }
 
 dependencies {
+    api 'de.adorsys.android:securestoragelibrary:1.0.2'
     api 'joda-time:joda-time:2.9.9'
     api 'com.squareup.retrofit2:retrofit:2.4.0'
     api 'com.squareup.retrofit2:converter-scalars:2.1.0'

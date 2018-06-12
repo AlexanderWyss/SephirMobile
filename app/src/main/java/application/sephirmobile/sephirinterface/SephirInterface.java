@@ -8,7 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import application.sephirmobile.sephirinterface.entitys.Certification;
-import application.sephirmobile.sephirinterface.entitys.Login;
+import application.sephirmobile.login.Login;
 import application.sephirmobile.sephirinterface.entitys.Semester;
 import application.sephirmobile.sephirinterface.exceptions.LoginException;
 import application.sephirmobile.sephirinterface.forms.LoginForm;
