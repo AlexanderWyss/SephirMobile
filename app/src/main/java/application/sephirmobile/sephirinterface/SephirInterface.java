@@ -1,5 +1,8 @@
 package application.sephirmobile.sephirinterface;
 
+import android.os.AsyncTask;
+import android.os.StrictMode;
+
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -10,7 +13,6 @@ import org.slf4j.LoggerFactory;
 import application.sephirmobile.sephirinterface.entitys.Certification;
 import application.sephirmobile.login.Login;
 import application.sephirmobile.sephirinterface.entitys.Semester;
-import application.sephirmobile.sephirinterface.exceptions.LoginException;
 import application.sephirmobile.sephirinterface.forms.LoginForm;
 import application.sephirmobile.sephirinterface.forms.SemesterChangeForm;
 import application.sephirmobile.sephirinterface.getters.CertificationGetter;
@@ -29,6 +31,9 @@ public class SephirInterface {
     private Certification certification = new Certification("", "");
 
     public SephirInterface() {
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+
+        StrictMode.setThreadPolicy(policy);
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(new Interceptor() {
             @Override
             public okhttp3.Response intercept(Chain chain) throws IOException {
