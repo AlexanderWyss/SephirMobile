@@ -62,7 +62,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-
+        //TODO not static
         new AsyncTask<Void, Void, Void>() {
             @Override
             protected Void doInBackground(Void... voids) {
@@ -94,6 +94,7 @@ public class LoginActivity extends AppCompatActivity {
     private void attemptLogin() {
         Login login = new Login(mEmailField.getText().toString(), mPasswordField.getText().toString());
         if (isInputValid(login)) {
+            //TODO not static
             new AsyncTask<Void, Void, Boolean>() {
                 @Override
                 protected Boolean doInBackground(Void... voids) {

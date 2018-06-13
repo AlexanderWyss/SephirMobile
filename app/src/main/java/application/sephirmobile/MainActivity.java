@@ -17,11 +17,13 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import application.sephirmobile.login.Login;
 import application.sephirmobile.login.LoginUtils;
 import application.sephirmobile.sephirinterface.SephirInterface;
 import application.sephirmobile.sephirinterface.entitys.AnnouncedTest;
@@ -41,6 +43,7 @@ public class MainActivity extends AppCompatActivity
     private Toolbar toolbar;
     private NavigationView navigationView;
     private ProgressBar progressBar;
+    private TextView email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +63,11 @@ public class MainActivity extends AppCompatActivity
         columns = findViewById(R.id.columns);
         rows = findViewById(R.id.rows);
         progressBar = findViewById(R.id.progressBar);
+        //TODO index 0
+        email = navigationView.getHeaderView(0).findViewById(R.id.email);
 
+        Login login = LoginUtils.load();
+        //TODO not static
         new AsyncTask<Void, Void, Boolean>() {
 
             @Override
@@ -68,7 +75,7 @@ public class MainActivity extends AppCompatActivity
                 sephirInterface = new SephirInterface();
                 boolean success = false;
                 try {
-                    success = sephirInterface.login(LoginUtils.load());
+                    success = sephirInterface.login(login);
                 } catch (IOException e) {
                     //TODO handle Exception
                     e.printStackTrace();
@@ -82,6 +89,7 @@ public class MainActivity extends AppCompatActivity
                 if (!success) {
                     startActivity(new Intent(MainActivity.this, LoginActivity.class));
                 }
+                email.setText(login.getEmail());
                 showProgress(false);
                 select(navigationView.getMenu().findItem(R.id.nav_marks));
             }
@@ -126,6 +134,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void showMarks() {
+        //TODO not static
         new AsyncTask<Void, Void, List<SchoolTest>>() {
 
             @Override
@@ -159,7 +168,9 @@ public class MainActivity extends AppCompatActivity
             }
         }.execute();
     }
+
     private void showAnnouncedTests() {
+        //TODO not static
         new AsyncTask<Void, Void, List<AnnouncedTest>>() {
 
             @Override

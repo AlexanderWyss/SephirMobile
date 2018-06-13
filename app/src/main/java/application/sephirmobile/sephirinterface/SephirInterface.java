@@ -30,6 +30,7 @@ public class SephirInterface {
     private SephirInterfaceService sephirInterfaceService;
     private Certification certification = new Certification("", "");
 
+    //TODO remove
     /*static {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
