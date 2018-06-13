@@ -1,6 +1,5 @@
 package application.sephirmobile;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -11,7 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.LinearLayout;
+import android.widget.FrameLayout;
 import android.widget.ListView;
 
 import java.io.IOException;
@@ -43,7 +42,8 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        ListView mainView = findViewById(R.id.mainView);
+        FrameLayout columns = findViewById(R.id.columns);
+        ListView rows = findViewById(R.id.rows);
         try {
             SephirInterface sephirInterface = new SephirInterface();
             sephirInterface.login(LoginUtils.load());
@@ -54,7 +54,8 @@ public class MainActivity extends AppCompatActivity
                 tests.addAll(schoolTestGetter.get(schoolClass));
             }
             SchoolTestAdapter schoolTestAdapter = new SchoolTestAdapter(this, tests);
-            mainView.setAdapter(schoolTestAdapter);
+            columns.addView(schoolTestAdapter.getColumns());
+            rows.setAdapter(schoolTestAdapter);
         } catch (IOException e) {
             e.printStackTrace();
         }

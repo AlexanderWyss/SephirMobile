@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import java.time.format.TextStyle;
 import java.util.List;
 
 import application.sephirmobile.sephirinterface.entitys.SchoolTest;
@@ -21,6 +22,17 @@ public class SchoolTestAdapter extends ArrayAdapter<SchoolTest>{
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+        SchoolTest schoolTest = getItem(position);
+        String dateText = schoolTest.getDate().toString("dd.MM.yy");
+        String subjectText = schoolTest.getSubject();
+        String nameText = schoolTest.getName();
+        String MarkText = String.valueOf(schoolTest.getMark());
+        convertView = getRow(convertView, dateText, subjectText, nameText, MarkText, null);
+        return convertView;
+    }
+
+    @NonNull
+    private View getRow(@Nullable View convertView, String dateText, String subjectText, String nameText, String markText, Float textSize)  {
         if(convertView == null) {
             convertView = LayoutInflater.from(getContext())
                     .inflate(R.layout.schooltest_table_layout, null, false);
@@ -30,11 +42,21 @@ public class SchoolTestAdapter extends ArrayAdapter<SchoolTest>{
         TextView text = convertView.findViewById(R.id.text);
         TextView mark = convertView.findViewById(R.id.mark);
 
-        SchoolTest schoolTest = getItem(position);
-        date.setText(schoolTest.getDate().toString("dd.MM.yy"));
-        subject.setText(schoolTest.getSubject());
-        text.setText(schoolTest.getName());
-        mark.setText(String.valueOf(schoolTest.getMark()));
+        if(textSize != null) {
+            date.setTextSize(textSize);
+            subject.setTextSize(textSize);
+            text.setTextSize(textSize);
+            mark.setTextSize(textSize);
+        }
+
+        date.setText(dateText);
+        subject.setText(subjectText);
+        text.setText(nameText);
+        mark.setText(markText);
         return convertView;
+    }
+
+    public View getColumns() {
+        return getRow(null, "Date", "Subject", "Name", "Mark", 15f);
     }
 }
