@@ -1,6 +1,8 @@
 package application.sephirmobile.sephirinterface.entitys;
 
-public class Certification {
+import java.io.Serializable;
+
+public class Certification implements Serializable {
   private final String cfid;
   private final String cftoken;
 

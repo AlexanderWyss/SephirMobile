@@ -2,7 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="application.sephirmobile">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
 
     <application
         android:allowBackup="true"
@@ -22,6 +23,14 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name" />
+
+        <service
+            android:name=".notifier.NotifierService"
+            android:label="Sephir Notifier Service"
+            android:permission="android.permission.BIND_JOB_SERVICE"
+            android:exported="true">
+
+        </service>
     </application>
 
 </manifest>

@@ -2,10 +2,12 @@ package application.sephirmobile.sephirinterface.entitys;
 
 import org.joda.time.LocalDate;
 
+import java.io.Serializable;
+
 /**
  * @author vmadmin
  */
-public class AnnouncedTest {
+public class AnnouncedTest implements Serializable{
     private LocalDate date;
     private String schoolClass;
     private String name;

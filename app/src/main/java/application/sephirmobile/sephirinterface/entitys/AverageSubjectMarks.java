@@ -1,11 +1,12 @@
 package application.sephirmobile.sephirinterface.entitys;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class AverageSubjectMarks {
+public class AverageSubjectMarks implements Serializable {
   private Map<String, AverageSubjectMark> marks;
   private double averageMark;
 

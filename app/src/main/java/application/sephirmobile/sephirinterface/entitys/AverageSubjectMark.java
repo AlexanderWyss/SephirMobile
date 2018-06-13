@@ -1,6 +1,8 @@
 package application.sephirmobile.sephirinterface.entitys;
 
-public class AverageSubjectMark {
+import java.io.Serializable;
+
+public class AverageSubjectMark implements Serializable {
   private String subject;
   private double averageMark;
   private int testAmount;

@@ -25,6 +25,7 @@ import java.util.List;
 
 import application.sephirmobile.login.Login;
 import application.sephirmobile.login.LoginUtils;
+import application.sephirmobile.notifier.NotifierService;
 import application.sephirmobile.sephirinterface.SephirInterface;
 import application.sephirmobile.sephirinterface.entitys.AnnouncedTest;
 import application.sephirmobile.sephirinterface.entitys.SchoolClass;
@@ -88,10 +89,13 @@ public class MainActivity extends AppCompatActivity
             protected void onPostExecute(Boolean success) {
                 if (!success) {
                     startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                } else {
+                    NotifierService.scheduleJob(getApplicationContext());
+
+                    email.setText(login.getEmail());
+                    showProgress(false);
+                    select(navigationView.getMenu().findItem(R.id.nav_marks));
                 }
-                email.setText(login.getEmail());
-                showProgress(false);
-                select(navigationView.getMenu().findItem(R.id.nav_marks));
             }
 
             @Override

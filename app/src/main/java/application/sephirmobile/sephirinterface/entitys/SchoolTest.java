@@ -3,11 +3,12 @@ package application.sephirmobile.sephirinterface.entitys;
 import org.joda.time.LocalDate;
 
 import java.io.IOException;
+import java.io.Serializable;
 
 import application.sephirmobile.sephirinterface.SephirInterface;
 import application.sephirmobile.sephirinterface.getters.AverageTestMarkGetter;
 
-public class SchoolTest {
+public class SchoolTest implements Serializable {
     private LocalDate date;
     private String subject;
     private String name;

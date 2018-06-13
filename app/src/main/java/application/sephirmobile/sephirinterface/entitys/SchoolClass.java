@@ -1,6 +1,8 @@
 package application.sephirmobile.sephirinterface.entitys;
 
-public class SchoolClass {
+import java.io.Serializable;
+
+public class SchoolClass implements Serializable {
 	private String id;
 	private String name;
 

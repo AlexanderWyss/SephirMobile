@@ -1,6 +1,8 @@
 package application.sephirmobile.sephirinterface.entitys;
 
-public class Semester {
+import java.io.Serializable;
+
+public class Semester implements Serializable {
   private String id;
   private String name;
 
