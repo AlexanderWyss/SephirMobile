@@ -19,7 +19,7 @@
     <string name="Einstellungen">Einstellungen</string>
     <string name="AngekuendigtePruefungen">Angekündigte Prüfungen</string>
     <string name="LogoSephirMobile">LogoSephirMobile</string>
-    <string name="title_activity_marks">MarksActivity</string>
+    <string name="title_activity_marks">Noten</string>
     <string name="title_activity_futureTests">AngekündigtePrüfungen</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>

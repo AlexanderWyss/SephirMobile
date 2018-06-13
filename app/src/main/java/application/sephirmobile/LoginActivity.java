@@ -3,6 +3,7 @@ package application.sephirmobile;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -62,38 +63,67 @@ public class LoginActivity extends AppCompatActivity {
         });
 
 
-            showProgress(true);
-        try {
-            Login login = LoginUtils.load();
-            if (login != null && sephirInterface.login(login)) {
-                nextActivity();
+        new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(Void... voids) {
+                try {
+                    Login login = LoginUtils.load();
+                    if (login != null && sephirInterface.login(login)) {
+                        nextActivity();
+                    }
+                } catch (IOException e) {
+                    //TODO handleException
+                    e.printStackTrace();
+                }
+                return null;
             }
-        } catch (IOException e) {
-            //TODO handleException
-            e.printStackTrace();
-        }finally {
-            showProgress(false);
-        }
+
+            @Override
+            protected void onPostExecute(Void aVoid) {
+                showProgress(false);
+            }
+
+            @Override
+            protected void onPreExecute() {
+                showProgress(true);
+            }
+        }.execute();
     }
 
 
     private void attemptLogin() {
-        showProgress(true);
-        try {
-            Login login = new Login(mEmailField.getText().toString(), mPasswordField.getText().toString());
-            if (isInputValid(login)) {
-                if (sephirInterface.login(login)) {
-                    LoginUtils.save(login);
-                    nextActivity();
-                } else {
-                    mMessageView.setText(R.string.login_failed);
+        Login login = new Login(mEmailField.getText().toString(), mPasswordField.getText().toString());
+        if (isInputValid(login)) {
+            new AsyncTask<Void, Void, Boolean>() {
+                @Override
+                protected Boolean doInBackground(Void... voids) {
+                    boolean success = false;
+                    try {
+                        success = sephirInterface.login(login);
+                    } catch (IOException e) {
+                        //TODO Handle Exception
+                        e.printStackTrace();
+                    } finally {
+                        return success;
+                    }
                 }
-            }
-        } catch (IOException e) {
-            //TODO Handle Exception
-            e.printStackTrace();
-        }finally {
-            showProgress(false);
+
+                @Override
+                protected void onPostExecute(Boolean success) {
+                    if (success) {
+                        LoginUtils.save(login);
+                        nextActivity();
+                    } else {
+                        mMessageView.setText(R.string.login_failed);
+                    }
+                    showProgress(false);
+                }
+
+                @Override
+                protected void onPreExecute() {
+                    showProgress(true);
+                }
+            }.execute();
         }
     }
 

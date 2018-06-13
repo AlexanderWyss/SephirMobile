@@ -1,5 +1,9 @@
 package application.sephirmobile;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -12,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -27,43 +32,72 @@ import application.sephirmobile.sephirinterface.getters.SchoolTestGetter;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    private FrameLayout columns;
+    private ListView rows;
+    private SephirInterface sephirInterface;
+    private DrawerLayout drawer;
+    private Toolbar toolbar;
+    private NavigationView navigationView;
+    private ProgressBar progressBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        FrameLayout columns = findViewById(R.id.columns);
-        ListView rows = findViewById(R.id.rows);
-        try {
-            SephirInterface sephirInterface = new SephirInterface();
-            sephirInterface.login(LoginUtils.load());
-            List<SchoolClass> schoolClasses = new SchoolClassGetter(sephirInterface).get();
-            SchoolTestGetter schoolTestGetter = new SchoolTestGetter(sephirInterface);
-            List<SchoolTest> tests = new ArrayList<>();
-            for (SchoolClass schoolClass : schoolClasses) {
-                tests.addAll(schoolTestGetter.get(schoolClass));
+        columns = findViewById(R.id.columns);
+        rows = findViewById(R.id.rows);
+        progressBar = findViewById(R.id.progressBar);
+
+        new AsyncTask<Void, Void, Boolean>() {
+
+            @Override
+            protected Boolean doInBackground(Void... voids) {
+                sephirInterface = new SephirInterface();
+                boolean success = false;
+                try {
+                    success = sephirInterface.login(LoginUtils.load());
+                } catch (IOException e) {
+                    //TODO handle Exception
+                    e.printStackTrace();
+                } finally {
+                    return success;
+                }
             }
-            SchoolTestAdapter schoolTestAdapter = new SchoolTestAdapter(this, tests);
-            columns.addView(schoolTestAdapter.getColumns());
-            rows.setAdapter(schoolTestAdapter);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
+            @Override
+            protected void onPostExecute(Boolean success) {
+                if (!success) {
+                    startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                }
+                showProgress(false);
+                select(navigationView.getMenu().findItem(R.id.nav_marks));
+            }
+
+            @Override
+            protected void onPreExecute() {
+                showProgress(true);
+            }
+        }.execute();
+    }
+
+    private void select(MenuItem item) {
+        item.setChecked(true);
+        onNavigationItemSelected(item);
     }
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -74,16 +108,65 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
+        columns.removeAllViews();
+        rows.setAdapter(null);
 
+        int id = item.getItemId();
         if (id == R.id.nav_manage) {
         } else if (id == R.id.nav_marks) {
+            showMarks();
         } else if (id == R.id.nav_futureTests) {
         }
 
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void showMarks() {
+        new AsyncTask<Void, Void, List<SchoolTest>>() {
+
+            @Override
+            protected List<SchoolTest> doInBackground(Void... voids) {
+                List<SchoolTest> tests = new ArrayList<>();
+                try {
+                    List<SchoolClass> schoolClasses = new SchoolClassGetter(sephirInterface).get();
+                    SchoolTestGetter schoolTestGetter = new SchoolTestGetter(sephirInterface);
+                    for (SchoolClass schoolClass : schoolClasses) {
+                        tests.addAll(schoolTestGetter.get(schoolClass));
+                    }
+                } catch (IOException e) {
+                    //TODO handle exception
+                    e.printStackTrace();
+                } finally {
+                    return tests;
+                }
+            }
+
+            @Override
+            protected void onPostExecute(List<SchoolTest> schoolTests) {
+                SchoolTestAdapter schoolTestAdapter = new SchoolTestAdapter(MainActivity.this, schoolTests);
+                columns.addView(schoolTestAdapter.getColumns());
+                rows.setAdapter(schoolTestAdapter);
+                showProgress(false);
+            }
+
+            @Override
+            protected void onPreExecute() {
+                showProgress(true);
+            }
+        }.execute();
+    }
+
+    private void showProgress(final boolean show) {
+        int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
+
+        progressBar.setVisibility(show ? View.VISIBLE : View.GONE);
+        progressBar.animate().setDuration(shortAnimTime).alpha(
+                show ? 1 : 0).setListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                progressBar.setVisibility(show ? View.VISIBLE : View.GONE);
+            }
+        });
     }
 }
