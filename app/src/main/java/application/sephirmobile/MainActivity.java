@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity
                 if (!success) {
                     startActivity(new Intent(MainActivity.this, LoginActivity.class));
                 } else {
-                    NotifierService.scheduleJob(getApplicationContext());
+                    NotifierService.scheduleJob(getApplicationContext(), 1);
 
                     email.setText(login.getEmail());
                     showProgress(false);

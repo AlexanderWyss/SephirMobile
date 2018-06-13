@@ -12,16 +12,21 @@ import android.content.Context;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 
+import org.joda.time.Duration;
+import org.joda.time.LocalDateTime;
+import org.joda.time.LocalTime;
+import org.joda.time.Period;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import application.sephirmobile.R;
 import application.sephirmobile.login.LoginUtils;
 import application.sephirmobile.sephirinterface.SephirInterface;
-import application.sephirmobile.sephirinterface.entitys.AnnouncedTest;
 import application.sephirmobile.sephirinterface.entitys.SchoolClass;
 import application.sephirmobile.sephirinterface.entitys.SchoolTest;
-import application.sephirmobile.sephirinterface.getters.AnnouncedTestGetter;
 import application.sephirmobile.sephirinterface.getters.SchoolClassGetter;
 import application.sephirmobile.sephirinterface.getters.SchoolTestGetter;
 
@@ -30,9 +35,11 @@ public class NotifierService extends JobService {
     public static final String CHANNEL_ID = "default";
     private static int counter = 0;
     private NotificationManager notificationManager;
-    private static int latency = 10000;
-    private static final String ANNOUNCED_TESTS_FILE_NAME = "announcedTests.ser";
+    //TODO from settings
+    private static final NotifierSettings settings = new NotifierSettings();
+    private static final String REMINDER_NOTIFICATION_FILE_NAME = "reminders.ser";
     private static final String TESTS_FILE_NAME = "tests.ser";
+    private static final String PATTERN = "dd.MM.yyyy";
 
     @Override
     @SuppressWarnings("unchecked")
@@ -49,33 +56,68 @@ public class NotifierService extends JobService {
                 for (SchoolClass schoolClass : schoolClasses) {
                     newTests.addAll(schoolTestGetter.get(schoolClass));
                 }
-                List<AnnouncedTest> newAnnouncedTests = new AnnouncedTestGetter(sephirInterface).get();
 
                 Persister persister = new Persister(NotifierService.this);
-                List<AnnouncedTest> oldAnnouncedTests = (List<AnnouncedTest>) persister.load(ANNOUNCED_TESTS_FILE_NAME);
                 List<SchoolTest> oldTests = (List<SchoolTest>) persister.load(TESTS_FILE_NAME);
-
-                if (newAnnouncedTests != null) {
-                    for (AnnouncedTest announcedTest : newAnnouncedTests) {
-                        
-                    }
-                    if (oldAnnouncedTests != null) {
-
-                    }
-                }
-                if (oldTests != null && newTests != null) {
-
+                Map<String, List<Duration>> reminderMap = (Map<String, List<Duration>>) persister.load(REMINDER_NOTIFICATION_FILE_NAME);
+                if (reminderMap == null) {
+                    reminderMap = new HashMap<>();
                 }
 
-                persister.persist(ANNOUNCED_TESTS_FILE_NAME, newAnnouncedTests);
+                //TODO testing
+                if (oldTests != null) {
+                    Map<String, SchoolTest> oldTestMap = new HashMap<>();
+                    for (SchoolTest test : oldTests) {
+                        oldTestMap.put(test.getId(), test);
+                    }
+                    for (SchoolTest newTest : newTests) {
+                        SchoolTest oldTest = oldTestMap.get(newTest.getId());
+                        if (oldTest == null) {
+                            if (settings.isNewAnnouncedTest()) {
+                                sendNotification("New Test", newTest.getDate().toString(PATTERN) + " " + newTest.getName());
+                            }
+                        } else {
+                            if (!oldTest.getDate().equals(newTest.getDate()) && settings.isAnnouncedTestDateUpdated()) {
+                                sendNotification("Test moved", newTest.getName() + " New Date: " + newTest.getDate().toString(PATTERN) + " Old Date: " + oldTest.getDate().toString(PATTERN));
+                            }
+                        }
+                        if (settings.isNewMark() && ((oldTest != null && oldTest.getMark() != newTest.getMark()) || (oldTest == null && newTest.getMark() != 0.0))) {
+                            sendNotification("New Mark", newTest.getName() + " " + newTest.getMark());
+                        }
+                    }
+                }
+
+                //Test Reminder
+                LocalDateTime now = LocalDateTime.now();
+                LocalTime time = new LocalTime(0, 0, 0);
+                for (SchoolTest test : newTests) {
+                    LocalDateTime testDate = test.getDate().toLocalDateTime(time);
+                    if (now.isBefore(testDate)) {
+                        List<Duration> durations = reminderMap.get(test.getId());
+                        if (durations == null) {
+                            durations = new ArrayList<>();
+                        }
+                        for (Duration reminderDuration : settings.getTestReminders()) {
+                            if (!durations.contains(reminderDuration)) {
+                                if (new Period(now, testDate).minus(reminderDuration.toPeriod()).toStandardMinutes().getMinutes() < 0) {
+                                    sendNotification("Test Reminder", test.getDate().toString(PATTERN) + " " + test.getName());
+                                    durations.add(reminderDuration);
+                                    reminderMap.put(test.getId(), durations);
+                                }
+                            }
+                        }
+                    }
+                }
+
                 persister.persist(TESTS_FILE_NAME, newTests);
+                persister.persist(REMINDER_NOTIFICATION_FILE_NAME, reminderMap);
 
             } catch (Exception e) {
                 reschedule = false;
                 e.printStackTrace();
             } finally {
                 if (reschedule) {
-                    // NotifierService.scheduleJob(getApplicationContext());
+                    NotifierService.scheduleJob(getApplicationContext(), 0);
                 } else {
                     sendNotification("Ups", "Something went wrong and for security reasons we stopped checking for new information. Open the App once to start the scheduler again.");
                 }
@@ -92,7 +134,7 @@ public class NotifierService extends JobService {
         } else {
             builder = new Notification.Builder(NotifierService.this);
         }
-        Notification notification = builder.setContentTitle(title).setContentText(text).setSmallIcon(R.drawable.logosephirmobile).build();
+        Notification notification = builder.setContentTitle(title).setContentText(text).setSmallIcon(R.drawable.logosephirmobile).setStyle(new Notification.BigTextStyle().bigText(text)).build();
         notificationManager.notify(counter++, notification);
     }
 
@@ -112,13 +154,13 @@ public class NotifierService extends JobService {
         return false;
     }
 
-    public static void scheduleJob(Context context) {
+    public static void scheduleJob(Context context, int id) {
+        JobScheduler jobScheduler = (JobScheduler) context.getSystemService(Context.JOB_SCHEDULER_SERVICE);
         ComponentName serviceComponent = new ComponentName(context, NotifierService.class);
-        JobInfo.Builder builder = new JobInfo.Builder(0, serviceComponent);
-        builder.setMinimumLatency(latency);
+        JobInfo.Builder builder = new JobInfo.Builder(id, serviceComponent);
+        builder.setMinimumLatency(settings.getLatency());
         builder.setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY);
         builder.setPersisted(true);
-        JobScheduler jobScheduler = (JobScheduler) context.getSystemService(Context.JOB_SCHEDULER_SERVICE);
         jobScheduler.schedule(builder.build());
     }
 }

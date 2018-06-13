@@ -2,6 +2,7 @@ package application.sephirmobile.notifier;
 
 import android.content.Context;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -28,6 +29,9 @@ public class Persister {
         try (FileInputStream fileInputStream = context.openFileInput(fileName);
              ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);) {
             return objectInputStream.readObject();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return null;
         }
     }
 }
