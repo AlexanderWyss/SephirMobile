@@ -98,7 +98,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void nextActivity() {
-        startActivity(new Intent(this, MarksActivity.class));
+        startActivity(new Intent(this, MainActivity.class));
     }
 
     private boolean isInputValid(Login login) {

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:text="02.05.18" />
+
+    <TextView
+        android:id="@+id/subject"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:text="INF260" />
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/mark"
+        android:layout_width="35dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:text="4.52" />
+</LinearLayout>

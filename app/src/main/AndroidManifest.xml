@@ -21,16 +21,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MarksActivity"
-            android:label="@string/title_activity_marks"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".FutureTestsActivity"
-            android:label="@string/title_activity_futureTests"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".SettingsActivity"
-            android:label="@string/title_activity_settings"/>
+            android:name=".MainActivity"
+            android:label="@string/title_activity_marks" />
     </application>
 
 </manifest>
