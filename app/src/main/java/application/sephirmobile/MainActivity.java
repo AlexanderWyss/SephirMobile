@@ -24,8 +24,10 @@ import java.util.List;
 
 import application.sephirmobile.login.LoginUtils;
 import application.sephirmobile.sephirinterface.SephirInterface;
+import application.sephirmobile.sephirinterface.entitys.AnnouncedTest;
 import application.sephirmobile.sephirinterface.entitys.SchoolClass;
 import application.sephirmobile.sephirinterface.entitys.SchoolTest;
+import application.sephirmobile.sephirinterface.getters.AnnouncedTestGetter;
 import application.sephirmobile.sephirinterface.getters.SchoolClassGetter;
 import application.sephirmobile.sephirinterface.getters.SchoolTestGetter;
 
@@ -116,6 +118,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_marks) {
             showMarks();
         } else if (id == R.id.nav_futureTests) {
+            showAnnouncedTests();
         }
 
         drawer.closeDrawer(GravityCompat.START);
@@ -130,9 +133,9 @@ public class MainActivity extends AppCompatActivity
                 List<SchoolTest> tests = new ArrayList<>();
                 try {
                     List<SchoolClass> schoolClasses = new SchoolClassGetter(sephirInterface).get();
-                    SchoolTestGetter schoolTestGetter = new SchoolTestGetter(sephirInterface);
+                    SchoolTestGetter testGetter = new SchoolTestGetter(sephirInterface);
                     for (SchoolClass schoolClass : schoolClasses) {
-                        tests.addAll(schoolTestGetter.get(schoolClass));
+                        tests.addAll(testGetter.get(schoolClass));
                     }
                 } catch (IOException e) {
                     //TODO handle exception
@@ -143,10 +146,41 @@ public class MainActivity extends AppCompatActivity
             }
 
             @Override
-            protected void onPostExecute(List<SchoolTest> schoolTests) {
-                SchoolTestAdapter schoolTestAdapter = new SchoolTestAdapter(MainActivity.this, schoolTests);
-                columns.addView(schoolTestAdapter.getColumns());
-                rows.setAdapter(schoolTestAdapter);
+            protected void onPostExecute(List<SchoolTest> tests) {
+                SchoolTestAdapter testAdapter = new SchoolTestAdapter(MainActivity.this, tests);
+                columns.addView(testAdapter.getColumns());
+                rows.setAdapter(testAdapter);
+                showProgress(false);
+            }
+
+            @Override
+            protected void onPreExecute() {
+                showProgress(true);
+            }
+        }.execute();
+    }
+    private void showAnnouncedTests() {
+        new AsyncTask<Void, Void, List<AnnouncedTest>>() {
+
+            @Override
+            protected List<AnnouncedTest> doInBackground(Void... voids) {
+                List<AnnouncedTest> tests = new ArrayList<>();
+                try {
+                    AnnouncedTestGetter testGetter = new AnnouncedTestGetter(sephirInterface);
+                    tests.addAll(testGetter.get());
+                } catch (IOException e) {
+                    //TODO handle exception
+                    e.printStackTrace();
+                } finally {
+                    return tests;
+                }
+            }
+
+            @Override
+            protected void onPostExecute(List<AnnouncedTest> tests) {
+                AnnouncedTestAdapter testAdapter = new AnnouncedTestAdapter(MainActivity.this, tests);
+                columns.addView(testAdapter.getColumns());
+                rows.setAdapter(testAdapter);
                 showProgress(false);
             }
 
