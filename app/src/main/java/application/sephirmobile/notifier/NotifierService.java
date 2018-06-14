@@ -23,6 +23,7 @@ import java.util.List;
 import java.util.Map;
 
 import application.sephirmobile.R;
+import application.sephirmobile.login.Login;
 import application.sephirmobile.login.LoginUtils;
 import application.sephirmobile.sephirinterface.SephirInterface;
 import application.sephirmobile.sephirinterface.entitys.SchoolClass;
@@ -48,70 +49,74 @@ public class NotifierService extends JobService {
         new Thread(() -> {
             boolean reschedule = true;
             try {
-                SephirInterface sephirInterface = new SephirInterface();
-                reschedule = sephirInterface.login(LoginUtils.load());
-                List<SchoolClass> schoolClasses = new SchoolClassGetter(sephirInterface).get();
-                SchoolTestGetter schoolTestGetter = new SchoolTestGetter(sephirInterface);
-                List<SchoolTest> newTests = new ArrayList<>();
-                for (SchoolClass schoolClass : schoolClasses) {
-                    newTests.addAll(schoolTestGetter.get(schoolClass));
-                }
-
-                Persister persister = new Persister(NotifierService.this);
-                List<SchoolTest> oldTests = (List<SchoolTest>) persister.load(TESTS_FILE_NAME);
-                if (oldTests == null) {
-                    oldTests = new ArrayList<>();
-                }
-                Map<String, List<Duration>> reminderMap = (Map<String, List<Duration>>) persister.load(REMINDER_NOTIFICATION_FILE_NAME);
-                if (reminderMap == null) {
-                    reminderMap = new HashMap<>();
-                }
-
-                Map<String, SchoolTest> oldTestMap = new HashMap<>();
-                for (SchoolTest test : oldTests) {
-                    oldTestMap.put(test.getId(), test);
-                }
-
-                Map<String, List<Duration>> newReminderMap = new HashMap<>();
-                LocalDateTime now = LocalDateTime.now();
-                LocalTime time = new LocalTime(0, 0, 0);
-                for (SchoolTest newTest : newTests) {
-                    SchoolTest oldTest = oldTestMap.get(newTest.getId());
-                    if (oldTest == null) {
-                        if (settings.isNewAnnouncedTest()) {
-                            sendNotification("New Test", newTest.getDate().toString(PATTERN) + " " + newTest.getName() + " " + newTest.getSubject());
-                        }
-                    } else {
-                        if (!oldTest.getDate().equals(newTest.getDate()) && settings.isAnnouncedTestDateUpdated()) {
-                            sendNotification("Test moved", newTest.getName() + " New Date: " + newTest.getDate().toString(PATTERN) + " Old Date: " + oldTest.getDate().toString(PATTERN) + " " + newTest.getSubject());
-                        }
+                Login login = LoginUtils.load();
+                if (login != null) {
+                    SephirInterface sephirInterface = new SephirInterface();
+                    reschedule = sephirInterface.login(login);
+                    List<SchoolClass> schoolClasses = new SchoolClassGetter(sephirInterface).get();
+                    SchoolTestGetter schoolTestGetter = new SchoolTestGetter(sephirInterface);
+                    List<SchoolTest> newTests = new ArrayList<>();
+                    for (SchoolClass schoolClass : schoolClasses) {
+                        newTests.addAll(schoolTestGetter.get(schoolClass));
                     }
-                    if (settings.isNewMark() && ((oldTest != null && oldTest.getMark() != newTest.getMark()) || (oldTest == null && newTest.getMark() != 0.0))) {
-                        sendNotification("New Mark", newTest.getName() + " " + newTest.getMark() + " " + newTest.getSubject());
+
+                    Persister persister = new Persister(NotifierService.this);
+                    List<SchoolTest> oldTests = (List<SchoolTest>) persister.load(TESTS_FILE_NAME);
+                    if (oldTests == null) {
+                        oldTests = new ArrayList<>();
                     }
-                    if (settings.isReminders()) {
-                        LocalDateTime testDate = newTest.getDate().toLocalDateTime(time);
-                        if (now.isBefore(testDate)) {
-                            List<Duration> remindedDurations = reminderMap.get(newTest.getId());
-                            if (remindedDurations == null) {
-                                remindedDurations = new ArrayList<>();
+                    Map<String, List<Duration>> reminderMap = (Map<String, List<Duration>>) persister.load(REMINDER_NOTIFICATION_FILE_NAME);
+                    if (reminderMap == null) {
+                        reminderMap = new HashMap<>();
+                    }
+
+                    Map<String, SchoolTest> oldTestMap = new HashMap<>();
+                    for (SchoolTest test : oldTests) {
+                        oldTestMap.put(test.getId(), test);
+                    }
+
+                    Map<String, List<Duration>> newReminderMap = new HashMap<>();
+                    LocalDateTime now = LocalDateTime.now();
+                    LocalTime time = new LocalTime(0, 0, 0);
+                    for (SchoolTest newTest : newTests) {
+                        SchoolTest oldTest = oldTestMap.get(newTest.getId());
+                        if (oldTest == null) {
+                            if (settings.isNewAnnouncedTest()) {
+                                sendNotification("New Test", newTest.getDate().toString(PATTERN) + " " + newTest.getName() + " " + newTest.getSubject());
                             }
-                            newReminderMap.put(newTest.getId(), remindedDurations);
-                            for (Duration reminderDuration : settings.getTestReminders()) {
-                                if (!remindedDurations.contains(reminderDuration)) {
-                                    if (new Period(now, testDate).minus(reminderDuration.toPeriod()).toStandardMinutes().getMinutes() < 0) {
-                                        sendNotification("Test Reminder", newTest.getDate().toString(PATTERN) + " " + newTest.getName() + " " + newTest.getSubject());
-                                        remindedDurations.add(reminderDuration);
+                        } else {
+                            if (!oldTest.getDate().equals(newTest.getDate()) && settings.isAnnouncedTestDateUpdated()) {
+                                sendNotification("Test moved", newTest.getName() + " New Date: " + newTest.getDate().toString(PATTERN) + " Old Date: " + oldTest.getDate().toString(PATTERN) + " " + newTest.getSubject());
+                            }
+                        }
+                        if (settings.isNewMark() && ((oldTest != null && oldTest.getMark() != newTest.getMark()) || (oldTest == null && newTest.getMark() != 0.0))) {
+                            sendNotification("New Mark", newTest.getName() + " " + newTest.getMark() + " " + newTest.getSubject());
+                        }
+                        if (settings.isReminders()) {
+                            LocalDateTime testDate = newTest.getDate().toLocalDateTime(time);
+                            if (now.isBefore(testDate)) {
+                                List<Duration> remindedDurations = reminderMap.get(newTest.getId());
+                                if (remindedDurations == null) {
+                                    remindedDurations = new ArrayList<>();
+                                }
+                                newReminderMap.put(newTest.getId(), remindedDurations);
+                                for (Duration reminderDuration : settings.getTestReminders()) {
+                                    if (!remindedDurations.contains(reminderDuration)) {
+                                        if (new Period(now, testDate).minus(reminderDuration.toPeriod()).toStandardMinutes().getMinutes() < 0) {
+                                            sendNotification("Test Reminder", newTest.getDate().toString(PATTERN) + " " + newTest.getName() + " " + newTest.getSubject());
+                                            remindedDurations.add(reminderDuration);
+                                        }
                                     }
                                 }
                             }
                         }
                     }
+
+                    persister.persist(TESTS_FILE_NAME, newTests);
+                    persister.persist(REMINDER_NOTIFICATION_FILE_NAME, newReminderMap);
+                } else {
+                    reschedule = false;
                 }
-
-                persister.persist(TESTS_FILE_NAME, newTests);
-                persister.persist(REMINDER_NOTIFICATION_FILE_NAME, newReminderMap);
-
             } catch (Exception e) {
                 reschedule = false;
                 e.printStackTrace();

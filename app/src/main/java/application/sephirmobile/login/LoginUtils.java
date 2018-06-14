@@ -4,6 +4,8 @@ import android.content.Context;
 
 import java.time.Instant;
 
+import javax.xml.transform.Source;
+
 import de.adorsys.android.securestoragelibrary.SecurePreferences;
 
 public class LoginUtils {
@@ -14,13 +16,16 @@ public class LoginUtils {
     private LoginUtils(){}
 
     public static void save(Login login) {
+        if(login == null) {
+            login = new Login("", "");
+        }
         SecurePreferences.setValue(EMAIL, login.getEmail());
         SecurePreferences.setValue(PASSWORD, login.getPassword());
     }
     public static Login load() {
-        String email = SecurePreferences.getStringValue(EMAIL, null);
-        String password = SecurePreferences.getStringValue(PASSWORD, null);
-        if(email == null || password == null) {
+        String email = SecurePreferences.getStringValue(EMAIL, "");
+        String password = SecurePreferences.getStringValue(PASSWORD, "");
+        if( email.isEmpty() || password.isEmpty()) {
             return null;
         }
         return new Login(email, password);

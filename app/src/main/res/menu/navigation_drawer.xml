@@ -11,8 +11,7 @@
             android:id="@+id/nav_futureTests"
             android:title="@string/AngekuendigtePruefungen" />
         <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
+            android:id="@+id/nav_logout"
             android:title="@string/Einstellungen" />
     </group>
 

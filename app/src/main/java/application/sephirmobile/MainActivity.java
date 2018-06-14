@@ -129,7 +129,9 @@ public class MainActivity extends AppCompatActivity
         rows.setAdapter(null);
 
         int id = item.getItemId();
-        if (id == R.id.nav_manage) {
+        if (id == R.id.nav_logout) {
+            LoginUtils.save(null);
+            loginActivity();
         } else if (id == R.id.nav_marks) {
             showMarks();
         } else if (id == R.id.nav_futureTests) {
@@ -156,21 +158,18 @@ public class MainActivity extends AppCompatActivity
                 } catch (Exception e) {
                     //TODO handle exception
                     e.printStackTrace();
-                    return null;
+                    loginActivity();
+                } finally {
+                    return tests;
                 }
-                return tests;
             }
 
             @Override
             protected void onPostExecute(List<SchoolTest> tests) {
-                if(tests != null) {
-                    SchoolTestAdapter testAdapter = new SchoolTestAdapter(MainActivity.this, tests);
-                    columns.addView(testAdapter.getColumns());
-                    rows.setAdapter(testAdapter);
-                    showProgress(false);
-                } else {
-                  loginActivity();
-                }
+                SchoolTestAdapter testAdapter = new SchoolTestAdapter(MainActivity.this, tests);
+                columns.addView(testAdapter.getColumns());
+                rows.setAdapter(testAdapter);
+                showProgress(false);
             }
 
             @Override
@@ -193,22 +192,18 @@ public class MainActivity extends AppCompatActivity
                 } catch (Exception e) {
                     //TODO handle exception
                     e.printStackTrace();
-                    return null;
+                    loginActivity();
+                } finally {
+                    return tests;
                 }
-                return tests;
-
             }
 
             @Override
             protected void onPostExecute(List<AnnouncedTest> tests) {
-                if (tests != null) {
-                    AnnouncedTestAdapter testAdapter = new AnnouncedTestAdapter(MainActivity.this, tests);
-                    columns.addView(testAdapter.getColumns());
-                    rows.setAdapter(testAdapter);
-                    showProgress(false);
-                } else {
-                    loginActivity();
-                }
+                AnnouncedTestAdapter testAdapter = new AnnouncedTestAdapter(MainActivity.this, tests);
+                columns.addView(testAdapter.getColumns());
+                rows.setAdapter(testAdapter);
+                showProgress(false);
             }
 
             @Override

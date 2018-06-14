@@ -16,7 +16,7 @@
     <string name="login_failed">Login faild.\nEmail or Password incorrect.\nWarning: Do not retry login too often or Sephir may block you. We recommend to Login to Sephir on a browser after 3 failed attempts and then try again.
     </string>
     <string name="Noten">Noten</string>
-    <string name="Einstellungen">Einstellungen</string>
+    <string name="Einstellungen">Logout</string>
     <string name="AngekuendigtePruefungen">Angekündigte Prüfungen</string>
     <string name="LogoSephirMobile">LogoSephirMobile</string>
     <string name="title_activity_marks">Noten</string>
