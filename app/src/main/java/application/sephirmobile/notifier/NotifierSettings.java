@@ -6,23 +6,25 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NotifierSettings implements Serializable{
+public class NotifierSettings implements Serializable {
     private int latency;
     private boolean newAnnouncedTest;
     private boolean announcedTestDateUpdated;
     private boolean newMark;
+    private boolean reminders;
     private List<Duration> testReminders;
 
-    public NotifierSettings(int latency, boolean newAnnouncedTest, boolean announcedTestDateUpdated, boolean newMark, List<Duration> testReminders) {
+    public NotifierSettings(int latency, boolean newAnnouncedTest, boolean announcedTestDateUpdated, boolean newMark, boolean reminders, List<Duration> testReminders) {
         this.latency = latency;
         this.newAnnouncedTest = newAnnouncedTest;
         this.announcedTestDateUpdated = announcedTestDateUpdated;
         this.newMark = newMark;
+        this.reminders = reminders;
         this.testReminders = testReminders;
     }
 
     public NotifierSettings() {
-        this(getDefaultLatency(), getDefaultNewAnnouncedTest(), getDefaultAnnouncedTestDateUpdated(), getDefaultNewMark(), getDefaultTestReminders());
+        this(getDefaultLatency(), getDefaultNewAnnouncedTest(), getDefaultAnnouncedTestDateUpdated(), getDefaultNewMark(), getDefaultReminders(), getDefaultTestReminders());
     }
 
     public static List<Duration> getDefaultTestReminders() {
@@ -32,11 +34,28 @@ public class NotifierSettings implements Serializable{
         defaultTestReminders.add(new Duration(259200000)); //3 days
         return defaultTestReminders;
     }
-    public static int getDefaultLatency() {return 1800000;/*30 mins*/};
-    public static boolean getDefaultNewAnnouncedTest() {return true;}
-    public static boolean getDefaultAnnouncedTestDateUpdated() {return true;}
-    public static boolean getDefaultNewMark() {return true;}
 
+    public static int getDefaultLatency() {
+        return 1800000;/*30 mins*/
+    }
+
+    ;
+
+    public static boolean getDefaultNewAnnouncedTest() {
+        return true;
+    }
+
+    public static boolean getDefaultAnnouncedTestDateUpdated() {
+        return true;
+    }
+
+    public static boolean getDefaultNewMark() {
+        return true;
+    }
+
+    public static boolean getDefaultReminders() {
+        return true;
+    }
 
     public int getLatency() {
         return latency;
@@ -54,7 +73,12 @@ public class NotifierSettings implements Serializable{
         return newMark;
     }
 
+    public boolean isReminders() {
+        return reminders;
+    }
+
     public List<Duration> getTestReminders() {
         return testReminders;
     }
+
 }

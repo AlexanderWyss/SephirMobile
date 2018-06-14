@@ -59,50 +59,50 @@ public class NotifierService extends JobService {
 
                 Persister persister = new Persister(NotifierService.this);
                 List<SchoolTest> oldTests = (List<SchoolTest>) persister.load(TESTS_FILE_NAME);
+                if (oldTests == null) {
+                    oldTests = new ArrayList<>();
+                }
                 Map<String, List<Duration>> reminderMap = (Map<String, List<Duration>>) persister.load(REMINDER_NOTIFICATION_FILE_NAME);
                 if (reminderMap == null) {
                     reminderMap = new HashMap<>();
                 }
 
-                //TODO testing
-                if (oldTests != null) {
-                    Map<String, SchoolTest> oldTestMap = new HashMap<>();
-                    for (SchoolTest test : oldTests) {
-                        oldTestMap.put(test.getId(), test);
-                    }
-                    for (SchoolTest newTest : newTests) {
-                        SchoolTest oldTest = oldTestMap.get(newTest.getId());
-                        if (oldTest == null) {
-                            if (settings.isNewAnnouncedTest()) {
-                                sendNotification("New Test", newTest.getDate().toString(PATTERN) + " " + newTest.getName());
-                            }
-                        } else {
-                            if (!oldTest.getDate().equals(newTest.getDate()) && settings.isAnnouncedTestDateUpdated()) {
-                                sendNotification("Test moved", newTest.getName() + " New Date: " + newTest.getDate().toString(PATTERN) + " Old Date: " + oldTest.getDate().toString(PATTERN));
-                            }
-                        }
-                        if (settings.isNewMark() && ((oldTest != null && oldTest.getMark() != newTest.getMark()) || (oldTest == null && newTest.getMark() != 0.0))) {
-                            sendNotification("New Mark", newTest.getName() + " " + newTest.getMark());
-                        }
-                    }
+                Map<String, SchoolTest> oldTestMap = new HashMap<>();
+                for (SchoolTest test : oldTests) {
+                    oldTestMap.put(test.getId(), test);
                 }
 
-                //Test Reminder
+                Map<String, List<Duration>> newReminderMap = new HashMap<>();
                 LocalDateTime now = LocalDateTime.now();
                 LocalTime time = new LocalTime(0, 0, 0);
-                for (SchoolTest test : newTests) {
-                    LocalDateTime testDate = test.getDate().toLocalDateTime(time);
-                    if (now.isBefore(testDate)) {
-                        List<Duration> durations = reminderMap.get(test.getId());
-                        if (durations == null) {
-                            durations = new ArrayList<>();
+                for (SchoolTest newTest : newTests) {
+                    SchoolTest oldTest = oldTestMap.get(newTest.getId());
+                    if (oldTest == null) {
+                        if (settings.isNewAnnouncedTest()) {
+                            sendNotification("New Test", newTest.getDate().toString(PATTERN) + " " + newTest.getName() + " " + newTest.getSubject());
                         }
-                        for (Duration reminderDuration : settings.getTestReminders()) {
-                            if (!durations.contains(reminderDuration)) {
-                                if (new Period(now, testDate).minus(reminderDuration.toPeriod()).toStandardMinutes().getMinutes() < 0) {
-                                    sendNotification("Test Reminder", test.getDate().toString(PATTERN) + " " + test.getName());
-                                    durations.add(reminderDuration);
-                                    reminderMap.put(test.getId(), durations);
+                    } else {
+                        if (!oldTest.getDate().equals(newTest.getDate()) && settings.isAnnouncedTestDateUpdated()) {
+                            sendNotification("Test moved", newTest.getName() + " New Date: " + newTest.getDate().toString(PATTERN) + " Old Date: " + oldTest.getDate().toString(PATTERN) + " " + newTest.getSubject());
+                        }
+                    }
+                    if (settings.isNewMark() && ((oldTest != null && oldTest.getMark() != newTest.getMark()) || (oldTest == null && newTest.getMark() != 0.0))) {
+                        sendNotification("New Mark", newTest.getName() + " " + newTest.getMark() + " " + newTest.getSubject());
+                    }
+                    if (settings.isReminders()) {
+                        LocalDateTime testDate = newTest.getDate().toLocalDateTime(time);
+                        if (now.isBefore(testDate)) {
+                            List<Duration> remindedDurations = reminderMap.get(newTest.getId());
+                            if (remindedDurations == null) {
+                                remindedDurations = new ArrayList<>();
+                            }
+                            newReminderMap.put(newTest.getId(), remindedDurations);
+                            for (Duration reminderDuration : settings.getTestReminders()) {
+                                if (!remindedDurations.contains(reminderDuration)) {
+                                    if (new Period(now, testDate).minus(reminderDuration.toPeriod()).toStandardMinutes().getMinutes() < 0) {
+                                        sendNotification("Test Reminder", newTest.getDate().toString(PATTERN) + " " + newTest.getName() + " " + newTest.getSubject());
+                                        remindedDurations.add(reminderDuration);
+                                    }
                                 }
                             }
                         }
@@ -110,7 +110,7 @@ public class NotifierService extends JobService {
                 }
 
                 persister.persist(TESTS_FILE_NAME, newTests);
-                persister.persist(REMINDER_NOTIFICATION_FILE_NAME, reminderMap);
+                persister.persist(REMINDER_NOTIFICATION_FILE_NAME, newReminderMap);
 
             } catch (Exception e) {
                 reschedule = false;

@@ -19,7 +19,6 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -77,7 +76,7 @@ public class MainActivity extends AppCompatActivity
                 boolean success = false;
                 try {
                     success = sephirInterface.login(login);
-                } catch (IOException e) {
+                } catch (Exception e) {
                     //TODO handle Exception
                     e.printStackTrace();
                 } finally {
@@ -88,7 +87,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             protected void onPostExecute(Boolean success) {
                 if (!success) {
-                    startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                    loginActivity();
                 } else {
                     NotifierService.scheduleJob(getApplicationContext(), 1);
 
@@ -103,6 +102,10 @@ public class MainActivity extends AppCompatActivity
                 showProgress(true);
             }
         }.execute();
+    }
+
+    private void loginActivity() {
+        startActivity(new Intent(MainActivity.this, LoginActivity.class));
     }
 
     private void select(MenuItem item) {
@@ -150,20 +153,24 @@ public class MainActivity extends AppCompatActivity
                     for (SchoolClass schoolClass : schoolClasses) {
                         tests.addAll(testGetter.get(schoolClass));
                     }
-                } catch (IOException e) {
+                } catch (Exception e) {
                     //TODO handle exception
                     e.printStackTrace();
-                } finally {
-                    return tests;
+                    return null;
                 }
+                return tests;
             }
 
             @Override
             protected void onPostExecute(List<SchoolTest> tests) {
-                SchoolTestAdapter testAdapter = new SchoolTestAdapter(MainActivity.this, tests);
-                columns.addView(testAdapter.getColumns());
-                rows.setAdapter(testAdapter);
-                showProgress(false);
+                if(tests != null) {
+                    SchoolTestAdapter testAdapter = new SchoolTestAdapter(MainActivity.this, tests);
+                    columns.addView(testAdapter.getColumns());
+                    rows.setAdapter(testAdapter);
+                    showProgress(false);
+                } else {
+                  loginActivity();
+                }
             }
 
             @Override
@@ -183,20 +190,25 @@ public class MainActivity extends AppCompatActivity
                 try {
                     AnnouncedTestGetter testGetter = new AnnouncedTestGetter(sephirInterface);
                     tests.addAll(testGetter.get());
-                } catch (IOException e) {
+                } catch (Exception e) {
                     //TODO handle exception
                     e.printStackTrace();
-                } finally {
-                    return tests;
+                    return null;
                 }
+                return tests;
+
             }
 
             @Override
             protected void onPostExecute(List<AnnouncedTest> tests) {
-                AnnouncedTestAdapter testAdapter = new AnnouncedTestAdapter(MainActivity.this, tests);
-                columns.addView(testAdapter.getColumns());
-                rows.setAdapter(testAdapter);
-                showProgress(false);
+                if (tests != null) {
+                    AnnouncedTestAdapter testAdapter = new AnnouncedTestAdapter(MainActivity.this, tests);
+                    columns.addView(testAdapter.getColumns());
+                    rows.setAdapter(testAdapter);
+                    showProgress(false);
+                } else {
+                    loginActivity();
+                }
             }
 
             @Override
