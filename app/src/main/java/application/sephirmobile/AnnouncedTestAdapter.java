@@ -17,11 +17,9 @@ import java.util.List;
 import application.sephirmobile.sephirinterface.entitys.AnnouncedTest;
 
 public class AnnouncedTestAdapter extends TableAdapter<AnnouncedTest> {
-    private View parentView;
 
-    public AnnouncedTestAdapter(@NonNull Context context, @NonNull List<AnnouncedTest> objects, View parentView) {
+    public AnnouncedTestAdapter(@NonNull Context context, @NonNull List<AnnouncedTest> objects) {
         super(context, 0, objects);
-        this.parentView = parentView;
     }
 
     @NonNull
@@ -46,7 +44,7 @@ public class AnnouncedTestAdapter extends TableAdapter<AnnouncedTest> {
         TextView schoolClass = convertView.findViewById(R.id.schoolclass);
         TextView name = convertView.findViewById(R.id.name);
         TextView subject = convertView.findViewById(R.id.subject);
-        ImageView image = convertView.findViewById(R.id.imageView);
+        ImageView image = convertView.findViewById(R.id.infoImage);
 
         if (textSize != null) {
             date.setTextSize(textSize);
@@ -63,15 +61,17 @@ public class AnnouncedTestAdapter extends TableAdapter<AnnouncedTest> {
             image.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    PopupWindow popupWindow = new PopupWindow(AnnouncedTestAdapter.this.getContext());
-                    View pupUpView = LayoutInflater.from(getContext()).inflate(R.layout.announcedtest_info_popup_layout, null);
-                    ImageButton closeButton = pupUpView.findViewById(R.id.button_close);
+                    View popUpView = LayoutInflater.from(getContext()).inflate(R.layout.announcedtest_info_popup_layout, null);
+                    PopupWindow popupWindow = new PopupWindow(popUpView, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                    ImageView closeButton = popUpView.findViewById(R.id.button_close);
                     closeButton.setOnClickListener(v -> popupWindow.dismiss());
-                    TextView infoTextView = pupUpView.findViewById(R.id.infoText);
+                    TextView infoTextView = popUpView.findViewById(R.id.infoText);
                     infoTextView.setText(infoText);
-                    popupWindow.showAtLocation(parentView, Gravity.CENTER, 0, 0);
+                    popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
                 }
             });
+        } else {
+            image.setVisibility(View.INVISIBLE);
         }
         return convertView;
     }
