@@ -31,27 +31,11 @@
             android:visibility="gone" />
 
         <LinearLayout
+            android:id="@+id/mainView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <FrameLayout
-                android:id="@+id/columns"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@android:color/darker_gray"
-                android:foregroundGravity="fill_horizontal|center">
-
-            </FrameLayout>
-
-            <ListView
-                android:id="@+id/rows"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:background="@android:color/white"
-                android:divider="@android:color/darker_gray"
-                android:dividerHeight="1dp" />
         </LinearLayout>
 
     </android.support.design.widget.AppBarLayout>

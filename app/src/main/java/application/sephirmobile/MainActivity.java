@@ -15,6 +15,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -36,9 +37,8 @@ import application.sephirmobile.sephirinterface.getters.SchoolTestGetter;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private FrameLayout columns;
-    private ListView rows;
     private SephirInterface sephirInterface;
+    private LinearLayout mainView;
     private DrawerLayout drawer;
     private Toolbar toolbar;
     private NavigationView navigationView;
@@ -60,8 +60,7 @@ public class MainActivity extends AppCompatActivity
         navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        columns = findViewById(R.id.columns);
-        rows = findViewById(R.id.rows);
+        mainView = findViewById(R.id.mainView);
         progressBar = findViewById(R.id.progressBar);
         //TODO index 0
         email = navigationView.getHeaderView(0).findViewById(R.id.email);
@@ -125,9 +124,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        columns.removeAllViews();
-        rows.setAdapter(null);
-
+        mainView.removeAllViews();
         int id = item.getItemId();
         if (id == R.id.nav_logout) {
             LoginUtils.save(null);
@@ -144,47 +141,34 @@ public class MainActivity extends AppCompatActivity
 
     private void showMarks() {
         //TODO not static
-        new AsyncTask<Void, Void, List<SchoolTest>>() {
+        new Task() {
 
             @Override
-            protected List<SchoolTest> doInBackground(Void... voids) {
+            protected TableAdapter<SchoolTest> doInBackground(Void... voids) {
                 List<SchoolTest> tests = new ArrayList<>();
                 try {
                     List<SchoolClass> schoolClasses = new SchoolClassGetter(sephirInterface).get();
                     SchoolTestGetter testGetter = new SchoolTestGetter(sephirInterface);
                     for (SchoolClass schoolClass : schoolClasses) {
-                        tests.addAll(testGetter.get(schoolClass));
+                        tests.addAll(testGetter.getPastTests(schoolClass));
                     }
                 } catch (Exception e) {
                     //TODO handle exception
                     e.printStackTrace();
                     loginActivity();
                 } finally {
-                    return tests;
+                    return new SchoolTestAdapter(MainActivity.this, tests);
                 }
-            }
-
-            @Override
-            protected void onPostExecute(List<SchoolTest> tests) {
-                SchoolTestAdapter testAdapter = new SchoolTestAdapter(MainActivity.this, tests);
-                columns.addView(testAdapter.getColumns());
-                rows.setAdapter(testAdapter);
-                showProgress(false);
-            }
-
-            @Override
-            protected void onPreExecute() {
-                showProgress(true);
             }
         }.execute();
     }
 
     private void showAnnouncedTests() {
         //TODO not static
-        new AsyncTask<Void, Void, List<AnnouncedTest>>() {
+        new Task() {
 
             @Override
-            protected List<AnnouncedTest> doInBackground(Void... voids) {
+            protected TableAdapter<AnnouncedTest> doInBackground(Void... voids) {
                 List<AnnouncedTest> tests = new ArrayList<>();
                 try {
                     AnnouncedTestGetter testGetter = new AnnouncedTestGetter(sephirInterface);
@@ -194,23 +178,29 @@ public class MainActivity extends AppCompatActivity
                     e.printStackTrace();
                     loginActivity();
                 } finally {
-                    return tests;
+                    return new AnnouncedTestAdapter(MainActivity.this, tests);
                 }
             }
-
-            @Override
-            protected void onPostExecute(List<AnnouncedTest> tests) {
-                AnnouncedTestAdapter testAdapter = new AnnouncedTestAdapter(MainActivity.this, tests);
-                columns.addView(testAdapter.getColumns());
-                rows.setAdapter(testAdapter);
-                showProgress(false);
-            }
-
-            @Override
-            protected void onPreExecute() {
-                showProgress(true);
-            }
         }.execute();
+    }
+
+    public abstract class Task extends AsyncTask<Void, Void, TableAdapter<?>> {
+        @Override
+        protected void onPostExecute(TableAdapter<?> adapter) {
+            View tableView = getLayoutInflater().inflate(R.layout.table_layout, null, false);
+            FrameLayout columns = tableView.findViewById(R.id.columns);
+            ListView rows = tableView.findViewById(R.id.rows);
+
+            columns.addView(adapter.getColumns());
+            rows.setAdapter(adapter);
+            mainView.addView(tableView);
+            showProgress(false);
+        }
+
+        @Override
+        protected void onPreExecute() {
+                showProgress(true);
+        }
     }
 
     private void showProgress(final boolean show) {

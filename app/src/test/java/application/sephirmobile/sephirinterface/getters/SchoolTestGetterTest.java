@@ -29,4 +29,26 @@ public class SchoolTestGetterTest {
                 "212624"));
         assertThat(schoolTests, is(list));
     }
+
+    @Test
+    public void test_filter_correctSchoolTests() {
+        SchoolTestGetter schoolTestGetter = new SchoolTestGetter(null);
+
+        SchoolTest test1 = new SchoolTest(LocalDate.parse("2000-6-21"), "MA", "Transformationen von Funktionen", "Angek.",
+                "Definitiv", 1.0, 5.0, "219015");
+        SchoolTest test2 = new SchoolTest(LocalDate.parse("2000-6-21"), "DE", "Kompaktwissen S. 113-127", "Angek.", "Definitiv", 0.5,
+                0.0, "222217");
+        SchoolTest test3 = new SchoolTest(LocalDate.parse("2000-6-21"), "NW", "Gesamtrepetition", "Durchg.", "Definitiv", 1.0, 4.0,
+                "212624");
+
+        List<SchoolTest> allTests = new ArrayList<>();
+        allTests.add(test1);
+        allTests.add(test2);
+        allTests.add(test3);
+
+        List<SchoolTest> filteredTests = new ArrayList<>();
+        filteredTests.add(test1);
+        filteredTests.add(test3);
+        assertThat(schoolTestGetter.filterToOnlyPastTests(allTests), is(filteredTests));
+    }
 }

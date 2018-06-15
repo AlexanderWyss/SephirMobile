@@ -44,6 +44,21 @@ public class SchoolTestGetter extends Getter {
         return parse(html);
     }
 
+    public List<SchoolTest> getPastTests(SchoolClass schoolClass) throws IOException {
+        return filterToOnlyPastTests(get(schoolClass));
+    }
+
+    public List<SchoolTest> filterToOnlyPastTests(List<SchoolTest> tests) {
+        List<SchoolTest> filterdTests = new ArrayList<>();
+        LocalDate now = LocalDate.now();
+        for (SchoolTest test : tests) {
+            if (test.getMark() != 0.0) {
+                filterdTests.add(test);
+            }
+        }
+        return filterdTests;
+    }
+
     List<SchoolTest> parse(String html) {
         Document document = Jsoup.parse(html);
         Element table = document.select(".listtab_rot").first();
