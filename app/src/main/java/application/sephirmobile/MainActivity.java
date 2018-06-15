@@ -178,7 +178,7 @@ public class MainActivity extends AppCompatActivity
                     e.printStackTrace();
                     loginActivity();
                 } finally {
-                    return new AnnouncedTestAdapter(MainActivity.this, tests);
+                    return new AnnouncedTestAdapter(MainActivity.this, tests, mainView);
                 }
             }
         }.execute();
