@@ -11,11 +11,11 @@
         android:text="02.05.18" />
 
     <TextView
-        android:id="@+id/schoolclass"
-        android:layout_width="85sp"
+        android:id="@+id/subject"
+        android:layout_width="60sp"
         android:layout_height="wrap_content"
         android:layout_weight="0"
-        android:text="S-BMLT16a" />
+        android:text="INF260" />
 
     <TextView
         android:id="@+id/name"
@@ -25,9 +25,10 @@
         android:text="TextView" />
 
     <TextView
-        android:id="@+id/subject"
-        android:layout_width="60sp"
+        android:id="@+id/schoolclass"
+        android:layout_width="85sp"
         android:layout_height="wrap_content"
         android:layout_weight="0"
-        android:text="INF260" />
+        android:text="S-BMLT16a" />
+
 </LinearLayout>
