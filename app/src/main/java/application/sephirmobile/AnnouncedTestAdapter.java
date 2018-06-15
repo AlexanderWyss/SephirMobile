@@ -6,15 +6,13 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import java.util.List;
 
 import application.sephirmobile.sephirinterface.entitys.AnnouncedTest;
-import application.sephirmobile.sephirinterface.entitys.SchoolTest;
 
-public class AnnouncedTestAdapter extends ArrayAdapter<AnnouncedTest> {
+public class AnnouncedTestAdapter extends TableAdapter<AnnouncedTest> {
     public AnnouncedTestAdapter(@NonNull Context context, @NonNull List<AnnouncedTest> objects) {
         super(context, 0, objects);
     }
@@ -56,6 +54,7 @@ public class AnnouncedTestAdapter extends ArrayAdapter<AnnouncedTest> {
         return convertView;
     }
 
+    @Override
     public View getColumns() {
         return getRow(null, "Date", "Class", "Name", "Subject", 15f);
     }
