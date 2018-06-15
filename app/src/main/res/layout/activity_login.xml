@@ -12,6 +12,15 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".LoginActivity">
 
+
+
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="166dp"
+        android:contentDescription="@string/LogoSephirMobile"
+        app:srcCompat="@drawable/logosephirmobile" />
     <!-- Login progress -->
     <ProgressBar
         android:id="@+id/login_progress"
@@ -20,14 +29,6 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:visibility="gone" />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="166dp"
-        android:contentDescription="@string/LogoSephirMobile"
-        app:srcCompat="@drawable/logosephirmobile" />
-
     <ScrollView
         android:id="@+id/login_form"
         android:layout_width="match_parent"
