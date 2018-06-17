@@ -40,8 +40,6 @@ public class NotifierSettings implements Serializable {
         return 1800000;/*30 mins*/
     }
 
-    ;
-
     public static boolean getDefaultNewAnnouncedTest() {
         return true;
     }
