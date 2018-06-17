@@ -11,6 +11,9 @@
             android:id="@+id/nav_futureTests"
             android:title="@string/AngekuendigtePruefungen" />
         <item
+            android:id="@+id/nav_averageMarks"
+            android:title="Noten Übersicht" />
+        <item
             android:id="@+id/nav_logout"
             android:title="@string/Einstellungen" />
     </group>

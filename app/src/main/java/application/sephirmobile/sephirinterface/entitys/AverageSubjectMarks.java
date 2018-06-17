@@ -5,82 +5,77 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 public class AverageSubjectMarks implements Serializable {
-  private Map<String, AverageSubjectMark> marks;
-  private double averageMark;
+    private Map<String, AverageSubjectMark> marks;
+    private SchoolClass schoolClass;
+    private double averageMark;
 
-  public AverageSubjectMarks() {
-    this(new HashMap<>(), 0);
-  }
-
-  public AverageSubjectMarks(Map<String, AverageSubjectMark> marks, double averageMark) {
-    this.marks = marks;
-    this.averageMark = averageMark;
-  }
-
-  public AverageSubjectMark get(String subject) {
-    return marks.get(subject);
-  }
-
-  public void add(AverageSubjectMark mark) {
-    marks.put(mark.getSubject(), mark);
-  }
-
-  public List<AverageSubjectMark> getAsList() {
-    return new ArrayList<>(marks.values());
-  }
-
-  public Map<String, AverageSubjectMark> getAsMap() {
-    return marks;
-  }
-
-  public double getAverageMark() {
-    return averageMark;
-  }
-
-  public void setAverageMark(double averageMark) {
-    this.averageMark = averageMark;
-  }
-
-  @Override
-  public int hashCode() {
-    final int prime = 31;
-    int result = 1;
-    long temp;
-    temp = Double.doubleToLongBits(averageMark);
-    result = prime * result + (int) (temp ^ (temp >>> 32));
-    result = prime * result + ((marks == null) ? 0 : marks.hashCode());
-    return result;
-  }
-
-  @Override
-  public boolean equals(Object obj) {
-    if (this == obj) {
-      return true;
+    public AverageSubjectMarks() {
+        this(new HashMap<>(), null, 0);
     }
-    if (obj == null) {
-      return false;
-    }
-    if (getClass() != obj.getClass()) {
-      return false;
-    }
-    AverageSubjectMarks other = (AverageSubjectMarks) obj;
-    if (Double.doubleToLongBits(averageMark) != Double.doubleToLongBits(other.averageMark)) {
-      return false;
-    }
-    if (marks == null) {
-      if (other.marks != null) {
-        return false;
-      }
-    } else if (!marks.equals(other.marks)) {
-      return false;
-    }
-    return true;
-  }
 
-  @Override
-  public String toString() {
-    return "AverageSubjectMarks [marks=" + marks + ", averageMark=" + averageMark + "]";
-  }
+    public AverageSubjectMarks(Map<String, AverageSubjectMark> marks, SchoolClass schoolClass, double averageMark) {
+        this.marks = marks;
+        this.schoolClass = schoolClass;
+        this.averageMark = averageMark;
+    }
+
+    public AverageSubjectMark get(String subject) {
+        return marks.get(subject);
+    }
+
+    public void add(AverageSubjectMark mark) {
+        marks.put(mark.getSubject(), mark);
+    }
+
+    public List<AverageSubjectMark> getAsList() {
+        return new ArrayList<>(marks.values());
+    }
+
+    public Map<String, AverageSubjectMark> getAsMap() {
+        return marks;
+    }
+
+    public double getAverageMark() {
+        return averageMark;
+    }
+
+    public void setAverageMark(double averageMark) {
+        this.averageMark = averageMark;
+    }
+
+    public SchoolClass getSchoolClass() {
+        return schoolClass;
+    }
+
+    public void setSchoolClass(SchoolClass schoolClass) {
+        this.schoolClass = schoolClass;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        AverageSubjectMarks that = (AverageSubjectMarks) o;
+        return Double.compare(that.averageMark, averageMark) == 0 &&
+                Objects.equals(marks, that.marks) &&
+                Objects.equals(schoolClass, that.schoolClass);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(marks, schoolClass, averageMark);
+    }
+
+    @Override
+    public String toString() {
+        return "AverageSubjectMarks{" +
+                "marks=" + marks +
+                ", schoolClass=" + schoolClass +
+                ", averageMark=" + averageMark +
+                '}';
+    }
 }

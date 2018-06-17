@@ -6,12 +6,10 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.PopupWindow;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -24,7 +22,7 @@ import application.sephirmobile.sephirinterface.entitys.SchoolTest;
 
 public class SchoolTestAdapter extends TableAdapter<SchoolTest> {
 
-    public static final DecimalFormat df = new DecimalFormat("#.00");
+    public static final DecimalFormat MARK_FORMATTER = new DecimalFormat("#.00");
     private SephirInterface sephirInterface;
 
     public SchoolTestAdapter(@NonNull Context context, @NonNull List<SchoolTest> objects, SephirInterface sephirInterface) {
@@ -39,7 +37,7 @@ public class SchoolTestAdapter extends TableAdapter<SchoolTest> {
         String dateText = schoolTest.getDate().toString("dd.MM.yy");
         String subjectText = schoolTest.getSubject();
         String nameText = schoolTest.getName();
-        String MarkText = df.format(schoolTest.getMark());
+        String MarkText = MARK_FORMATTER.format(schoolTest.getMark());
         convertView = getRow(convertView, dateText, subjectText, nameText, MarkText, schoolTest, null);
         return convertView;
     }
@@ -73,7 +71,7 @@ public class SchoolTestAdapter extends TableAdapter<SchoolTest> {
                         @Override
                         protected String doInBackground(Void... voids) {
                             try {
-                                return df.format(test.getAverageMark(sephirInterface));
+                                return MARK_FORMATTER.format(test.getAverageMark(sephirInterface));
                             } catch (IOException e) {
                                 return "-";
                             }

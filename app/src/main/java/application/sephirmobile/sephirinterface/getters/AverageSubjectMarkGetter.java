@@ -35,7 +35,9 @@ public class AverageSubjectMarkGetter extends Getter {
     Map<String, String> getMap = new HashMap<>();
     getMap.put("act", "kdet");
     String html = getSephirInterface().get(URL, getMap);
-    return parse(html);
+    AverageSubjectMarks parse = parse(html);
+    parse.setSchoolClass(schoolClass);
+    return parse;
   }
 
   // TODO Rewrite disgusting Code

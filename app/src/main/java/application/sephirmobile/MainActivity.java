@@ -28,9 +28,11 @@ import application.sephirmobile.login.LoginUtils;
 import application.sephirmobile.notifier.NotifierService;
 import application.sephirmobile.sephirinterface.SephirInterface;
 import application.sephirmobile.sephirinterface.entitys.AnnouncedTest;
+import application.sephirmobile.sephirinterface.entitys.AverageSubjectMarks;
 import application.sephirmobile.sephirinterface.entitys.SchoolClass;
 import application.sephirmobile.sephirinterface.entitys.SchoolTest;
 import application.sephirmobile.sephirinterface.getters.AnnouncedTestGetter;
+import application.sephirmobile.sephirinterface.getters.AverageSubjectMarkGetter;
 import application.sephirmobile.sephirinterface.getters.SchoolClassGetter;
 import application.sephirmobile.sephirinterface.getters.SchoolTestGetter;
 
@@ -133,6 +135,8 @@ public class MainActivity extends AppCompatActivity
             showMarks();
         } else if (id == R.id.nav_futureTests) {
             showAnnouncedTests();
+        } else if (id == R.id.nav_averageMarks) {
+            showAverageMarks();
         }
 
         drawer.closeDrawer(GravityCompat.START);
@@ -184,6 +188,31 @@ public class MainActivity extends AppCompatActivity
         }.execute();
     }
 
+    private void showAverageMarks() {
+        //TODO not static
+        new Task() {
+
+            @Override
+            protected TableAdapter<AverageSubjectMarks> doInBackground(Void... voids) {
+                List<AverageSubjectMarks> marks = new ArrayList<>();
+                try {
+                    AverageSubjectMarkGetter getter = new AverageSubjectMarkGetter(sephirInterface);
+                    SchoolClassGetter schoolClassGetter = new SchoolClassGetter(sephirInterface);
+                    List<SchoolClass> schoolClasses = schoolClassGetter.get();
+                    for (SchoolClass schoolClass : schoolClasses) {
+                        marks.add(getter.get(schoolClass));
+                    }
+                } catch (Exception e) {
+                    //TODO handle exception
+                    e.printStackTrace();
+                    loginActivity();
+                } finally {
+                    return new AverageSubjectMarksAdapter(MainActivity.this, marks);
+                }
+            }
+        }.execute();
+    }
+
     public abstract class Task extends AsyncTask<Void, Void, TableAdapter<?>> {
         @Override
         protected void onPostExecute(TableAdapter<?> adapter) {
@@ -199,7 +228,7 @@ public class MainActivity extends AppCompatActivity
 
         @Override
         protected void onPreExecute() {
-                showProgress(true);
+            showProgress(true);
         }
     }
 
