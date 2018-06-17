@@ -22,7 +22,7 @@ import application.sephirmobile.sephirinterface.entitys.SchoolTest;
 
 public class SchoolTestAdapter extends TableAdapter<SchoolTest> {
 
-    public static final DecimalFormat MARK_FORMATTER = new DecimalFormat("#.00");
+    public static final DecimalFormat MARK_FORMATTER = new DecimalFormat("0.00");
     private SephirInterface sephirInterface;
 
     public SchoolTestAdapter(@NonNull Context context, @NonNull List<SchoolTest> objects, SephirInterface sephirInterface) {

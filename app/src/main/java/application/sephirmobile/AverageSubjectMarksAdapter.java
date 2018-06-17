@@ -28,7 +28,7 @@ import application.sephirmobile.sephirinterface.entitys.SchoolTest;
 
 public class AverageSubjectMarksAdapter extends TableAdapter<AverageSubjectMarks> {
 
-    public static final DecimalFormat MARK_FORMATTER = new DecimalFormat("#.00");
+    public static final DecimalFormat MARK_FORMATTER = new DecimalFormat("0.00");
 
     public AverageSubjectMarksAdapter(@NonNull Context context, @NonNull List<AverageSubjectMarks> objects) {
         super(context, 0, objects);
@@ -54,7 +54,7 @@ public class AverageSubjectMarksAdapter extends TableAdapter<AverageSubjectMarks
 
         columns.addView(getRowColumns());
         for (AverageSubjectMark averageMark : averageMarks.getAsList()) {
-            rows.addView(getRow(averageMark.getSubject(), String.valueOf(averageMark.getAverageMark()), String.valueOf(averageMark.getTestAmount()), String.valueOf(averageMark.getAverageClassMark()), null));
+            rows.addView(getRow(averageMark.getSubject(), MARK_FORMATTER.format(averageMark.getAverageMark()), String.valueOf(averageMark.getTestAmount()), MARK_FORMATTER.format(averageMark.getAverageClassMark()), null));
         }
         return convertView;
     }
