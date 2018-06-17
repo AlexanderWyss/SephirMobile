@@ -35,7 +35,7 @@
     <ImageView
         android:id="@+id/averageSymol"
         android:layout_width="35sp"
-        android:layout_height="21dp"
+        android:layout_height="18sp"
         android:layout_weight="0"
         app:srcCompat="@drawable/ic_diameter_symbol" />
 
@@ -43,7 +43,7 @@
         android:id="@+id/progressBar"
         style="?android:attr/progressBarStyleSmall"
         android:layout_width="35sp"
-        android:layout_height="21dp"
+        android:layout_height="18sp"
         android:indeterminate="true"
         android:visibility="gone" />
 
