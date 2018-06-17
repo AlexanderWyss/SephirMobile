@@ -138,8 +138,9 @@ public class MainActivity extends AppCompatActivity
             showAnnouncedTests();
         } else if (id == R.id.nav_averageMarks) {
             showAverageMarks();
-        }else if(id==R.id.nav_sephirWeb){
+        } else if (id == R.id.nav_sephirWeb) {
             showWebViewSephir();
+            showMarks();
         }
 
 
