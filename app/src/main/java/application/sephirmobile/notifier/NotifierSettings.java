@@ -32,6 +32,7 @@ public class NotifierSettings implements Serializable {
         defaultTestReminders.add(new Duration(21600000)); //6 hours
         defaultTestReminders.add(new Duration(86400000)); //24 hours
         defaultTestReminders.add(new Duration(259200000)); //3 days
+        defaultTestReminders.add(new Duration(69120000)); //8 days
         return defaultTestReminders;
     }
 
