@@ -3,6 +3,7 @@ package application.sephirmobile;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -137,10 +138,18 @@ public class MainActivity extends AppCompatActivity
             showAnnouncedTests();
         } else if (id == R.id.nav_averageMarks) {
             showAverageMarks();
+        }else if(id==R.id.nav_sephirWeb){
+            showWebViewSephir();
         }
+
 
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void showWebViewSephir() {
+        Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("https://sephir.ch/ICT/"));
+        startActivity(i);
     }
 
     private void showMarks() {
