@@ -90,6 +90,6 @@ public class AverageSubjectMarksAdapter extends TableAdapter<AverageSubjectMarks
     }
 
     public View getRowColumns() {
-        return getRow("Subject", "Mark", "Test Amount", "Class Mark", 15f);
+        return getRow(getContext().getString(R.string.subject), getContext().getString(R.string.mark), getContext().getString(R.string.testamount), getContext().getString(R.string.averageclassmark), 15f);
     }
 }

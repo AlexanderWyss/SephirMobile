@@ -79,6 +79,6 @@ public class AnnouncedTestAdapter extends TableAdapter<AnnouncedTest> {
 
     @Override
     public View getColumns() {
-        return getRow(null, "Date", "Class", "Name", "Subject", "", 15f);
+        return getRow(null, getContext().getString(R.string.date), getContext().getString(R.string.schoolclass), getContext().getString(R.string.testname), getContext().getString(R.string.subject), "", 15f);
     }
 }

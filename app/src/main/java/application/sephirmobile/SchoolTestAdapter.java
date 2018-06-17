@@ -103,7 +103,7 @@ public class SchoolTestAdapter extends TableAdapter<SchoolTest> {
 
     @Override
     public View getColumns() {
-        return getRow(null, "Date", "Subject", "Name", "Mark", null, 15f);
+        return getRow(null, getContext().getString(R.string.date), getContext().getString(R.string.subject), getContext().getString(R.string.testname), getContext().getString(R.string.mark), null, 15f);
     }
 
     private void showProgress(final boolean show, ProgressBar progressBar) {
