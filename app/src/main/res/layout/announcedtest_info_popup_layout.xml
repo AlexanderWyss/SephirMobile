@@ -6,13 +6,6 @@
     android:padding="2dp"
     android:background="@android:color/white">
 
-    <ImageView
-        android:id="@+id/button_close"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:src="@drawable/ic_close_black_24dp" />
-
     <TextView
         android:id="@+id/infoText"
         android:layout_width="wrap_content"

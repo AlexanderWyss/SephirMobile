@@ -1,6 +1,8 @@
 package application.sephirmobile;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.Gravity;
@@ -63,8 +65,7 @@ public class AnnouncedTestAdapter extends TableAdapter<AnnouncedTest> {
                 public void onClick(View view) {
                     View popUpView = LayoutInflater.from(getContext()).inflate(R.layout.announcedtest_info_popup_layout, null);
                     PopupWindow popupWindow = new PopupWindow(popUpView, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                    ImageView closeButton = popUpView.findViewById(R.id.button_close);
-                    closeButton.setOnClickListener(v -> popupWindow.dismiss());
+                    popupWindow.setOutsideTouchable(true);
                     TextView infoTextView = popUpView.findViewById(R.id.infoText);
                     infoTextView.setText(infoText);
                     popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
