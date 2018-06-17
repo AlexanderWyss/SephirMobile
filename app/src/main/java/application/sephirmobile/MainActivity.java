@@ -157,7 +157,7 @@ public class MainActivity extends AppCompatActivity
                     e.printStackTrace();
                     loginActivity();
                 } finally {
-                    return new SchoolTestAdapter(MainActivity.this, tests);
+                    return new SchoolTestAdapter(MainActivity.this, tests, sephirInterface);
                 }
             }
         }.execute();
