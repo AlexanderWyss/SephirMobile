@@ -14,11 +14,17 @@ import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.List;
 
 import application.sephirmobile.sephirinterface.entitys.AnnouncedTest;
+import application.sephirmobile.sephirinterface.getters.AverageSubjectMarkGetter;
 
 public class AnnouncedTestAdapter extends TableAdapter<AnnouncedTest> {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(AnnouncedTestAdapter.class);
 
     public AnnouncedTestAdapter(@NonNull Context context, @NonNull List<AnnouncedTest> objects) {
         super(context, 0, objects);
@@ -32,16 +38,16 @@ public class AnnouncedTestAdapter extends TableAdapter<AnnouncedTest> {
         String nameText = announcedTest.getName();
         String schoolClassText = String.valueOf(announcedTest.getSchoolClass());
         String subjectText = announcedTest.getSubject();
-        convertView = getRow(convertView, dateText, schoolClassText, nameText, subjectText, announcedTest.getText(), null);
+        String infoText = announcedTest.getText();
+        convertView = getRow(convertView, dateText, schoolClassText, nameText, subjectText, infoText, null);
         return convertView;
     }
 
     @NonNull
     private View getRow(@Nullable View convertView, String dateText, String schoolClassText, String nameText, String subjectText, String infoText, Float textSize) {
-        if (convertView == null) {
-            convertView = LayoutInflater.from(getContext())
-                    .inflate(R.layout.announcedtest_table_layout, null);
-        }
+        convertView = LayoutInflater.from(getContext())
+                .inflate(R.layout.announcedtest_table_layout, null);
+
         TextView date = convertView.findViewById(R.id.date);
         TextView schoolClass = convertView.findViewById(R.id.schoolclass);
         TextView name = convertView.findViewById(R.id.name);

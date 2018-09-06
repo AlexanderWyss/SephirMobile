@@ -44,10 +44,8 @@ public class SchoolTestAdapter extends TableAdapter<SchoolTest> {
 
     @NonNull
     private View getRow(@Nullable View convertView, String dateText, String subjectText, String nameText, String markText, SchoolTest test, Float textSize) {
-        if (convertView == null) {
-            convertView = LayoutInflater.from(getContext())
-                    .inflate(R.layout.schooltest_table_layout, null, false);
-        }
+        convertView = LayoutInflater.from(getContext())
+                .inflate(R.layout.schooltest_table_layout, null, false);
         TextView date = convertView.findViewById(R.id.date);
         TextView subject = convertView.findViewById(R.id.subject);
         TextView text = convertView.findViewById(R.id.text);

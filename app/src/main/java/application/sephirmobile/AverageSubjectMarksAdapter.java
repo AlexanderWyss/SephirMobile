@@ -38,10 +38,8 @@ public class AverageSubjectMarksAdapter extends TableAdapter<AverageSubjectMarks
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         AverageSubjectMarks averageMarks = getItem(position);
-        if (convertView == null) {
-            convertView = LayoutInflater.from(getContext())
-                    .inflate(R.layout.averagesubjectmarks_table_layout, null, false);
-        }
+        convertView = LayoutInflater.from(getContext())
+                .inflate(R.layout.averagesubjectmarks_table_layout, null, false);
         TextView schoolClassView = convertView.findViewById(R.id.schoolclass);
         TextView markView = convertView.findViewById(R.id.mark);
         FrameLayout columns = convertView.findViewById(R.id.columns);
