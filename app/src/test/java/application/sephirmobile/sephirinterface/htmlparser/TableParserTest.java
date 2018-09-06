@@ -95,11 +95,8 @@ public class TableParserTest {
       } else if (!data2.equals(other.data2))
         return false;
       if (data3 == null) {
-        if (other.data3 != null)
-          return false;
-      } else if (!data3.equals(other.data3))
-        return false;
-      return true;
+          return other.data3 == null;
+      } else return data3.equals(other.data3);
     }
 
     private TableParserTest getOuterType() {

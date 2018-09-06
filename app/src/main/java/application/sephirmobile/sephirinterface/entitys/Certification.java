@@ -43,11 +43,8 @@ public class Certification implements Serializable {
     } else if (!cfid.equals(other.cfid))
       return false;
     if (cftoken == null) {
-      if (other.cftoken != null)
-        return false;
-    } else if (!cftoken.equals(other.cftoken))
-      return false;
-    return true;
+        return other.cftoken == null;
+    } else return cftoken.equals(other.cftoken);
   }
 
   @Override

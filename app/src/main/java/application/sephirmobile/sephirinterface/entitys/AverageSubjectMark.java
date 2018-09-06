@@ -95,9 +95,6 @@ public class AverageSubjectMark implements Serializable {
     } else if (!subject.equals(other.subject)) {
       return false;
     }
-    if (testAmount != other.testAmount) {
-      return false;
-    }
-    return true;
+      return testAmount == other.testAmount;
   }
 }

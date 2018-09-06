@@ -55,12 +55,7 @@ public class Semesters implements Serializable {
       return false;
     }
     if (semesters == null) {
-      if (other.semesters != null) {
-        return false;
-      }
-    } else if (!semesters.equals(other.semesters)) {
-      return false;
-    }
-    return true;
+        return other.semesters == null;
+    } else return semesters.equals(other.semesters);
   }
 }

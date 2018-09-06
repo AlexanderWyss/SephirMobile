@@ -20,14 +20,14 @@ public class Persister {
 
     public void persist(String fileName, Object object) throws IOException {
         try (FileOutputStream fileOutputStream = context.openFileOutput(fileName, Context.MODE_PRIVATE);
-             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);) {
+             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream)) {
             objectOutputStream.writeObject(object);
         }
     }
 
     public Object load(String fileName) throws IOException, ClassNotFoundException {
         try (FileInputStream fileInputStream = context.openFileInput(fileName);
-             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);) {
+             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream)) {
             return objectInputStream.readObject();
         } catch (FileNotFoundException e) {
             e.printStackTrace();

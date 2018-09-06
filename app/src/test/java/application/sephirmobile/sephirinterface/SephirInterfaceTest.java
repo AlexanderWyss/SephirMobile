@@ -7,8 +7,10 @@ import java.io.IOException;
 import java.util.List;
 
 import application.sephirmobile.login.Login;
+import application.sephirmobile.sephirinterface.entitys.AnnouncedTest;
 import application.sephirmobile.sephirinterface.entitys.SchoolClass;
 import application.sephirmobile.sephirinterface.entitys.SchoolTest;
+import application.sephirmobile.sephirinterface.getters.AnnouncedTestGetter;
 import application.sephirmobile.sephirinterface.getters.SchoolClassGetter;
 import application.sephirmobile.sephirinterface.getters.SchoolTestGetter;
 
@@ -24,7 +26,7 @@ public class SephirInterfaceTest {
         SephirInterface sephirInterface = new SephirInterface();
         sephirInterface.login(new Login(StringFromResourceReader.read("ignore/email.txt"), StringFromResourceReader.read("ignore/password.txt")));
 
-
+    /*
         //Get SchoolClasses
         SchoolClassGetter schoolClassGetter = new SchoolClassGetter(sephirInterface);
         List<SchoolClass> schoolClasses = schoolClassGetter.get();
@@ -46,14 +48,14 @@ public class SephirInterfaceTest {
                 }
             });
         }
+*/
 
-/*
         //Get Announced Tests
         AnnouncedTestGetter announcedTestGetter = new AnnouncedTestGetter(sephirInterface);
         List<AnnouncedTest> announcedTests = announcedTestGetter.get();
         System.out.println(announcedTests);
 
-
+/*
         //Get average Mark (or use method on SchoolTest
         AverageTestMarkGetter averageTestMarkGetter = new AverageTestMarkGetter(sephirInterface);
         double averageMark = averageTestMarkGetter.get(new SchoolTest(null, null, null, null, null, 0, 0, "216054"));

@@ -114,6 +114,6 @@ public class AnnouncedTest implements Serializable{
     @Override
     public String toString() {
         return "AnnouncedTest [date=" + date + ", schoolClass=" + schoolClass + ", name=" + name + ", subject=" + subject
-                + ", text=" + text + "]";
+                + ", text=" + text + "]"+System.lineSeparator();
     }
 }
