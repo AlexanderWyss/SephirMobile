@@ -15,6 +15,7 @@ import android.support.annotation.RequiresApi;
 import org.joda.time.Duration;
 import org.joda.time.LocalDateTime;
 import org.joda.time.LocalTime;
+import org.joda.time.Minutes;
 import org.joda.time.Period;
 
 import java.util.ArrayList;
@@ -102,7 +103,7 @@ public class NotifierService extends JobService {
                                 newReminderMap.put(newTest.getId(), remindedDurations);
                                 for (Duration reminderDuration : settings.getTestReminders()) {
                                     if (!remindedDurations.contains(reminderDuration)) {
-                                        if (new Period(now, testDate).minus(reminderDuration.toPeriod()).toStandardMinutes().getMinutes() < 0) {
+                                        if (Minutes.minutesBetween(now, testDate).getMinutes() < 0) {
                                             sendNotification("Test Reminder", newTest.getDate().toString(PATTERN) + " " + newTest.getName() + " " + newTest.getSubject());
                                             remindedDurations.add(reminderDuration);
                                         }
