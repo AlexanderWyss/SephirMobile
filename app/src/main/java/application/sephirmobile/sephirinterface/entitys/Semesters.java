@@ -4,8 +4,8 @@ import java.io.Serializable;
 import java.util.List;
 
 public class Semesters implements Serializable {
-  private List<Semester> semesters;
-  private Semester defaultSelected;
+  private final List<Semester> semesters;
+  private final Semester defaultSelected;
 
   public Semesters(List<Semester> semesters, Semester defaultSelected) {
     this.semesters = semesters;

@@ -15,6 +15,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -43,7 +44,6 @@ public class MainActivity extends AppCompatActivity
     private SephirInterface sephirInterface;
     private LinearLayout mainView;
     private DrawerLayout drawer;
-    private Toolbar toolbar;
     private NavigationView navigationView;
     private ProgressBar progressBar;
     private TextView email;
@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        toolbar = findViewById(R.id.toolbar);
+        Toolbar  toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -128,22 +128,24 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         mainView.removeAllViews();
-        int id = item.getItemId();
-        if (id == R.id.nav_logout) {
-            LoginUtils.save(null);
-            loginActivity();
-        } else if (id == R.id.nav_marks) {
-            showMarks();
-        } else if (id == R.id.nav_futureTests) {
-            showAnnouncedTests();
-        } else if (id == R.id.nav_averageMarks) {
-            showAverageMarks();
-        } else if (id == R.id.nav_sephirWeb) {
-            showWebViewSephir();
-            showMarks();
+        switch (item.getItemId()){
+            case  R.id.nav_logout:
+                LoginUtils.save(null);
+                loginActivity();
+                break;
+            case  R.id.nav_marks:
+                showMarks();
+                break;
+            case  R.id.nav_futureTests:
+                showAnnouncedTests();
+                break;
+            case  R.id.nav_averageMarks:
+                showAverageMarks();
+                break;
+            case  R.id.nav_sephirWeb:
+                showWebViewSephir();
+                break;
         }
-
-
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
@@ -223,10 +225,11 @@ public class MainActivity extends AppCompatActivity
         }.execute();
     }
 
-    public abstract class Task extends AsyncTask<Void, Void, TableAdapter<?>> {
+    private abstract class Task extends AsyncTask<Void, Void, TableAdapter<?>> {
         @Override
         protected void onPostExecute(TableAdapter<?> adapter) {
-            View tableView = getLayoutInflater().inflate(R.layout.table_layout, null, false);
+            final ViewGroup nullParent = null;
+            View tableView = getLayoutInflater().inflate(R.layout.table_layout, nullParent, false);
             FrameLayout columns = tableView.findViewById(R.id.columns);
             ListView rows = tableView.findViewById(R.id.rows);
 

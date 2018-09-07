@@ -33,19 +33,19 @@ public class SelectParserTest {
 		private String language;
 		private String text;
 
-		public Hello() {
+		 Hello() {
 		}
 
-		public Hello(String language, String text) {
+		 Hello(String language, String text) {
 			this.language = language;
 			this.text = text;
 		}
 
-		public void setLanguage(String language) {
+		 void setLanguage(String language) {
 			this.language = language;
 		}
 
-		public void setText(String text) {
+		 void setText(String text) {
 			this.text = text;
 		}
 

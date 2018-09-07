@@ -1,34 +1,24 @@
 package application.sephirmobile;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.content.Context;
-import android.content.SyncStatusObserver;
-import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.List;
 
-import application.sephirmobile.sephirinterface.SephirInterface;
 import application.sephirmobile.sephirinterface.entitys.AverageSubjectMark;
 import application.sephirmobile.sephirinterface.entitys.AverageSubjectMarks;
-import application.sephirmobile.sephirinterface.entitys.SchoolTest;
 
 public class AverageSubjectMarksAdapter extends TableAdapter<AverageSubjectMarks> {
 
-    public static final DecimalFormat MARK_FORMATTER = new DecimalFormat("0.00");
+    private static final DecimalFormat MARK_FORMATTER = new DecimalFormat("0.00");
 
     public AverageSubjectMarksAdapter(@NonNull Context context, @NonNull List<AverageSubjectMarks> objects) {
         super(context, 0, objects);
@@ -38,8 +28,9 @@ public class AverageSubjectMarksAdapter extends TableAdapter<AverageSubjectMarks
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         AverageSubjectMarks averageMarks = getItem(position);
+        final ViewGroup nullParent = null;
         convertView = LayoutInflater.from(getContext())
-                .inflate(R.layout.averagesubjectmarks_table_layout, null, false);
+                .inflate(R.layout.averagesubjectmarks_table_layout, nullParent, false);
         TextView schoolClassView = convertView.findViewById(R.id.schoolclass);
         TextView markView = convertView.findViewById(R.id.mark);
         FrameLayout columns = convertView.findViewById(R.id.columns);
@@ -66,8 +57,7 @@ public class AverageSubjectMarksAdapter extends TableAdapter<AverageSubjectMarks
 
 
     private View getRow(String subjectText, String averageMarkText, String testAmountText, String averageClassMarkText, Float textSize) {
-        View convertView = LayoutInflater.from(getContext())
-                .inflate(R.layout.averagesubjectmark_table_layout, null);
+        View convertView = View.inflate(getContext(),R.layout.averagesubjectmark_table_layout, null);
         TextView subjectView = convertView.findViewById(R.id.subject);
         TextView averageMarkView = convertView.findViewById(R.id.mark);
         TextView testAmountView = convertView.findViewById(R.id.testAmount);
@@ -87,7 +77,7 @@ public class AverageSubjectMarksAdapter extends TableAdapter<AverageSubjectMarks
         return convertView;
     }
 
-    public View getRowColumns() {
+    private View getRowColumns() {
         return getRow(getContext().getString(R.string.subject), getContext().getString(R.string.mark), getContext().getString(R.string.testamount), getContext().getString(R.string.averageclassmark), 15f);
     }
 }

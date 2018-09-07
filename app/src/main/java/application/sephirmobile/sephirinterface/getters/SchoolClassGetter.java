@@ -15,7 +15,7 @@ import application.sephirmobile.sephirinterface.htmlparser.SelectParser;
 
 public class SchoolClassGetter extends Getter {
 	private static final Logger LOGGER = LoggerFactory.getLogger(SchoolClassGetter.class);
-	public static final String URL = "40_notentool/noten.cfm";
+	private static final String URL = "40_notentool/noten.cfm";
 
 	public SchoolClassGetter(SephirInterface sephirInterface) {
 		super(sephirInterface);

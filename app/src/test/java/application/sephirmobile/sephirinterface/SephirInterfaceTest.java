@@ -3,16 +3,11 @@ package application.sephirmobile.sephirinterface;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import java.io.IOException;
 import java.util.List;
 
 import application.sephirmobile.login.Login;
 import application.sephirmobile.sephirinterface.entitys.AnnouncedTest;
-import application.sephirmobile.sephirinterface.entitys.SchoolClass;
-import application.sephirmobile.sephirinterface.entitys.SchoolTest;
 import application.sephirmobile.sephirinterface.getters.AnnouncedTestGetter;
-import application.sephirmobile.sephirinterface.getters.SchoolClassGetter;
-import application.sephirmobile.sephirinterface.getters.SchoolTestGetter;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;

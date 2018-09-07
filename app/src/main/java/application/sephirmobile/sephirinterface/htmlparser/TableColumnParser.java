@@ -4,10 +4,10 @@ import org.jsoup.nodes.Element;
 
 public class TableColumnParser<T> {
 
-  private Parser parser;
-  private Mapper<T> mapper;
+  private final Parser parser;
+  private final Mapper<T> mapper;
 
-  public TableColumnParser(Parser parser, Mapper<T> mapper) {
+  private TableColumnParser(Parser parser, Mapper<T> mapper) {
     this.parser = parser;
     this.mapper = mapper;
   }
@@ -25,7 +25,7 @@ public class TableColumnParser<T> {
   }
 
   public static class TableColumnParserBuilder<T> {
-    public static final Parser DEFAULT_PARSER = Element::text;
+     static final Parser DEFAULT_PARSER = Element::text;
 
     private Parser parser;
     private Mapper<T> mapper;
@@ -34,7 +34,7 @@ public class TableColumnParser<T> {
       defaults();
     }
 
-    public TableColumnParserBuilder<T> defaults() {
+     TableColumnParserBuilder<T> defaults() {
       parser = DEFAULT_PARSER;
       mapper = (t, v) -> {
       };

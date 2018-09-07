@@ -50,7 +50,6 @@ public class SchoolTestGetter extends Getter {
 
     public List<SchoolTest> filterToOnlyPastTests(List<SchoolTest> tests) {
         List<SchoolTest> filterdTests = new ArrayList<>();
-        LocalDate now = LocalDate.now();
         for (SchoolTest test : tests) {
             if (test.getMark() != 0.0) {
                 filterdTests.add(test);

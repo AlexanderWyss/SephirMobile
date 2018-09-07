@@ -13,9 +13,9 @@ import application.sephirmobile.sephirinterface.entitys.Semester;
 import application.sephirmobile.sephirinterface.entitys.Semesters;
 import application.sephirmobile.sephirinterface.htmlparser.SelectParser;
 
-public class SemesterGetter extends Getter {
+ class SemesterGetter extends Getter {
 	private static final Logger LOGGER = LoggerFactory.getLogger(SemesterGetter.class);
-	public static final String URL = "40_notentool/noten.cfm";
+	 private static final String URL = "40_notentool/noten.cfm";
 
 	public SemesterGetter(SephirInterface sephirInterface) {
 		super(sephirInterface);

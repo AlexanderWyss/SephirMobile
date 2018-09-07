@@ -9,31 +9,32 @@
         android:layout_width="60sp"
         android:layout_height="wrap_content"
         android:layout_weight="0"
-        android:text="02.05.18" />
+        android:text="@string/exampleData" />
 
     <TextView
         android:id="@+id/subject"
         android:layout_width="60sp"
         android:layout_height="wrap_content"
         android:layout_weight="0"
-        android:text="INF260" />
+        android:text="@string/INF260" />
 
     <TextView
         android:id="@+id/name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="TextView" />
+        android:text="@string/textViewName" />
 
     <TextView
         android:id="@+id/schoolclass"
         android:layout_width="85sp"
         android:layout_height="wrap_content"
         android:layout_weight="0"
-        android:text="S-BMLT16a" />
+        android:text="@string/classSBMLT16a" />
 
     <ImageView
         android:id="@+id/infoImage"
+        android:contentDescription="@string/infoImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="0"

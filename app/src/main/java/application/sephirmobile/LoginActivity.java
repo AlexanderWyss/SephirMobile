@@ -30,7 +30,7 @@ public class LoginActivity extends AppCompatActivity {
     private View mLoginFormView;
     private TextView mMessageView;
 
-    private SephirInterface sephirInterface = new SephirInterface();
+    private final SephirInterface sephirInterface = new SephirInterface();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
