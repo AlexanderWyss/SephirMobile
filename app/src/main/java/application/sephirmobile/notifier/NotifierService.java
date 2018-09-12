@@ -16,7 +16,7 @@ import org.joda.time.Duration;
 import org.joda.time.LocalDateTime;
 import org.joda.time.LocalTime;
 import org.joda.time.Minutes;
-import org.joda.time.Period;
+
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -34,7 +34,7 @@ import application.sephirmobile.sephirinterface.getters.SchoolTestGetter;
 
 public class NotifierService extends JobService {
 
-    public static final String CHANNEL_ID = "default";
+    private static final String CHANNEL_ID = "default";
     private static int counter = 0;
     private NotificationManager notificationManager;
     //TODO from settings

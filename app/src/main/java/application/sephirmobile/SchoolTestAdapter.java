@@ -22,8 +22,8 @@ import application.sephirmobile.sephirinterface.entitys.SchoolTest;
 
 public class SchoolTestAdapter extends TableAdapter<SchoolTest> {
 
-    public static final DecimalFormat MARK_FORMATTER = new DecimalFormat("0.00");
-    private SephirInterface sephirInterface;
+    private static final DecimalFormat MARK_FORMATTER = new DecimalFormat("0.00");
+    private final SephirInterface sephirInterface;
 
     public SchoolTestAdapter(@NonNull Context context, @NonNull List<SchoolTest> objects, SephirInterface sephirInterface) {
         super(context, 0, objects);
@@ -44,8 +44,9 @@ public class SchoolTestAdapter extends TableAdapter<SchoolTest> {
 
     @NonNull
     private View getRow(@Nullable View convertView, String dateText, String subjectText, String nameText, String markText, SchoolTest test, Float textSize) {
+        final ViewGroup nullParent = null;
         convertView = LayoutInflater.from(getContext())
-                .inflate(R.layout.schooltest_table_layout, null, false);
+                .inflate(R.layout.schooltest_table_layout, nullParent, false);
         TextView date = convertView.findViewById(R.id.date);
         TextView subject = convertView.findViewById(R.id.subject);
         TextView text = convertView.findViewById(R.id.text);

@@ -8,9 +8,9 @@ import org.jsoup.nodes.Element;
 
 public class SelectParser<T> {
 
-	private Mapper<T> valueMapper;
-	private Mapper<T> textMapper;
-	private EntityFactory<T> factory;
+	private final Mapper<T> valueMapper;
+	private final Mapper<T> textMapper;
+	private final EntityFactory<T> factory;
 	private T defaultValue;
 	private List<T> entitys;
 
@@ -22,9 +22,7 @@ public class SelectParser<T> {
 
 	public void parse(Element select) {
 		entitys = new ArrayList<>();
-		Iterator<Element> options = select.select("option").iterator();
-		while (options.hasNext()) {
-			Element option = options.next();
+		for (Element option : select.select("option")) {
 			T entity = factory.build();
 			valueMapper.map(entity, option.attr("value"));
 			textMapper.map(entity, option.text());

@@ -6,19 +6,19 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_marks"
-            android:title="Noten" />
+            android:title="@string/marks" />
         <item
             android:id="@+id/nav_futureTests"
-            android:title="@string/AngekuendigtePruefungen" />
+            android:title="@string/announcedTests" />
         <item
             android:id="@+id/nav_averageMarks"
-            android:title="Noten Übersicht" />
+            android:title="@string/marksOverview" />
         <item
             android:id="@+id/nav_sephirWeb"
-            android:title="Sephir-Web" />
+            android:title="@string/sephirWeb" />
         <item
             android:id="@+id/nav_logout"
-            android:title="@string/Einstellungen" />
+            android:title="@string/logout" />
     </group>
 
 </menu>

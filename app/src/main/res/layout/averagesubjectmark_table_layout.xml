@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -9,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="INF260" />
+        android:text="@string/INF260" />
 
 
     <TextView
@@ -17,20 +16,20 @@
         android:layout_width="40sp"
         android:layout_height="wrap_content"
         android:layout_weight="0"
-        android:text="4.52" />
+        android:text="@string/markExample" />
 
     <TextView
         android:id="@+id/testAmount"
         android:layout_width="70sp"
         android:layout_height="wrap_content"
         android:layout_weight="0"
-        android:text="Anz. Prüf." />
+        android:text="@string/numberOfTests" />
 
     <TextView
         android:id="@+id/classMark"
         android:layout_width="80sp"
         android:layout_height="wrap_content"
         android:layout_weight="0"
-        android:text="Class Mark" />
+        android:text="@string/classMark" />
 
 </LinearLayout>

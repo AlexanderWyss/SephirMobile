@@ -16,7 +16,7 @@ import application.sephirmobile.sephirinterface.entitys.Certification;
 public class CertificationGetter extends Getter {
 	private static final Logger LOGGER = LoggerFactory.getLogger(CertificationGetter.class);
 	private static final String URL = "index.cfm";
-	private Pattern pattern = Pattern.compile("cfid=(.+)&cftoken=(.+)");
+	private final Pattern pattern = Pattern.compile("cfid=(.+)&cftoken=(.+)");
 
 	public CertificationGetter(SephirInterface sephirInterface) {
 		super(sephirInterface);

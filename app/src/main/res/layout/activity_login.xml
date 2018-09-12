@@ -19,7 +19,7 @@
         android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="166dp"
-        android:contentDescription="@string/LogoSephirMobile"
+        android:contentDescription="@string/logoSephirMobile"
         app:srcCompat="@drawable/logosephirmobile" />
     <!-- Login progress -->
     <ProgressBar

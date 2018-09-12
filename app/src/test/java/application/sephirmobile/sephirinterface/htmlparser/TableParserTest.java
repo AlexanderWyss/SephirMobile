@@ -41,24 +41,24 @@ public class TableParserTest {
     private String data2;
     private String data3;
 
-    public Table() {
+     Table() {
     }
 
-    public Table(String data1, String data2, String data3) {
+     Table(String data1, String data2, String data3) {
       this.data1 = data1;
       this.data2 = data2;
       this.data3 = data3;
     }
 
-    public void setData1(String data1) {
+     void setData1(String data1) {
       this.data1 = data1;
     }
 
-    public void setData2(String data2) {
+     void setData2(String data2) {
       this.data2 = data2;
     }
 
-    public void setData3(String data3) {
+     void setData3(String data3) {
       this.data3 = data3;
     }
 

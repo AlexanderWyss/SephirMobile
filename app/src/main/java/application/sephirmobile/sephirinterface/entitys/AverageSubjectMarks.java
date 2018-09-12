@@ -8,18 +8,17 @@ import java.util.Map;
 import java.util.Objects;
 
 public class AverageSubjectMarks implements Serializable {
-    private Map<String, AverageSubjectMark> marks;
+    private final Map<String, AverageSubjectMark> marks;
     private SchoolClass schoolClass;
     private double averageMark;
 
     public AverageSubjectMarks() {
-        this(new HashMap<>(), null, 0);
+        this(new HashMap<>(), null);
     }
 
-    public AverageSubjectMarks(Map<String, AverageSubjectMark> marks, SchoolClass schoolClass, double averageMark) {
+    private AverageSubjectMarks(Map<String, AverageSubjectMark> marks, SchoolClass schoolClass) {
         this.marks = marks;
         this.schoolClass = schoolClass;
-        this.averageMark = averageMark;
     }
 
     public AverageSubjectMark get(String subject) {

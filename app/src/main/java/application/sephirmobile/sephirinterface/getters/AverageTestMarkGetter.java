@@ -14,7 +14,7 @@ import application.sephirmobile.sephirinterface.SephirInterface;
 import application.sephirmobile.sephirinterface.entitys.SchoolTest;
 
 public class AverageTestMarkGetter extends Getter {
-    public static final String URL = "40_notentool/noten.cfm";
+    private static final String URL = "40_notentool/noten.cfm";
     private static final Logger LOGGER = LoggerFactory.getLogger(AverageTestMarkGetter.class);
 
     public AverageTestMarkGetter(SephirInterface sephirInterface) {

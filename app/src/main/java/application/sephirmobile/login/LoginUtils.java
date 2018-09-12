@@ -1,11 +1,5 @@
 package application.sephirmobile.login;
 
-import android.content.Context;
-
-import java.time.Instant;
-
-import javax.xml.transform.Source;
-
 import de.adorsys.android.securestoragelibrary.SecurePreferences;
 
 public class LoginUtils {

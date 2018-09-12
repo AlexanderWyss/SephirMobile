@@ -1,8 +1,5 @@
 package application.sephirmobile.sephirinterface;
 
-import android.os.AsyncTask;
-import android.os.StrictMode;
-
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -26,8 +23,8 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class SephirInterface {
     private static final Logger LOGGER = LoggerFactory.getLogger(SephirInterface.class);
-    public static final String BASE_URL = "https://sephir.ch/ICT/user/lernendenportal/";
-    private SephirInterfaceService sephirInterfaceService;
+    private static final String BASE_URL = "https://sephir.ch/ICT/user/lernendenportal/";
+    private final SephirInterfaceService sephirInterfaceService;
     private Certification certification = new Certification("", "");
 
     //TODO remove
@@ -67,7 +64,7 @@ public class SephirInterface {
         new SemesterChangeForm(this).changeSemester(semester);
     }
 
-    public Response<String> getForResponse(String url, Map<String, String> getMap) throws IOException {
+    private Response<String> getForResponse(String url, Map<String, String> getMap) throws IOException {
         Response<String> response = sephirInterfaceService.get(url, getMap).execute();
         LOGGER.debug("Response with Code: {}", response.code());
         return response;
@@ -95,15 +92,11 @@ public class SephirInterface {
         return post(url, postMap, new HashMap<>());
     }
 
-    public SephirInterfaceService getSephirInterfaceService() {
-        return sephirInterfaceService;
-    }
 
-    public Certification getCertification() {
+
+    private Certification getCertification() {
         return certification;
     }
 
-    void setCertification(Certification certification) {
-        this.certification = certification;
-    }
+
 }
