@@ -68,7 +68,7 @@ public class AverageSubjectMarkGetter extends Getter {
             averageSubjectMarks.add(averageSubjectMark);
         }
         Element averageMark = table.selectFirst("tr:nth-of-type(3) td:last-of-type");
-        if (Pattern.matches("\\d+", averageMark.text())) {
+        if (Pattern.matches("\\d(\\.)?(\\d{0,2})", averageMark.text())) {
             averageSubjectMarks.setAverageMark(Double.parseDouble(averageMark.text()));
         } else {
             averageSubjectMarks.setAverageMark(0);
