@@ -25,9 +25,9 @@ public abstract class TableFragment extends Fragment {
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // TODO inline asyncTableTask
-        AsyncTableTask task = (AsyncTableTask) new AsyncTableTask().execute();
-        return task.getTableView();
+        AsyncTableTask asyncTableTask = new AsyncTableTask();
+        asyncTableTask.execute();
+        return asyncTableTask.getTableView();
     }
 
     protected abstract TableAdapter<?> createAdapter();
