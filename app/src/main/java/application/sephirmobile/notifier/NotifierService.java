@@ -52,7 +52,7 @@ public class NotifierService extends JobService {
             try {
                 Login login = LoginUtils.load();
                 if (login != null) {
-                    SephirInterface sephirInterface = SephirInterface.getSephirInterface();
+                    SephirInterface sephirInterface = SephirInterface.newSephirInterface();
                     reschedule = sephirInterface.login(login);
                     List<SchoolClass> schoolClasses = new SchoolClassGetter(sephirInterface).get();
                     SchoolTestGetter schoolTestGetter = new SchoolTestGetter(sephirInterface);

@@ -31,6 +31,11 @@ public class SephirInterface {
         return sephirInterface;
     }
 
+    public static SephirInterface newSephirInterface() {
+        sephirInterface = new SephirInterface();
+        return sephirInterface;
+    }
+
     private static final Logger LOGGER = LoggerFactory.getLogger(SephirInterface.class);
     private static final String BASE_URL = "https://sephir.ch/ICT/user/lernendenportal/";
     private final SephirInterfaceService sephirInterfaceService;
