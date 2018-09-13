@@ -22,6 +22,15 @@ import retrofit2.Retrofit;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class SephirInterface {
+    private static SephirInterface sephirInterface  = null;
+
+    public static SephirInterface getSephirInterface() {
+        if(sephirInterface == null) {
+            sephirInterface = new SephirInterface();
+        }
+        return sephirInterface;
+    }
+
     private static final Logger LOGGER = LoggerFactory.getLogger(SephirInterface.class);
     private static final String BASE_URL = "https://sephir.ch/ICT/user/lernendenportal/";
     private final SephirInterfaceService sephirInterfaceService;
@@ -33,6 +42,7 @@ public class SephirInterface {
         StrictMode.setThreadPolicy(policy);
     }*/
 
+    @Deprecated
     public SephirInterface() {
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(new Interceptor() {
             @Override

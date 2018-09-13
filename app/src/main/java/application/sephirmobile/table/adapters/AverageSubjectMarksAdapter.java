@@ -1,4 +1,4 @@
-package application.sephirmobile;
+package application.sephirmobile.table.adapters;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -13,6 +13,7 @@ import android.widget.TextView;
 import java.text.DecimalFormat;
 import java.util.List;
 
+import application.sephirmobile.R;
 import application.sephirmobile.sephirinterface.entitys.AverageSubjectMark;
 import application.sephirmobile.sephirinterface.entitys.AverageSubjectMarks;
 

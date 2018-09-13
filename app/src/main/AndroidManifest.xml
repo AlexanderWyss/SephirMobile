@@ -20,9 +20,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+            <!-- TODO handle orientation changes-->
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name" />
+            android:label="@string/app_name"
+            android:configChanges="orientation|screenSize|keyboardHidden"/>
 
         <service
             android:name=".notifier.NotifierService"

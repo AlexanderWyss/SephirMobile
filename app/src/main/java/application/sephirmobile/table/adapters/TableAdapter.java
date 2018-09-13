@@ -1,4 +1,4 @@
-package application.sephirmobile;
+package application.sephirmobile.table.adapters;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -9,7 +9,7 @@ import java.util.List;
 
 public abstract class TableAdapter<T> extends ArrayAdapter<T> {
 
-     TableAdapter(@NonNull Context context, int resource, @NonNull List<T> objects) {
+     protected TableAdapter(@NonNull Context context, int resource, @NonNull List<T> objects) {
         super(context, resource, objects);
     }
 

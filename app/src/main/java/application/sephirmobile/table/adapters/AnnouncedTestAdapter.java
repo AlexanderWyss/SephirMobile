@@ -1,4 +1,4 @@
-package application.sephirmobile;
+package application.sephirmobile.table.adapters;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -10,11 +10,9 @@ import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.util.List;
 
+import application.sephirmobile.R;
 import application.sephirmobile.sephirinterface.entitys.AnnouncedTest;
 
 public class AnnouncedTestAdapter extends TableAdapter<AnnouncedTest> {
@@ -39,7 +37,7 @@ public class AnnouncedTestAdapter extends TableAdapter<AnnouncedTest> {
 
     @NonNull
     private View getRow(@Nullable View convertView, String dateText, String schoolClassText, String nameText, String subjectText, String infoText, Float textSize) {
-        convertView = View.inflate(getContext(),R.layout.announcedtest_table_layout, null);
+        convertView = View.inflate(getContext(), R.layout.announcedtest_table_layout, null);
 
         TextView date = convertView.findViewById(R.id.date);
         TextView schoolClass = convertView.findViewById(R.id.schoolclass);

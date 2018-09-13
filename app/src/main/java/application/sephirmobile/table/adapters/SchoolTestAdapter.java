@@ -1,4 +1,4 @@
-package application.sephirmobile;
+package application.sephirmobile.table.adapters;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.List;
 
+import application.sephirmobile.R;
 import application.sephirmobile.sephirinterface.SephirInterface;
 import application.sephirmobile.sephirinterface.entitys.SchoolTest;
 
