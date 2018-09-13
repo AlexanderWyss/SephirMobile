@@ -13,6 +13,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import application.sephirmobile.fragments.AnnouncedTestFragment;
 import application.sephirmobile.fragments.AverageMarksFragment;
@@ -40,7 +41,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         //TODO index 0
-        navigationView.getHeaderView(0).findViewById(R.id.email);
+        ((TextView)navigationView.getHeaderView(0).findViewById(R.id.email)).setText(LoginUtils.load().getEmail());
         select(navigationView.getMenu().findItem(R.id.nav_marks));
     }
 
