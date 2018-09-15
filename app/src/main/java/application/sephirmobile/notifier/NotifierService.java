@@ -35,7 +35,6 @@ public class NotifierService extends JobService {
 
 
     @Override
-    @SuppressWarnings("unchecked")
     public boolean onStartJob(JobParameters params) {
         new Thread(() -> {
             boolean reschedule = true;
@@ -62,7 +61,7 @@ public class NotifierService extends JobService {
                             }
                         }
                         if (hasMarkChanged(newTest, oldTest) || isNewMark(newTest, oldTest)) {
-                            notificationSender.sendNewMarkNotification(newTest);
+                            notificationSender.sendNewMarkNotification(newTest, newTest.getAverageMark(sephirInterface));
                         }
                         if (settings.sendReminders()) {
                             LocalDateTime testDate = newTest.getDate().toLocalDateTime(new LocalTime(0, 0, 0));
@@ -138,6 +137,7 @@ public class NotifierService extends JobService {
     }
 
     @NonNull
+    @SuppressWarnings("unchecked")
     private Map<String, List<Duration>> getAlreadySentReminders(Persister persister) throws IOException, ClassNotFoundException {
         Map<String, List<Duration>> reminderMap = (Map<String, List<Duration>>) persister.load(REMINDER_NOTIFICATION_FILE_NAME);
         if (reminderMap == null) {
@@ -147,6 +147,7 @@ public class NotifierService extends JobService {
     }
 
     @NonNull
+    @SuppressWarnings("unchecked")
     private List<SchoolTest> getOldTests(Persister persister) throws IOException, ClassNotFoundException {
         List<SchoolTest> oldTests = (List<SchoolTest>) persister.load(TESTS_FILE_NAME);
         if (oldTests == null) {

@@ -46,9 +46,9 @@ public class NotificationSender {
         }
     }
 
-    public void sendNewMarkNotification(SchoolTest newTest) {
+    public void sendNewMarkNotification(SchoolTest newTest, double averageMark) {
         if (settings.isNewMark()) {
-            sendNotification("New Mark", newTest.getName() + " " + newTest.getMark() + " " + newTest.getSubject());
+            sendNotification("New Mark", newTest.getMark() + " " + newTest.getName() + " " + newTest.getSubject() + " Ø" + averageMark);
         }
     }
 
