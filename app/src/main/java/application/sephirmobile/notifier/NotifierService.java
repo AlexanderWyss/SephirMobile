@@ -33,7 +33,6 @@ public class NotifierService extends JobService {
     private static final String REMINDER_NOTIFICATION_FILE_NAME = "reminders.ser";
     private static final String TESTS_FILE_NAME = "tests.ser";
 
-
     @Override
     public boolean onStartJob(JobParameters params) {
         new Thread(() -> {
@@ -44,11 +43,14 @@ public class NotifierService extends JobService {
                 Login login = LoginUtils.load();
                 SephirInterface sephirInterface = SephirInterface.newSephirInterface();
                 if (login != null && sephirInterface.login(login)) {
-                    List<SchoolTest> newTests = getNewTests(sephirInterface);
                     Persister persister = new Persister(NotifierService.this);
+
+                    List<SchoolTest> newTests = getNewTests(sephirInterface);
+
                     List<SchoolTest> oldTests = getOldTests(persister);
-                    Map<String, List<Duration>> reminderMap = getAlreadySentReminders(persister);
                     Map<String, SchoolTest> oldTestMap = convertTestsToMap(oldTests);
+
+                    Map<String, List<Duration>> reminderMap = getAlreadySentReminders(persister);
                     Map<String, List<Duration>> newReminderMap = new HashMap<>();
 
                     for (SchoolTest newTest : newTests) {
@@ -60,7 +62,7 @@ public class NotifierService extends JobService {
                                 notificationSender.sendUpdatedAnnouncedTestNotification(newTest, oldTest);
                             }
                         }
-                        if (hasMarkChanged(newTest, oldTest) || isNewMark(newTest, oldTest)) {
+                        if (isNewMark(newTest, oldTest) || hasMarkChanged(newTest, oldTest)) {
                             notificationSender.sendNewMarkNotification(newTest, newTest.getAverageMark(sephirInterface));
                         }
                         if (settings.sendReminders()) {
