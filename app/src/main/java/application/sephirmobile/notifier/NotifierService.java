@@ -55,6 +55,7 @@ public class NotifierService extends JobService {
 
                     for (SchoolTest newTest : newTests) {
                         SchoolTest oldTest = oldTestMap.get(newTest.getId());
+
                         if (oldTest == null) {
                             notificationSender.sendNewAnnouncedTestNotification(newTest);
                         } else {
@@ -62,9 +63,11 @@ public class NotifierService extends JobService {
                                 notificationSender.sendUpdatedAnnouncedTestNotification(newTest, oldTest);
                             }
                         }
+
                         if (isNewMark(newTest, oldTest) || hasMarkChanged(newTest, oldTest)) {
                             notificationSender.sendNewMarkNotification(newTest, newTest.getAverageMark(sephirInterface));
                         }
+
                         if (settings.sendReminders()) {
                             LocalDateTime testDate = newTest.getDate().toLocalDateTime(new LocalTime(0, 0, 0));
                             if (LocalDateTime.now().isBefore(testDate)) {
