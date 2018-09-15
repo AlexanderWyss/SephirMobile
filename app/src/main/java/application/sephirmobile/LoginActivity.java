@@ -2,11 +2,11 @@ package application.sephirmobile;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
-
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
@@ -22,6 +22,7 @@ import application.sephirmobile.login.Login;
 import application.sephirmobile.login.LoginUtils;
 import application.sephirmobile.sephirinterface.SephirInterface;
 
+@SuppressLint("StaticFieldLeak")
 public class LoginActivity extends AppCompatActivity {
 
     private EditText mEmailField;
@@ -62,7 +63,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        //TODO not static
         new AsyncTask<Void, Void, Void>() {
             @Override
             protected Void doInBackground(Void... voids) {
@@ -72,7 +72,6 @@ public class LoginActivity extends AppCompatActivity {
                         nextActivity();
                     }
                 } catch (IOException e) {
-                    //TODO handleException
                     e.printStackTrace();
                 }
                 return null;
@@ -94,7 +93,6 @@ public class LoginActivity extends AppCompatActivity {
     private void attemptLogin() {
         Login login = new Login(mEmailField.getText().toString(), mPasswordField.getText().toString());
         if (isInputValid(login)) {
-            //TODO not static
             new AsyncTask<Void, Void, Boolean>() {
                 @Override
                 protected Boolean doInBackground(Void... voids) {
@@ -102,7 +100,6 @@ public class LoginActivity extends AppCompatActivity {
                     try {
                         success = sephirInterface.login(login);
                     } catch (IOException e) {
-                        //TODO Handle Exception
                         e.printStackTrace();
                     } finally {
                         return success;
