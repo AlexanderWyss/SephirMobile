@@ -6,28 +6,30 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
- class NotifierSettings implements Serializable {
+class NotifierSettings implements Serializable {
     private final int latency;
     private final boolean newAnnouncedTest;
     private final boolean announcedTestDateUpdated;
     private final boolean newMark;
     private final boolean reminders;
     private final List<Duration> testReminders;
+    private final boolean exceptions;
 
-    private NotifierSettings(int latency, boolean newAnnouncedTest, boolean announcedTestDateUpdated, boolean newMark, boolean reminders, List<Duration> testReminders) {
+    private NotifierSettings(int latency, boolean newAnnouncedTest, boolean announcedTestDateUpdated, boolean newMark, boolean reminders, List<Duration> testReminders, boolean exceptions) {
         this.latency = latency;
         this.newAnnouncedTest = newAnnouncedTest;
         this.announcedTestDateUpdated = announcedTestDateUpdated;
         this.newMark = newMark;
         this.reminders = reminders;
         this.testReminders = testReminders;
+        this.exceptions = exceptions;
     }
 
     public NotifierSettings() {
-        this(getDefaultLatency(), getDefaultNewAnnouncedTest(), getDefaultAnnouncedTestDateUpdated(), getDefaultNewMark(), getDefaultReminders(), getDefaultTestReminders());
+        this(getDefaultLatency(), getDefaultNewAnnouncedTest(), getDefaultAnnouncedTestDateUpdated(), getDefaultNewMark(), getDefaultReminders(), getDefaultTestReminders(), getDefaultExceptions());
     }
 
-     private static List<Duration> getDefaultTestReminders() {
+    private static List<Duration> getDefaultTestReminders() {
         List<Duration> defaultTestReminders = new ArrayList<>();
         defaultTestReminders.add(new Duration(21600000)); //6 hours
         defaultTestReminders.add(new Duration(86400000)); //24 hours
@@ -36,23 +38,27 @@ import java.util.List;
         return defaultTestReminders;
     }
 
-     private static int getDefaultLatency() {
+    private static int getDefaultLatency() {
         return 1800000;/*30 mins*/
     }
 
-     private static boolean getDefaultNewAnnouncedTest() {
+    private static boolean getDefaultNewAnnouncedTest() {
         return true;
     }
 
-     private static boolean getDefaultAnnouncedTestDateUpdated() {
+    private static boolean getDefaultAnnouncedTestDateUpdated() {
         return true;
     }
 
-     private static boolean getDefaultNewMark() {
+    private static boolean getDefaultNewMark() {
         return true;
     }
 
-     private static boolean getDefaultReminders() {
+    private static boolean getDefaultReminders() {
+        return true;
+    }
+
+    private static boolean getDefaultExceptions() {
         return true;
     }
 
@@ -72,7 +78,7 @@ import java.util.List;
         return newMark;
     }
 
-    public boolean isReminders() {
+    public boolean sendReminders() {
         return reminders;
     }
 
@@ -80,4 +86,7 @@ import java.util.List;
         return testReminders;
     }
 
+    public boolean sendExceptions() {
+        return exceptions;
+    }
 }
