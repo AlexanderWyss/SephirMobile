@@ -172,15 +172,16 @@ public class NotifierService extends JobService {
         return newTests;
     }
 
+    @NonNull
+    private static NotifierSettings getNotifierSettings() {
+        return new NotifierSettings();
+    }
+
     @Override
     public boolean onStopJob(JobParameters params) {
         return false;
     }
 
-    @NonNull
-    private static NotifierSettings getNotifierSettings() {
-        return new NotifierSettings();
-    }
 
     public static void scheduleJob(Context context, int id) {
         JobScheduler jobScheduler = (JobScheduler) context.getSystemService(Context.JOB_SCHEDULER_SERVICE);

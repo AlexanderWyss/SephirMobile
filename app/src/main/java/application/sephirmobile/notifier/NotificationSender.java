@@ -7,14 +7,6 @@ import android.content.Context;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 
-import org.joda.time.Duration;
-import org.joda.time.LocalDateTime;
-import org.joda.time.LocalTime;
-import org.joda.time.Minutes;
-
-import java.util.List;
-import java.util.Map;
-
 import application.sephirmobile.R;
 import application.sephirmobile.sephirinterface.entitys.SchoolTest;
 
@@ -34,20 +26,20 @@ public class NotificationSender {
     }
 
     public void sendUpdatedAnnouncedTestNotification(SchoolTest newTest, SchoolTest oldTest) {
-        if (settings.isAnnouncedTestDateUpdated()) {
+        if (settings.sendAnnouncedTestUpdates()) {
             sendNotification("Test moved", newTest.getName() + " New Date: " + newTest.getDate().toString(PATTERN) + " Old Date: " + oldTest.getDate().toString(PATTERN) + " " + newTest.getSubject());
         }
     }
 
 
     public void sendNewAnnouncedTestNotification(SchoolTest newTest) {
-        if (settings.isNewAnnouncedTest()) {
+        if (settings.sendNewAnnouncedTests()) {
             sendNotification("New Test", newTest.getDate().toString(PATTERN) + " " + newTest.getName() + " " + newTest.getSubject());
         }
     }
 
     public void sendNewMarkNotification(SchoolTest newTest, double averageMark) {
-        if (settings.isNewMark()) {
+        if (settings.sendNewMarks()) {
             sendNotification("New Mark", newTest.getMark() + " " + newTest.getName() + " " + newTest.getSubject() + " Ø" + averageMark);
         }
     }
