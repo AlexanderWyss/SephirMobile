@@ -1,15 +1,19 @@
 package application.sephirmobile.fragments;
 
+import android.view.View;
+import android.widget.LinearLayout;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import application.sephirmobile.table.adapters.AverageSubjectMarksAdapter;
-import application.sephirmobile.table.adapters.TableAdapter;
+import application.sephirmobile.R;
 import application.sephirmobile.sephirinterface.SephirInterface;
 import application.sephirmobile.sephirinterface.entitys.AverageSubjectMarks;
 import application.sephirmobile.sephirinterface.entitys.SchoolClass;
 import application.sephirmobile.sephirinterface.getters.AverageSubjectMarkGetter;
 import application.sephirmobile.sephirinterface.getters.SchoolClassGetter;
+import application.sephirmobile.table.adapters.AverageSubjectMarksAdapter;
+import application.sephirmobile.table.adapters.TableAdapter;
 
 public class AverageMarksFragment extends TableFragment {
     @Override
@@ -24,11 +28,15 @@ public class AverageMarksFragment extends TableFragment {
                 marks.add(getter.get(schoolClass));
             }
         } catch (Exception e) {
-            //TODO handle exception
             e.printStackTrace();
             loginActivity();
         } finally {
             return new AverageSubjectMarksAdapter(getContext(), marks);
         }
+    }
+
+    @Override
+    protected void onGuiOpened(LinearLayout tableView) {
+        tableView.findViewById(R.id.divider).setVisibility(View.GONE);
     }
 }

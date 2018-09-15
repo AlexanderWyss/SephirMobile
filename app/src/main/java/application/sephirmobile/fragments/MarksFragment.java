@@ -24,7 +24,6 @@ public class MarksFragment extends TableFragment {
                 tests.addAll(testGetter.getPastTests(schoolClass));
             }
         } catch (Exception e) {
-            //TODO handle exception
             e.printStackTrace();
             loginActivity();
         } finally {

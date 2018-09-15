@@ -17,7 +17,6 @@ public class AnnouncedTestFragment extends TableFragment {
             AnnouncedTestGetter testGetter = new AnnouncedTestGetter(SephirInterface.getSephirInterface());
             tests.addAll(testGetter.get());
         } catch (Exception e) {
-            //TODO handle exception
             e.printStackTrace();
             loginActivity();
         } finally {

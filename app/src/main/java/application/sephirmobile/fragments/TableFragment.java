@@ -32,6 +32,9 @@ public abstract class TableFragment extends Fragment {
 
     protected abstract TableAdapter<?> createAdapter();
 
+    protected void onGuiOpened(LinearLayout tableView) {
+        // optional abstract
+    }
 
     protected void loginActivity() {
         startActivity(new Intent(getContext(), LoginActivity.class));
@@ -54,6 +57,9 @@ public abstract class TableFragment extends Fragment {
             columns.addView(tableAdapter.getColumns());
             tableView.findViewById(R.id.divider).setVisibility(View.VISIBLE);
             showProgress(false);
+
+            //last call
+            onGuiOpened(tableView);
         }
 
         @Override
