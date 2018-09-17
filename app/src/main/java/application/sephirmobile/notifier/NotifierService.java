@@ -13,7 +13,6 @@ import org.joda.time.LocalDateTime;
 import org.joda.time.LocalTime;
 import org.joda.time.Minutes;
 
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -45,47 +44,45 @@ public class NotifierService extends JobService {
                 if (login != null && sephirInterface.login(login)) {
                     Persister persister = new Persister(NotifierService.this);
 
-                    List<SchoolTest> newTests = getNewTests(sephirInterface);
+                    List<SchoolTest> allTests = getNewTests(sephirInterface);
 
-                    List<SchoolTest> oldTests = getOldTests(persister);
-                    Map<String, SchoolTest> oldTestMap = convertTestsToMap(oldTests);
+                    Map<String, SchoolTest> knownTests = convertTestsToMap(getOldTests(persister));
 
-                    Map<String, List<Duration>> reminderMap = getAlreadySentReminders(persister);
-                    Map<String, List<Duration>> newReminderMap = new HashMap<>();
+                    Map<String, List<Duration>> alreadySentReminders = getAlreadySentReminders(persister);
+                    Map<String, List<Duration>> newlySentReminders = new HashMap<>();
 
-                    for (SchoolTest newTest : newTests) {
-                        SchoolTest oldTest = oldTestMap.get(newTest.getId());
+                    for (SchoolTest test : allTests) {
+                        SchoolTest knownTest = knownTests.get(test.getId());
 
-                        if (oldTest == null) {
-                            notificationSender.sendNewAnnouncedTestNotification(newTest);
-                        } else {
-                            if (hasDateChanged(newTest, oldTest)) {
-                                notificationSender.sendUpdatedAnnouncedTestNotification(newTest, oldTest);
-                            }
+                        if (knownTest == null) {
+                            notificationSender.sendNewAnnouncedTestNotification(test);
+                        } else if (hasDateChanged(test, knownTest)) {
+                            notificationSender.sendUpdatedAnnouncedTestNotification(test, knownTest);
+
                         }
 
-                        if (isNewMark(newTest, oldTest) || hasMarkChanged(newTest, oldTest)) {
-                            notificationSender.sendNewMarkNotification(newTest, newTest.getAverageMark(sephirInterface));
+                        if (isNewMark(test, knownTest) || hasMarkChanged(test, knownTest)) {
+                            notificationSender.sendNewMarkNotification(test, test.getAverageMark(sephirInterface));
                         }
 
                         if (settings.sendReminders()) {
-                            LocalDateTime testDate = newTest.getDate().toLocalDateTime(new LocalTime(0, 0, 0));
+                            LocalDateTime testDate = test.getDate().toLocalDateTime(new LocalTime(0, 0, 0));
                             if (LocalDateTime.now().isBefore(testDate)) {
-                                List<Duration> alreadyRemindedDurations = getTestSpecificAlreadySentReminders(reminderMap, newTest);
+                                List<Duration> alreadyRemindedDurations = getTestSpecificAlreadySentReminders(alreadySentReminders, test);
                                 for (Duration reminderDuration : settings.getTestReminders()) {
                                     if (!alreadyRemindedDurations.contains(reminderDuration)) {
                                         if (mustReminderBeSent(testDate, reminderDuration)) {
-                                            notificationSender.sendReminder(newTest);
+                                            notificationSender.sendReminder(test);
                                             alreadyRemindedDurations.add(reminderDuration);
                                         }
                                     }
                                 }
-                                newReminderMap.put(newTest.getId(), alreadyRemindedDurations);
+                                newlySentReminders.put(test.getId(), alreadyRemindedDurations);
                             }
                         }
                     }
-                    persister.persist(TESTS_FILE_NAME, newTests);
-                    persister.persist(REMINDER_NOTIFICATION_FILE_NAME, newReminderMap);
+                    persister.persist(TESTS_FILE_NAME, allTests);
+                    persister.persist(REMINDER_NOTIFICATION_FILE_NAME, newlySentReminders);
                 } else {
                     reschedule = false;
                 }
@@ -97,6 +94,7 @@ public class NotifierService extends JobService {
                     NotifierService.scheduleJob(getApplicationContext(), 0);
                 } else {
                     notificationSender.sendLoginError();
+                    cancelScheduling(getApplicationContext());
                 }
             }
         }).start();
@@ -182,14 +180,22 @@ public class NotifierService extends JobService {
         return false;
     }
 
-
-    public static void scheduleJob(Context context, int id) {
-        JobScheduler jobScheduler = (JobScheduler) context.getSystemService(Context.JOB_SCHEDULER_SERVICE);
-        ComponentName serviceComponent = new ComponentName(context, NotifierService.class);
+    public static void scheduleJob(Context applicationContext, int id) {
+        JobScheduler jobScheduler = getJobScheduler(applicationContext);
+        ComponentName serviceComponent = new ComponentName(applicationContext, NotifierService.class);
         JobInfo.Builder builder = new JobInfo.Builder(id, serviceComponent);
         builder.setMinimumLatency(getNotifierSettings().getLatency());
         builder.setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY);
         builder.setPersisted(true);
         jobScheduler.schedule(builder.build());
+    }
+
+    private static JobScheduler getJobScheduler(Context applicationContext) {
+        return (JobScheduler) applicationContext.getSystemService(Context.JOB_SCHEDULER_SERVICE);
+    }
+
+    public static void cancelScheduling(Context applicationContext) {
+        JobScheduler jobScheduler = getJobScheduler(applicationContext);
+        jobScheduler.cancelAll();
     }
 }

@@ -26,7 +26,7 @@ class NotifierSettings implements Serializable {
     }
 
     public NotifierSettings() {
-        this(1800000 /*30 min*/, true, true, true, true, getDefaultTestReminders(), false);
+        this(1800000 /*30 min*/, true, true, true, true, getDefaultTestReminders(), true);
     }
 
     private static List<Duration> getDefaultTestReminders() {

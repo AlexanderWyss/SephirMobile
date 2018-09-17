@@ -49,12 +49,12 @@ public class NotificationSender {
     }
 
     public void sendLoginError() {
-        sendNotification("Ups", "Login not Successful.");
+        sendNotification("Ups", "Login not Successful. Restart the app completely to start checking for updates again.");
     }
 
     public void sendExceptionMessage(Exception e) {
         if (settings.sendExceptions()) {
-            sendNotification("Exception", "An exception occoured while checking for new Tests: " + e.getLocalizedMessage());
+            sendNotification("Exception", "An exception occurred while checking for new Tests: " + e.getLocalizedMessage());
         }
     }
 

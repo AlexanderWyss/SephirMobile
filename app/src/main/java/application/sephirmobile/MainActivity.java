@@ -19,6 +19,7 @@ import application.sephirmobile.fragments.AnnouncedTestFragment;
 import application.sephirmobile.fragments.AverageMarksFragment;
 import application.sephirmobile.fragments.MarksFragment;
 import application.sephirmobile.login.LoginUtils;
+import application.sephirmobile.notifier.NotifierService;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -26,6 +27,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        NotifierService.scheduleJob(getApplicationContext(), 1);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -79,6 +82,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         switch (menuItem.getItemId()) {
             case R.id.nav_logout:
                 LoginUtils.save(null);
+                NotifierService.cancelScheduling(getApplicationContext());
                 startActivity(new Intent(this, LoginActivity.class));
                 fragment = new Fragment();
                 break;
