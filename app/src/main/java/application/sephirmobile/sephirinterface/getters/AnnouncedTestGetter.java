@@ -43,7 +43,7 @@ public class AnnouncedTestGetter extends Getter {
     List<AnnouncedTest> parse(String html) {
         Document document = Jsoup.parse(html);
         Element table = document.select(".listtab_rot").first();
-        if (TableAmountReader.read(table) != 0) {
+        if (!"Es sind keine Prüfungen erfasst.".equals(TableAmountReader.read(table))) {
             TableParser<AnnouncedTest> parser = new TableParser<>(getColumns(), AnnouncedTest::new);
             parser.parse(table);
             List<AnnouncedTest> tests = parser.getEntitys();
