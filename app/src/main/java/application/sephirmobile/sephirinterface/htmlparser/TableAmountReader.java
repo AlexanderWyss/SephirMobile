@@ -6,7 +6,8 @@ public class TableAmountReader {
     private TableAmountReader() {
     }
 
-    public static int read(Element table) {
-        return Integer.parseInt(table.previousElementSibling().selectFirst("div:last-child div:last-child").text());
+    public static String read(Element table) {
+        System.out.print(table.selectFirst("tr:last-child").text());
+        return table.selectFirst("tr:last-child").text();
     }
 }

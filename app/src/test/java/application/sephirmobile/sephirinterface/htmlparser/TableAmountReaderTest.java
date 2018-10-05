@@ -6,15 +6,18 @@ import org.junit.Test;
 import application.sephirmobile.sephirinterface.StringFromResourceReader;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 public class TableAmountReaderTest {
     @Test
     public void tableElement_read_correctAmount() throws Exception {
         String html = StringFromResourceReader.read("html/noten.txt");
 
-        int amount = TableAmountReader.read(Jsoup.parse(html).selectFirst("table:nth-of-type(4)"));
+        String amount = TableAmountReader.read(Jsoup.parse(html).selectFirst("table:nth-of-type(4)"));
+        System.out.print(amount);
 
-        assertThat(amount, is(5));
-    }
-}
+        assertNotEquals(amount,"Es sind keine Prüfungen erfasst.");
+    }}
