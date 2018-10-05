@@ -22,7 +22,7 @@ public class SelectParser<T> {
 
 	public void parse(Element select) {
 		entitys = new ArrayList<>();
-		for (Element option : select.select("option")) {
+		for (Element option : select.select("option:not([disabled])")) {
 			T entity = factory.build();
 			valueMapper.map(entity, option.attr("value"));
 			textMapper.map(entity, option.text());
