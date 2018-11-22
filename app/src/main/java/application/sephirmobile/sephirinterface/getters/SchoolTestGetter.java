@@ -61,7 +61,7 @@ public class SchoolTestGetter extends Getter {
     List<SchoolTest> parse(String html) {
         Document document = Jsoup.parse(html);
         Element table = document.select(".listtab_rot").first();
-        if (TableAmountReader.read(table) != 0) {
+        if (!"Es sind keine Prüfungen erfasst.".equals(TableAmountReader.read(table))) {
             TableParser<SchoolTest> parser = new TableParser<>(getColumns(), SchoolTest::new);
             parser.parse(table);
             List<SchoolTest> tests = parser.getEntitys();
