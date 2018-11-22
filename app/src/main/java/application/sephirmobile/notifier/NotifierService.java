@@ -57,7 +57,7 @@ public class NotifierService extends JobService {
                         if (knownTest == null) {
                             notificationSender.sendNewAnnouncedTestNotification(test);
                         } else if (hasDateChanged(test, knownTest)) {
-                            notificationSender.sendUpdatedAnnouncedTestNotification(test, knownTest);
+                            notificationSender.sendUpdatedAnnouncedTestNotification(test);
 
                         }
 

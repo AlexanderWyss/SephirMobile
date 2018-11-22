@@ -5,6 +5,7 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.os.Build;
+import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 
 import application.sephirmobile.R;
@@ -25,31 +26,31 @@ public class NotificationSender {
         notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
     }
 
-    public void sendUpdatedAnnouncedTestNotification(SchoolTest newTest, SchoolTest oldTest) {
+    public void sendUpdatedAnnouncedTestNotification(SchoolTest test) {
         if (settings.sendAnnouncedTestUpdates()) {
-            sendNotification("Test moved", newTest.getName() + " New Date: " + newTest.getDate().toString(PATTERN) + " Old Date: " + oldTest.getDate().toString(PATTERN) + " " + newTest.getSubject());
+            sendNotification("Prüfung verschoben", getSubjectAndName(test) + " Neues Datum: " + test.getDate().toString(PATTERN));
         }
     }
 
 
-    public void sendNewAnnouncedTestNotification(SchoolTest newTest) {
+    public void sendNewAnnouncedTestNotification(SchoolTest test) {
         if (settings.sendNewAnnouncedTests()) {
-            sendNotification("New Test", newTest.getDate().toString(PATTERN) + " " + newTest.getName() + " " + newTest.getSubject());
+            sendNotification("Prüfung angekündigt", test.getDate().toString(PATTERN) + getSubjectAndName(test));
         }
     }
 
-    public void sendNewMarkNotification(SchoolTest newTest, double averageMark) {
+    public void sendNewMarkNotification(SchoolTest test, double averageMark) {
         if (settings.sendNewMarks()) {
-            sendNotification("New Mark", newTest.getMark() + " " + newTest.getName() + " " + newTest.getSubject() + " Ø" + averageMark);
-        }
+            sendNotification("Neue Note", test.getMark() + " " + getSubjectAndName(test) + " Ø" + averageMark);
+    }
     }
 
     public void sendReminder(SchoolTest test) {
-        sendNotification("Test Reminder", test.getDate().toString(PATTERN) + " " + test.getName() + " " + test.getSubject());
+        sendNotification("Prüfung Erinnerung", test.getDate().toString(PATTERN) + " " + getSubjectAndName(test));
     }
 
     public void sendLoginError() {
-        sendNotification("Ups", "Login not Successful. Restart the app completely to start checking for updates again.");
+        sendNotification("Ups", "Login nicht erfolgreich. Melde dich in der App neu an.");
     }
 
     public void sendExceptionMessage(Exception e) {
@@ -76,9 +77,13 @@ public class NotificationSender {
             NotificationChannel channel = new NotificationChannel(CHANNEL_ID,
                     "SephirMobile",
                     NotificationManager.IMPORTANCE_DEFAULT);
-            channel.setDescription("Notification of new Marks, Announced Tests and more");
+            channel.setDescription("Erinnerungen an Prüfungen, neue Noten und mehr");
             notificationManager.createNotificationChannel(channel);
         }
     }
 
+    @NonNull
+    private String getSubjectAndName(SchoolTest test) {
+        return test.getSubject() + " " + test.getName();
+    }
 }
