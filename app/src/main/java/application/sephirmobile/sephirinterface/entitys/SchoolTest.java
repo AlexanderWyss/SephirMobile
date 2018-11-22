@@ -1,5 +1,7 @@
 package application.sephirmobile.sephirinterface.entitys;
 
+import android.graphics.Bitmap;
+
 import org.joda.time.LocalDate;
 
 import java.io.IOException;
@@ -7,6 +9,7 @@ import java.io.Serializable;
 
 import application.sephirmobile.sephirinterface.SephirInterface;
 import application.sephirmobile.sephirinterface.getters.AverageTestMarkGetter;
+import application.sephirmobile.sephirinterface.getters.TestChartGetter;
 
 public class SchoolTest implements Serializable {
     private LocalDate date;
@@ -39,6 +42,14 @@ public class SchoolTest implements Serializable {
             return averageTestMarkGetter.get(this);
         }
         return 0;
+    }
+
+    public Bitmap getMarkChart(SephirInterface sephirInterface) throws IOException {
+        if (mark != 0.0) {
+            TestChartGetter testChartGetter = new TestChartGetter(sephirInterface);
+            return testChartGetter.get(this);
+        }
+        return null;
     }
 
     public LocalDate getDate() {

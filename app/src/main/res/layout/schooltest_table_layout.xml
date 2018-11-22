@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -41,7 +42,7 @@
         app:srcCompat="@drawable/ic_diameter_symbol" />
 
     <ProgressBar
-        android:id="@+id/progressBar"
+        android:id="@+id/progressBarAverageMark"
         style="?android:attr/progressBarStyleSmall"
         android:layout_width="35sp"
         android:layout_height="18sp"
@@ -53,5 +54,21 @@
         android:layout_width="35sp"
         android:layout_height="wrap_content"
         android:layout_weight="0"
+        android:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/barChartSymbol"
+        android:layout_width="35sp"
+        android:layout_height="18sp"
+        android:layout_weight="0"
+        android:contentDescription="@string/averageSymbol"
+        app:srcCompat="@drawable/ic_business_bars_graphic" />
+
+    <ProgressBar
+        android:id="@+id/progressBarTestChart"
+        style="?android:attr/progressBarStyleSmall"
+        android:layout_width="35sp"
+        android:layout_height="18sp"
+        android:indeterminate="true"
         android:visibility="gone" />
 </LinearLayout>

@@ -70,7 +70,7 @@ public abstract class TableFragment extends Fragment {
         private void showProgress(final boolean show) {
             if (progressBar == null) {
                 tableView = (LinearLayout) LayoutInflater.from(getContext()).inflate(R.layout.table_layout, null, false);
-                progressBar = tableView.findViewById(R.id.progressBar);
+                progressBar = tableView.findViewById(R.id.progressBarAverageMark);
             }
             int shortAnimTime = getContext().getResources().getInteger(android.R.integer.config_shortAnimTime);
 

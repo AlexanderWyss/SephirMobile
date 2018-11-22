@@ -3,15 +3,20 @@ package application.sephirmobile.table.adapters;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.PopupWindow;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import com.github.chrisbanes.photoview.PhotoView;
 
 import java.io.IOException;
 import java.text.DecimalFormat;
@@ -20,6 +25,7 @@ import java.util.List;
 import application.sephirmobile.R;
 import application.sephirmobile.sephirinterface.SephirInterface;
 import application.sephirmobile.sephirinterface.entitys.SchoolTest;
+import application.sephirmobile.sephirinterface.getters.TestChartGetter;
 
 public class SchoolTestAdapter extends TableAdapter<SchoolTest> {
 
@@ -53,8 +59,11 @@ public class SchoolTestAdapter extends TableAdapter<SchoolTest> {
         TextView text = convertView.findViewById(R.id.text);
         TextView mark = convertView.findViewById(R.id.mark);
         ImageView averageMarkImage = convertView.findViewById(R.id.averageSymol);
-        ProgressBar progressBar = convertView.findViewById(R.id.progressBar);
+        ProgressBar progressBarAverageMark = convertView.findViewById(R.id.progressBarAverageMark);
         TextView averageMarkTextView = convertView.findViewById(R.id.averageMark);
+        ImageView barChartImage = convertView.findViewById(R.id.barChartSymbol);
+        ProgressBar progressBarTestChart = convertView.findViewById(R.id.progressBarTestChart);
+
 
         if (textSize != null) {
             date.setTextSize(textSize);
@@ -80,14 +89,49 @@ public class SchoolTestAdapter extends TableAdapter<SchoolTest> {
                         @Override
                         protected void onPreExecute() {
                             averageMarkImage.setVisibility(View.GONE);
-                            showProgress(true, progressBar);
+                            showProgress(true, progressBarAverageMark);
                         }
 
                         @Override
                         protected void onPostExecute(String s) {
                             averageMarkTextView.setText(s);
-                            showProgress(false, progressBar);
+                            showProgress(false, progressBarAverageMark);
                             averageMarkTextView.setVisibility(View.VISIBLE);
+                        }
+                    }.execute();
+                }
+            });
+            barChartImage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    new AsyncTask<Void, Void, Bitmap>() {
+
+                        @Override
+                        protected Bitmap doInBackground(Void... voids) {
+                            try {
+                                return new TestChartGetter(sephirInterface).get(test);
+                            } catch (IOException e) {
+                                return null;
+                            }
+                        }
+
+                        @Override
+                        protected void onPreExecute() {
+                            barChartImage.setVisibility(View.GONE);
+                            showProgress(true, progressBarTestChart);
+                        }
+
+                        @Override
+                        protected void onPostExecute(Bitmap bitmap) {
+                            View popUpView = View.inflate(getContext(), R.layout.test_chart_popup_layout, null);
+                            PopupWindow popupWindow = new PopupWindow(popUpView, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                            popupWindow.setOutsideTouchable(true);
+                            PhotoView chart = popUpView.findViewById(R.id.imageView);
+                            chart.setImageBitmap(bitmap);
+                            popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+
+                            showProgress(false, progressBarTestChart);
+                            barChartImage.setVisibility(View.VISIBLE);
                         }
                     }.execute();
                 }

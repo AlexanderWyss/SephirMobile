@@ -1,5 +1,9 @@
 package application.sephirmobile.sephirinterface;
 
+import android.graphics.Bitmap;
+
+import com.squareup.picasso.Picasso;
+
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -22,10 +26,10 @@ import retrofit2.Retrofit;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class SephirInterface {
-    private static SephirInterface sephirInterface  = null;
+    private static SephirInterface sephirInterface = null;
 
     public static SephirInterface getSephirInterface() {
-        if(sephirInterface == null) {
+        if (sephirInterface == null) {
             sephirInterface = new SephirInterface();
         }
         return sephirInterface;
@@ -37,7 +41,9 @@ public class SephirInterface {
     }
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SephirInterface.class);
-    private static final String BASE_URL = "https://sephir.ch/ICT/user/lernendenportal/";
+    private static final String BASE_DOMAIN = "https://sephir.ch";
+    private static final String BASE_FILE = "/ICT/user/lernendenportal/";
+    private static final String BASE_URL = BASE_DOMAIN + BASE_FILE;
     private final SephirInterfaceService sephirInterfaceService;
     private Certification certification = new Certification("", "");
 
@@ -93,6 +99,10 @@ public class SephirInterface {
         return get(url, new HashMap<>());
     }
 
+    public Bitmap downloadImage(String url) throws IOException {
+        return Picasso.get().load(BASE_DOMAIN + url).get();
+    }
+
     public Response<String> postForResponse(String url, Map<String, String> postMap, Map<String, String> getMap) throws IOException {
         Response<String> response = sephirInterfaceService.post(url, postMap, getMap).execute();
         LOGGER.debug("Response with Code: {}", response.code());
@@ -106,7 +116,6 @@ public class SephirInterface {
     public String post(String url, Map<String, String> postMap) throws IOException {
         return post(url, postMap, new HashMap<>());
     }
-
 
 
     private Certification getCertification() {

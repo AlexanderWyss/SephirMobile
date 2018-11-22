@@ -33,7 +33,7 @@
         android:dividerHeight="1dp" />
 
     <ProgressBar
-        android:id="@+id/progressBar"
+        android:id="@+id/progressBarAverageMark"
         style="?android:attr/progressBarStyleLarge"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
