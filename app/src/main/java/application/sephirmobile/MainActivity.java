@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        NotifierService.scheduleJob(getApplicationContext(), 1);
+        NotifierService.scheduleJob(getApplicationContext(), 1, 0);
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);

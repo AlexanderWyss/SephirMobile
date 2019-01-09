@@ -27,7 +27,7 @@ class Persister {
         try (FileInputStream fileInputStream = context.openFileInput(fileName);
              ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream)) {
             return objectInputStream.readObject();
-        } catch (FileNotFoundException e) {
+        } catch (FileNotFoundException | ClassCastException e) {
             e.printStackTrace();
             return null;
         }

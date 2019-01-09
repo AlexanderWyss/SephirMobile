@@ -181,10 +181,14 @@ public class NotifierService extends JobService {
     }
 
     public static void scheduleJob(Context applicationContext, int id) {
+        scheduleJob(applicationContext, id, getNotifierSettings().getLatency());
+    }
+
+    public static void scheduleJob(Context applicationContext, int id, int latency) {
         JobScheduler jobScheduler = getJobScheduler(applicationContext);
         ComponentName serviceComponent = new ComponentName(applicationContext, NotifierService.class);
         JobInfo.Builder builder = new JobInfo.Builder(id, serviceComponent);
-        builder.setMinimumLatency(getNotifierSettings().getLatency());
+        builder.setMinimumLatency(latency);
         builder.setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY);
         builder.setPersisted(true);
         jobScheduler.schedule(builder.build());
