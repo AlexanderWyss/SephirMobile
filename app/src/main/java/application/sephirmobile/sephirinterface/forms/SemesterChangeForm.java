@@ -8,12 +8,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 import application.sephirmobile.sephirinterface.SephirInterface;
+import application.sephirmobile.sephirinterface.Urls;
 import application.sephirmobile.sephirinterface.entitys.Semester;
 import application.sephirmobile.sephirinterface.getters.Getter;
 
 public class SemesterChangeForm extends Getter {
 	private static final Logger LOGGER = LoggerFactory.getLogger(SemesterChangeForm.class);
-	private static final String URL = "40_notentool/noten.cfm";
+	private static final String URL = Urls.NOTEN + "/noten.cfm";
 
 	public SemesterChangeForm(SephirInterface sephirInterface) {
 		super(sephirInterface);

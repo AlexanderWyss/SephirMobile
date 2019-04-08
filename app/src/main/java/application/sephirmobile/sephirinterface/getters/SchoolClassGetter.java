@@ -10,12 +10,13 @@ import java.io.IOException;
 import java.util.List;
 
 import application.sephirmobile.sephirinterface.SephirInterface;
+import application.sephirmobile.sephirinterface.Urls;
 import application.sephirmobile.sephirinterface.entitys.SchoolClass;
 import application.sephirmobile.sephirinterface.htmlparser.SelectParser;
 
 public class SchoolClassGetter extends Getter {
 	private static final Logger LOGGER = LoggerFactory.getLogger(SchoolClassGetter.class);
-	private static final String URL = "40_notentool/noten.cfm";
+	private static final String URL = Urls.NOTEN + "/noten.cfm";
 
 	public SchoolClassGetter(SephirInterface sephirInterface) {
 		super(sephirInterface);

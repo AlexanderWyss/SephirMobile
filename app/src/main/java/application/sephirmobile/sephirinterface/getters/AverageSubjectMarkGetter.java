@@ -13,13 +13,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import application.sephirmobile.sephirinterface.SephirInterface;
+import application.sephirmobile.sephirinterface.Urls;
 import application.sephirmobile.sephirinterface.entitys.AverageSubjectMark;
 import application.sephirmobile.sephirinterface.entitys.AverageSubjectMarks;
 import application.sephirmobile.sephirinterface.entitys.SchoolClass;
 
 public class AverageSubjectMarkGetter extends Getter {
     private static final Logger LOGGER = LoggerFactory.getLogger(AverageSubjectMarkGetter.class);
-    private static final String URL = "40_notentool/noten.cfm";
+    private static final String URL = Urls.NOTEN + "/noten.cfm";
 
     public AverageSubjectMarkGetter(SephirInterface sephirInterface) {
         super(sephirInterface);

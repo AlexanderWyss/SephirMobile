@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 import application.sephirmobile.sephirinterface.SephirInterface;
+import application.sephirmobile.sephirinterface.Urls;
 import application.sephirmobile.sephirinterface.entitys.AnnouncedTest;
 import application.sephirmobile.sephirinterface.htmlparser.TableAmountReader;
 import application.sephirmobile.sephirinterface.htmlparser.TableColumnParser;
@@ -26,7 +27,7 @@ public class AnnouncedTestGetter extends Getter {
     private static final DateTimeFormatter FORMATTER = new DateTimeFormatterBuilder().appendDayOfMonth(2)
             .appendLiteral('.').appendMonthOfYear(2).appendLiteral('.').appendYear(4, 4).toFormatter();
     private static final Logger LOGGER = LoggerFactory.getLogger(AnnouncedTestGetter.class);
-    private static final String URL = "40_notentool/angekuendigt.cfm";
+    private static final String URL = Urls.NOTEN + "/angekuendigt.cfm";
 
     public AnnouncedTestGetter(SephirInterface sephirInterface) {
         super(sephirInterface);

@@ -13,11 +13,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 import application.sephirmobile.sephirinterface.SephirInterface;
+import application.sephirmobile.sephirinterface.Urls;
 import application.sephirmobile.sephirinterface.entitys.SchoolTest;
 
 public class TestChartGetter extends Getter {
 
-    private static final String URL = "40_notentool/noten.cfm";
+    private static final String URL = Urls.NOTEN + "/noten.cfm";
     private static final Logger LOGGER = LoggerFactory.getLogger(TestChartGetter.class);
 
     public TestChartGetter(SephirInterface sephirInterface) {

@@ -11,10 +11,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 import application.sephirmobile.sephirinterface.SephirInterface;
+import application.sephirmobile.sephirinterface.Urls;
 import application.sephirmobile.sephirinterface.entitys.SchoolTest;
 
 public class AverageTestMarkGetter extends Getter {
-    private static final String URL = "40_notentool/noten.cfm";
+    private static final String URL = Urls.NOTEN + "/noten.cfm";
     private static final Logger LOGGER = LoggerFactory.getLogger(AverageTestMarkGetter.class);
 
     public AverageTestMarkGetter(SephirInterface sephirInterface) {

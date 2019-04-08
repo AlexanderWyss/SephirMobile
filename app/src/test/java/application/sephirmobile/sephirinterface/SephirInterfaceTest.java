@@ -1,27 +1,47 @@
 package application.sephirmobile.sephirinterface;
 
+import android.app.job.JobScheduler;
+import android.graphics.Bitmap;
+import android.support.annotation.NonNull;
+
+import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
+import java.io.IOException;
 import java.util.List;
 
 import application.sephirmobile.login.Login;
 import application.sephirmobile.sephirinterface.entitys.AnnouncedTest;
+import application.sephirmobile.sephirinterface.entitys.AverageSubjectMarks;
+import application.sephirmobile.sephirinterface.entitys.SchoolClass;
+import application.sephirmobile.sephirinterface.entitys.SchoolTest;
+import application.sephirmobile.sephirinterface.entitys.Semesters;
+import application.sephirmobile.sephirinterface.forms.SemesterChangeForm;
 import application.sephirmobile.sephirinterface.getters.AnnouncedTestGetter;
+import application.sephirmobile.sephirinterface.getters.AverageSubjectMarkGetter;
+import application.sephirmobile.sephirinterface.getters.AverageTestMarkGetter;
+import application.sephirmobile.sephirinterface.getters.SchoolClassGetter;
+import application.sephirmobile.sephirinterface.getters.SchoolTestGetter;
+import application.sephirmobile.sephirinterface.getters.SemesterGetter;
+import application.sephirmobile.sephirinterface.getters.TestChartGetter;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
-
 public class SephirInterfaceTest {
+
     @Test
-    @Ignore("Does real Requests to Sephir")
     public void sephirInterfaceTest() throws Exception {
+        //Does not test testchartgetter
+
         //Login
         SephirInterface sephirInterface = new SephirInterface();
         sephirInterface.login(new Login(StringFromResourceReader.read("ignore/email.txt"), StringFromResourceReader.read("ignore/password.txt")));
 
-    /*
+
         //Get SchoolClasses
         SchoolClassGetter schoolClassGetter = new SchoolClassGetter(sephirInterface);
         List<SchoolClass> schoolClasses = schoolClassGetter.get();
@@ -31,26 +51,18 @@ public class SephirInterfaceTest {
         SchoolTestGetter testGetter = new SchoolTestGetter(sephirInterface);
         for (SchoolClass schoolClass : schoolClasses) {
             List<SchoolTest> tests = testGetter.get(schoolClass);
-            tests.get(0).getAverageMark(sephirInterface);
+            SchoolTest test = tests.get(0);
+            test.getAverageMark(sephirInterface);
             System.out.println(tests);
-
-            tests.stream().filter(test -> test.getMark() != 0).findFirst().ifPresent(test -> {
-                try {
-                    double averageMark = test.getAverageMark(sephirInterface);
-                    System.out.println(averageMark);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            });
         }
-*/
+
 
         //Get Announced Tests
         AnnouncedTestGetter announcedTestGetter = new AnnouncedTestGetter(sephirInterface);
         List<AnnouncedTest> announcedTests = announcedTestGetter.get();
         System.out.println(announcedTests);
 
-/*
+
         //Get average Mark (or use method on SchoolTest
         AverageTestMarkGetter averageTestMarkGetter = new AverageTestMarkGetter(sephirInterface);
         double averageMark = averageTestMarkGetter.get(new SchoolTest(null, null, null, null, null, 0, 0, "216054"));
@@ -68,10 +80,9 @@ public class SephirInterfaceTest {
 
         AverageSubjectMarkGetter averageSubjectMarkGetter = new AverageSubjectMarkGetter(sephirInterface);
         for (SchoolClass schoolClass : schoolClasses) {
-        AverageSubjectMarks averageSubjectMarks = averageSubjectMarkGetter.get(schoolClass);
-        System.out.println(averageSubjectMarks);
+            AverageSubjectMarks averageSubjectMarks = averageSubjectMarkGetter.get(schoolClass);
+            System.out.println(averageSubjectMarks);
         }
-*/
     }
 
     @Test

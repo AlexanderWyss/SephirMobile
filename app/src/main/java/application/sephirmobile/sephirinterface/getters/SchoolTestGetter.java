@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 import application.sephirmobile.sephirinterface.SephirInterface;
+import application.sephirmobile.sephirinterface.Urls;
 import application.sephirmobile.sephirinterface.entitys.SchoolClass;
 import application.sephirmobile.sephirinterface.entitys.SchoolTest;
 import application.sephirmobile.sephirinterface.htmlparser.TableAmountReader;
@@ -27,7 +28,7 @@ public class SchoolTestGetter extends Getter {
     private static final DateTimeFormatter FORMATTER = new DateTimeFormatterBuilder().appendDayOfMonth(2)
             .appendLiteral('.').appendMonthOfYear(2).appendLiteral('.').appendYear(4, 4).toFormatter();
     private static final Logger LOGGER = LoggerFactory.getLogger(SchoolTestGetter.class);
-    private static final String URL = "40_notentool/noten.cfm";
+    private static final String URL = Urls.NOTEN + "/noten.cfm";
 
     public SchoolTestGetter(SephirInterface sephirInterface) {
         super(sephirInterface);
